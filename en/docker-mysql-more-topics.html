@@ -58,6 +58,8 @@ More Topics on Deploying MySQL Server with Docker · GitBook</title>
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
+    <link rel="next" href="tutorial.html" />
+    
     
     <link rel="prev" href="docker-mysql-getting-started.html" />
     
@@ -101,28 +103,28 @@ More Topics on Deploying MySQL Server with Docker · GitBook</title>
             
         </li>
     
-        <li class="chapter " data-level="1.2" >
+        <li class="chapter " data-level="1.2" data-path="installing.html">
             
-                <span>
+                <a href="installing.html">
             
                     
                     Installing and Upgrading MySQL
             
-                </span>
+                </a>
             
 
             
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.2.1" >
+        <li class="chapter " data-level="1.2.1" data-path="linux-installation.html">
             
-                <span>
+                <a href="linux-installation.html">
             
                     
                     Installing MySQL on Linux
             
-                </span>
+                </a>
             
 
             
@@ -190,6 +192,148 @@ More Topics on Deploying MySQL Server with Docker
     
 
             </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="tutorial.html">
+            
+                <a href="tutorial.html">
+            
+                    
+                    Tutorial
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="examples.html">
+            
+                <a href="examples.html">
+            
+                    
+                    Examples of Common Queries
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="optimization.html">
+            
+                <a href="optimization.html">
+            
+                    
+                    Optimization
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="optimize-overview.html">
+            
+                <a href="optimize-overview.html">
+            
+                    
+                    Optimization Overview
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="statement-optimization.html">
+            
+                <a href="statement-optimization.html">
+            
+                    
+                    Optimizing SQL Statements
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="optimization-indexes.html">
+            
+                <a href="optimization-indexes.html">
+            
+                    
+                    Optimization and Indexes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="optimizing-database-structure.html">
+            
+                <a href="optimizing-database-structure.html">
+            
+                    
+                    Optimizing Database Structure
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="optimizing-innodb.html">
+            
+                <a href="optimizing-innodb.html">
+            
+                    
+                    Optimizing for InnoDB Tables
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" data-path="optimizing-myisam.html">
+            
+                <a href="optimizing-myisam.html">
+            
+                    
+                    Optimizing for MyISAM Tables
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7" data-path="optimizing-memory-tables.html">
+            
+                <a href="optimizing-memory-tables.html">
+            
+                    
+                    Optimizing for MEMORY Tables
+            
+                </a>
+            
+
             
         </li>
     
@@ -316,7 +460,7 @@ More Topics on Deploying MySQL Server with Docker</a>
 </code></pre>
 <p>The command mounts <code>path-on-host-machine/my.cnf</code> at <code>/etc/my.cnf</code> (the server configuration file inside the container), and <code>path-on-host-machine/datadir</code> at <code>/var/lib/mysql</code> (the data directory inside the container). The following conditions must be met for the bind-mounting to work:</p>
 <ul>
-<li>The configuration file path-on-host-machine/my.cnf must already exist, and it must contain the specification for starting the server using the user mysql:</li>
+<li>The configuration file <code>path-on-host-machine/my.cnf</code> must already exist, and it must contain the specification for starting the server using the user mysql:</li>
 </ul>
 <pre><code class="lang-ini"><span class="hljs-section">[mysqld]</span>
 <span class="hljs-attr">user</span>=mysql
@@ -450,7 +594,7 @@ mysqlbackup completed OK! with 3 warnings
 <h5 id="docker-environment-variables">Docker Environment Variables</h5>
 <p>When you create a MySQL Server container, you can configure the MySQL instance by using the <code>--env</code> option (<code>-e</code> in short) and specifying one or more of the following environment variables.</p>
 <blockquote>
-<p>Notes</p>
+<p><strong>Notes</strong></p>
 <ul>
 <li>None of the variables below has any effect if the data directory you mount is not empty, as no server initialization is going to be attempted then (see <a href="https://dev.mysql.com/doc/refman/8.0/en/docker-mysql-more-topics.html#docker-persisting-data-configuration" target="_blank">Persisting Data and Configuration Changes</a> for more details). Any pre-existing contents in the folder, including any old server settings, are not modified during the container startup.</li>
 </ul>
@@ -522,10 +666,14 @@ mysqlbackup completed OK! with 3 warnings
 
             
                 
-                <a href="docker-mysql-getting-started.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Basic Steps for MySQL Server Deployment with Docker">
+                <a href="docker-mysql-getting-started.html" class="navigation navigation-prev " aria-label="Previous page: Basic Steps for MySQL Server Deployment with Docker">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
+                
+                <a href="tutorial.html" class="navigation navigation-next " aria-label="Next page: Tutorial">
+                    <i class="fa fa-angle-right"></i>
+                </a>
                 
             
         
@@ -534,7 +682,7 @@ mysqlbackup completed OK! with 3 warnings
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"\nMore Topics on Deploying MySQL Server with Docker","level":"1.2.1.2.2","depth":4,"previous":{"title":"Basic Steps for MySQL Server Deployment with Docker","level":"1.2.1.2.1","depth":4,"path":"docker-mysql-getting-started.md","ref":"docker-mysql-getting-started.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"en","gitbook":"*"},"file":{"path":"docker-mysql-more-topics.md","mtime":"2019-03-23T03:04:07.535Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-23T06:14:18.479Z"},"basePath":".","book":{"language":"en"}});
+            gitbook.page.hasChanged({"page":{"title":"\nMore Topics on Deploying MySQL Server with Docker","level":"1.2.1.2.2","depth":4,"next":{"title":"Tutorial","level":"1.3","depth":1,"path":"tutorial.md","ref":"tutorial.md","articles":[{"title":"Examples of Common Queries","level":"1.3.1","depth":2,"path":"examples.md","ref":"examples.md","articles":[]}]},"previous":{"title":"Basic Steps for MySQL Server Deployment with Docker","level":"1.2.1.2.1","depth":4,"path":"docker-mysql-getting-started.md","ref":"docker-mysql-getting-started.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"en","gitbook":"*"},"file":{"path":"docker-mysql-more-topics.md","mtime":"2019-03-29T12:15:19.329Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-29T14:00:39.868Z"},"basePath":".","book":{"language":"en"}});
         });
     </script>
 </div>

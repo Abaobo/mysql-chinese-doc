@@ -1,10 +1,10 @@
 
 <!DOCTYPE HTML>
-<html lang="zh-hans" >
+<html lang="en" >
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>在 Linux 上使用 Docker 部署 MySQL · GitBook</title>
+        <title>Optimizing for InnoDB Tables · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,10 +57,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="docker-mysql-getting-started.html" />
+    <link rel="next" href="optimizing-myisam.html" />
     
     
-    <link rel="prev" href="linux-installation-apt-repo.html" />
+    <link rel="prev" href="optimizing-database-structure.html" />
     
 
     </head>
@@ -71,7 +71,7 @@
         
             
 <div id="book-search-input" role="search">
-    <input type="text" placeholder="输入并搜索" />
+    <input type="text" placeholder="Type to search" />
 </div>
 
             
@@ -94,7 +94,7 @@
                 <a href="./">
             
                     
-                    简介
+                    Introduction
             
                 </a>
             
@@ -107,7 +107,7 @@
                 <a href="installing.html">
             
                     
-                    安装和更新 MySQL
+                    Installing and Upgrading MySQL
             
                 </a>
             
@@ -121,7 +121,7 @@
                 <a href="linux-installation.html">
             
                     
-                    在 Linux 上安装 MySQL
+                    Installing MySQL on Linux
             
                 </a>
             
@@ -135,7 +135,7 @@
                 <a href="linux-installation-apt-repo.html">
             
                     
-                    在 Linux 上使用 APT 库安装 MySQL
+                    Installing MySQL on Linux Using the MySQL APT Repository
             
                 </a>
             
@@ -143,12 +143,12 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.2.1.2" data-path="linux-installation-docker.html">
+        <li class="chapter " data-level="1.2.1.2" data-path="linux-installation-docker.html">
             
                 <a href="linux-installation-docker.html">
             
                     
-                    在 Linux 上使用 Docker 部署 MySQL
+                    Deploying MySQL on Linux with Docker
             
                 </a>
             
@@ -162,7 +162,7 @@
                 <a href="docker-mysql-getting-started.html">
             
                     
-                    使用 Docker 部署 MySQL 服务器的基本步骤
+                    Basic Steps for MySQL Server Deployment with Docker
             
                 </a>
             
@@ -175,7 +175,8 @@
                 <a href="docker-mysql-more-topics.html">
             
                     
-                    使用 Docker 部署 MySQL 服务器的更多主题
+                    
+More Topics on Deploying MySQL Server with Docker
             
                 </a>
             
@@ -203,7 +204,7 @@
                 <a href="tutorial.html">
             
                     
-                    教程
+                    Tutorial
             
                 </a>
             
@@ -217,7 +218,7 @@
                 <a href="examples.html">
             
                     
-                    常见查询示例
+                    Examples of Common Queries
             
                 </a>
             
@@ -235,7 +236,7 @@
                 <a href="optimization.html">
             
                     
-                    优化
+                    Optimization
             
                 </a>
             
@@ -249,7 +250,7 @@
                 <a href="optimize-overview.html">
             
                     
-                    优化概述
+                    Optimization Overview
             
                 </a>
             
@@ -262,7 +263,7 @@
                 <a href="statement-optimization.html">
             
                     
-                    优化 SQL 语句
+                    Optimizing SQL Statements
             
                 </a>
             
@@ -275,7 +276,7 @@
                 <a href="optimization-indexes.html">
             
                     
-                    优化和索引
+                    Optimization and Indexes
             
                 </a>
             
@@ -288,7 +289,7 @@
                 <a href="optimizing-database-structure.html">
             
                     
-                    优化数据库结构
+                    Optimizing Database Structure
             
                 </a>
             
@@ -296,12 +297,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.5" data-path="optimizing-innodb.html">
+        <li class="chapter active" data-level="1.4.5" data-path="optimizing-innodb.html">
             
                 <a href="optimizing-innodb.html">
             
                     
-                    优化 InnoDB 表
+                    Optimizing for InnoDB Tables
             
                 </a>
             
@@ -314,7 +315,7 @@
                 <a href="optimizing-myisam.html">
             
                     
-                    优化 MyISAM 表
+                    Optimizing for MyISAM Tables
             
                 </a>
             
@@ -327,7 +328,7 @@
                 <a href="optimizing-memory-tables.html">
             
                     
-                    优化 MEMORY 表
+                    Optimizing for MEMORY Tables
             
                 </a>
             
@@ -347,7 +348,7 @@
 
     <li>
         <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
-            本书使用 GitBook 发布
+            Published with GitBook
         </a>
     </li>
 </ul>
@@ -370,7 +371,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >在 Linux 上使用 Docker 部署 MySQL</a>
+        <a href="." >Optimizing for InnoDB Tables</a>
     </h1>
 </div>
 
@@ -385,13 +386,8 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="256-&#x5728;-linux-&#x4E0A;&#x4F7F;&#x7528;-docker-&#x90E8;&#x7F72;-mysql">2.5.6 &#x5728; Linux &#x4E0A;&#x4F7F;&#x7528; Docker &#x90E8;&#x7F72; MySQL</h1>
-<p>Docker &#x90E8;&#x7F72;&#x6846;&#x67B6;&#x652F;&#x6301; MySQL &#x670D;&#x52A1;&#x5668;&#x7684;&#x8F7B;&#x677E;&#x5B89;&#x88C5;&#x548C;&#x914D;&#x7F6E;. &#x672C;&#x8282;&#x89E3;&#x91CA;&#x5982;&#x4F55;&#x4F7F;&#x7528;MySQL&#x670D;&#x52A1;&#x5668;Docker&#x6620;&#x50CF;.</p>
-<p>&#x5728;&#x4F60;&#x4F7F;&#x7528; MySQL &#x670D;&#x52A1;&#x5668; Docker &#x955C;&#x50CF;&#x4E4B;&#x524D;, &#x9700;&#x8981;&#x5728;&#x7CFB;&#x7EDF;&#x4E0A;&#x5B89;&#x88C5; Docker. &#x53C2;&#x9605; <a href="https://docs.docker.com/engine/installation/" target="_blank">&#x5B89;&#x88C5; Docker</a> &#x83B7;&#x53D6;&#x8BE6;&#x60C5;.</p>
-<blockquote>
-<p><strong>&#x91CD;&#x8981;</strong></p>
-<p>&#x4F60;&#x9700;&#x8981;&#x4F7F;&#x7528; <code>sudo</code> &#x547D;&#x4EE4;&#x8FD0;&#x884C; <code>docker</code> &#x547D;&#x4EE4;, &#x6216;&#x8005;&#x521B;&#x5EFA; <code>docker</code> &#x7528;&#x6237;&#x7EC4;, &#x7136;&#x540E;&#x6DFB;&#x52A0;&#x4EFB;&#x4F55;&#x60F3;&#x8981;&#x8FD0;&#x884C; <code>docker</code> &#x547D;&#x4EE4;&#x7684;&#x7528;&#x6237;. &#x5728;<a href="https://docs.docker.com/engine/installation/linux/linux-postinstall/" target="_blank">&#x6B64;</a>&#x67E5;&#x770B;&#x8BE6;&#x60C5;. &#x56E0;&#x4E3A; Docker &#x5BB9;&#x5668;&#x603B;&#x662F;&#x4F7F;&#x7528; root &#x6743;&#x9650;&#x8FD0;&#x884C;, &#x4F60;&#x5E94;&#x8BE5;&#x7406;&#x89E3; <a href="https://docs.docker.com/engine/security/security/#docker-daemon-attack-surface" target="_blank">Docker daemon attack surface</a> &#x5E76;&#x9002;&#x5F53;&#x964D;&#x4F4E;&#x76F8;&#x5173;&#x98CE;&#x9669;.</p>
-</blockquote>
+                                <h2 id="85-optimizing-for-innodb-tables">8.5 Optimizing for InnoDB Tables</h2>
+<p><a href="https://dev.mysql.com/doc/refman/8.0/en/innodb-storage-engine.html" target="_blank"><code>InnoDB</code></a> is the storage engine that MySQL customers typically use in production databases where reliability and concurrency are important. <code>InnoDB</code> is the default storage engine in MySQL. This section explains how to optimize database operations for <code>InnoDB</code> tables. </p>
 
                                 
                                 </section>
@@ -419,12 +415,12 @@
 
             
                 
-                <a href="linux-installation-apt-repo.html" class="navigation navigation-prev " aria-label="Previous page: 在 Linux 上使用 APT 库安装 MySQL">
+                <a href="optimizing-database-structure.html" class="navigation navigation-prev " aria-label="Previous page: Optimizing Database Structure">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="docker-mysql-getting-started.html" class="navigation navigation-next " aria-label="Next page: 使用 Docker 部署 MySQL 服务器的基本步骤">
+                <a href="optimizing-myisam.html" class="navigation navigation-next " aria-label="Next page: Optimizing for MyISAM Tables">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -435,7 +431,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"在 Linux 上使用 Docker 部署 MySQL","level":"1.2.1.2","depth":3,"next":{"title":"使用 Docker 部署 MySQL 服务器的基本步骤","level":"1.2.1.2.1","depth":4,"path":"docker-mysql-getting-started.md","ref":"docker-mysql-getting-started.md","articles":[]},"previous":{"title":"在 Linux 上使用 APT 库安装 MySQL","level":"1.2.1.1","depth":3,"path":"linux-installation-apt-repo.md","ref":"linux-installation-apt-repo.md","articles":[]},"dir":"ltr"},"config":{"plugins":["highlight"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"zh-hans","gitbook":"*"},"file":{"path":"linux-installation-docker.md","mtime":"2019-03-29T12:15:19.399Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-29T14:00:39.868Z"},"basePath":".","book":{"language":"zh-cn"}});
+            gitbook.page.hasChanged({"page":{"title":"Optimizing for InnoDB Tables","level":"1.4.5","depth":2,"next":{"title":"Optimizing for MyISAM Tables","level":"1.4.6","depth":2,"path":"optimizing-myisam.md","ref":"optimizing-myisam.md","articles":[]},"previous":{"title":"Optimizing Database Structure","level":"1.4.4","depth":2,"path":"optimizing-database-structure.md","ref":"optimizing-database-structure.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"en","gitbook":"*"},"file":{"path":"optimizing-innodb.md","mtime":"2019-03-29T13:48:10.198Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-29T14:00:39.868Z"},"basePath":".","book":{"language":"en"}});
         });
     </script>
 </div>

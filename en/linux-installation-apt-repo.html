@@ -60,6 +60,8 @@
     <link rel="next" href="linux-installation-docker.html" />
     
     
+    <link rel="prev" href="linux-installation.html" />
+    
 
     </head>
     <body>
@@ -100,28 +102,28 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2" >
+        <li class="chapter " data-level="1.2" data-path="installing.html">
             
-                <span>
+                <a href="installing.html">
             
                     
                     Installing and Upgrading MySQL
             
-                </span>
+                </a>
             
 
             
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.2.1" >
+        <li class="chapter " data-level="1.2.1" data-path="linux-installation.html">
             
-                <span>
+                <a href="linux-installation.html">
             
                     
                     Installing MySQL on Linux
             
-                </span>
+                </a>
             
 
             
@@ -197,6 +199,148 @@ More Topics on Deploying MySQL Server with Docker
             
         </li>
     
+        <li class="chapter " data-level="1.3" data-path="tutorial.html">
+            
+                <a href="tutorial.html">
+            
+                    
+                    Tutorial
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="examples.html">
+            
+                <a href="examples.html">
+            
+                    
+                    Examples of Common Queries
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="optimization.html">
+            
+                <a href="optimization.html">
+            
+                    
+                    Optimization
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="optimize-overview.html">
+            
+                <a href="optimize-overview.html">
+            
+                    
+                    Optimization Overview
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="statement-optimization.html">
+            
+                <a href="statement-optimization.html">
+            
+                    
+                    Optimizing SQL Statements
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="optimization-indexes.html">
+            
+                <a href="optimization-indexes.html">
+            
+                    
+                    Optimization and Indexes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="optimizing-database-structure.html">
+            
+                <a href="optimizing-database-structure.html">
+            
+                    
+                    Optimizing Database Structure
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="optimizing-innodb.html">
+            
+                <a href="optimizing-innodb.html">
+            
+                    
+                    Optimizing for InnoDB Tables
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" data-path="optimizing-myisam.html">
+            
+                <a href="optimizing-myisam.html">
+            
+                    
+                    Optimizing for MyISAM Tables
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7" data-path="optimizing-memory-tables.html">
+            
+                <a href="optimizing-memory-tables.html">
+            
+                    
+                    Optimizing for MEMORY Tables
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
 
     
 
@@ -242,13 +386,13 @@ More Topics on Deploying MySQL Server with Docker
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="252-installing-mysql-on-linux-using-the-mysql-apt-repository">2.5.2 Installing MySQL on Linux Using the MySQL APT Repository</h1>
-<p>The MySQL APT repository provides <code>deb</code> packages for installing and managing the MySQL server, client, and other components on the following Linux platforms:</p>
+                                <h1 id="252-&#x5728;-linux-&#x4E0A;&#x4F7F;&#x7528;-apt-&#x5E93;&#x5B89;&#x88C5;-mysql">2.5.2 &#x5728; Linux &#x4E0A;&#x4F7F;&#x7528; APT &#x5E93;&#x5B89;&#x88C5; MySQL</h1>
+<p>&#x5728;&#x4E0B;&#x5217;&#x5E73;&#x53F0;, MySQL APT &#x5E93;&#x4E3A;&#x5B89;&#x88C5;&#x548C;&#x7BA1;&#x7406; MySQL &#x670D;&#x52A1;&#x5668;&#xFF0C;&#x5BA2;&#x6237;&#x7AEF;&#x548C;&#x5176;&#x4ED6;&#x7EC4;&#x4EF6;&#x63D0;&#x4F9B;&#x4E86; <code>deb</code> &#x5305;:</p>
 <ul>
 <li>Debian 9</li>
-<li>Ubuntu 16.04, 17.10, and 18.04</li>
+<li>Ubuntu 16.04, 17.10, &#x548C; 18.04</li>
 </ul>
-<p>Instructions for using the MySQL APT Repository are available in <a href="https://dev.mysql.com/doc/mysql-apt-repo-quick-guide/en/" target="_blank">A Quick Guide to Using the MySQL APT Repository</a>.</p>
+<p>&#x5728;<a href="https://dev.mysql.com/doc/mysql-apt-repo-quick-guide/en/" target="_blank">&#x4F7F;&#x7528; MySQL APT&#x5E93;&#x7684;&#x5FEB;&#x901F;&#x53C2;&#x8003;</a>&#x4E2D;&#x6709;&#x4F7F;&#x7528; MySQL APT&#x5E93;&#x7684;&#x8BF4;&#x660E;.</p>
 
                                 
                                 </section>
@@ -276,8 +420,12 @@ More Topics on Deploying MySQL Server with Docker
 
             
                 
+                <a href="linux-installation.html" class="navigation navigation-prev " aria-label="Previous page: Installing MySQL on Linux">
+                    <i class="fa fa-angle-left"></i>
+                </a>
                 
-                <a href="linux-installation-docker.html" class="navigation navigation-next navigation-unique" aria-label="Next page: Deploying MySQL on Linux with Docker">
+                
+                <a href="linux-installation-docker.html" class="navigation navigation-next " aria-label="Next page: Deploying MySQL on Linux with Docker">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -288,7 +436,7 @@ More Topics on Deploying MySQL Server with Docker
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Installing MySQL on Linux Using the MySQL APT Repository","level":"1.2.1.1","depth":3,"next":{"title":"Deploying MySQL on Linux with Docker","level":"1.2.1.2","depth":3,"path":"linux-installation-docker.md","ref":"linux-installation-docker.md","articles":[{"title":"Basic Steps for MySQL Server Deployment with Docker","level":"1.2.1.2.1","depth":4,"path":"docker-mysql-getting-started.md","ref":"docker-mysql-getting-started.md","articles":[]},{"title":"\nMore Topics on Deploying MySQL Server with Docker","level":"1.2.1.2.2","depth":4,"path":"docker-mysql-more-topics.md","ref":"docker-mysql-more-topics.md","articles":[]}]},"previous":{"title":"Installing MySQL on Linux","level":"1.2.1","depth":2,"ref":"","articles":[{"title":"Installing MySQL on Linux Using the MySQL APT Repository","level":"1.2.1.1","depth":3,"path":"linux-installation-apt-repo.md","ref":"linux-installation-apt-repo.md","articles":[]},{"title":"Deploying MySQL on Linux with Docker","level":"1.2.1.2","depth":3,"path":"linux-installation-docker.md","ref":"linux-installation-docker.md","articles":[{"title":"Basic Steps for MySQL Server Deployment with Docker","level":"1.2.1.2.1","depth":4,"path":"docker-mysql-getting-started.md","ref":"docker-mysql-getting-started.md","articles":[]},{"title":"\nMore Topics on Deploying MySQL Server with Docker","level":"1.2.1.2.2","depth":4,"path":"docker-mysql-more-topics.md","ref":"docker-mysql-more-topics.md","articles":[]}]}]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"en","gitbook":"*"},"file":{"path":"linux-installation-apt-repo.md","mtime":"2019-03-21T02:52:11.400Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-23T06:14:18.479Z"},"basePath":".","book":{"language":"en"}});
+            gitbook.page.hasChanged({"page":{"title":"Installing MySQL on Linux Using the MySQL APT Repository","level":"1.2.1.1","depth":3,"next":{"title":"Deploying MySQL on Linux with Docker","level":"1.2.1.2","depth":3,"path":"linux-installation-docker.md","ref":"linux-installation-docker.md","articles":[{"title":"Basic Steps for MySQL Server Deployment with Docker","level":"1.2.1.2.1","depth":4,"path":"docker-mysql-getting-started.md","ref":"docker-mysql-getting-started.md","articles":[]},{"title":"\nMore Topics on Deploying MySQL Server with Docker","level":"1.2.1.2.2","depth":4,"path":"docker-mysql-more-topics.md","ref":"docker-mysql-more-topics.md","articles":[]}]},"previous":{"title":"Installing MySQL on Linux","level":"1.2.1","depth":2,"path":"linux-installation.md","ref":"linux-installation.md","articles":[{"title":"Installing MySQL on Linux Using the MySQL APT Repository","level":"1.2.1.1","depth":3,"path":"linux-installation-apt-repo.md","ref":"linux-installation-apt-repo.md","articles":[]},{"title":"Deploying MySQL on Linux with Docker","level":"1.2.1.2","depth":3,"path":"linux-installation-docker.md","ref":"linux-installation-docker.md","articles":[{"title":"Basic Steps for MySQL Server Deployment with Docker","level":"1.2.1.2.1","depth":4,"path":"docker-mysql-getting-started.md","ref":"docker-mysql-getting-started.md","articles":[]},{"title":"\nMore Topics on Deploying MySQL Server with Docker","level":"1.2.1.2.2","depth":4,"path":"docker-mysql-more-topics.md","ref":"docker-mysql-more-topics.md","articles":[]}]}]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"en","gitbook":"*"},"file":{"path":"linux-installation-apt-repo.md","mtime":"2019-03-29T12:15:19.357Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-29T14:00:39.868Z"},"basePath":".","book":{"language":"en"}});
         });
     </script>
 </div>

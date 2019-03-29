@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Introduction · GitBook</title>
+        <title>Optimization Overview · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,8 +57,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="installing.html" />
+    <link rel="next" href="statement-optimization.html" />
     
+    
+    <link rel="prev" href="optimization.html" />
     
 
     </head>
@@ -87,7 +89,7 @@
         
         
     
-        <li class="chapter active" data-level="1.1" data-path="./">
+        <li class="chapter " data-level="1.1" data-path="./">
             
                 <a href="./">
             
@@ -243,7 +245,7 @@ More Topics on Deploying MySQL Server with Docker
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.1" data-path="optimize-overview.html">
+        <li class="chapter active" data-level="1.4.1" data-path="optimize-overview.html">
             
                 <a href="optimize-overview.html">
             
@@ -369,7 +371,7 @@ More Topics on Deploying MySQL Server with Docker
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >Introduction</a>
+        <a href="." >Optimization Overview</a>
     </h1>
 </div>
 
@@ -384,16 +386,40 @@ More Topics on Deploying MySQL Server with Docker
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="mysql-chinese-doc">mysql-chinese-doc</h1>
-<h2 id="including-mysql-ndb-cluster-80">Including MySQL NDB Cluster 8.0</h2>
-<p><strong>Abstract</strong></p>
-<p>This is the MySQL&#x2122; Reference Manual. It documents MySQL 8.0 through 8.0.17, as well as NDB Cluster releases based on version 8.0 of <a href="https://dev.mysql.com/doc/refman/8.0/en/mysql-cluster.html" target="_blank"><code>NDB</code></a> through 8.0.16-ndb-8.0.16, respectively. It may include documentation of features of MySQL versions that have not yet been released. For information about which versions have been released, see the <a href="https://dev.mysql.com/doc/relnotes/mysql/8.0/en/" target="_blank">MySQL 8.0 Release Notes</a>.</p>
-<p><strong>MySQL 8.0 features.</strong>  This manual describes features that are not included in every edition of MySQL 8.0; such features may not be included in the edition of MySQL 8.0 licensed to you. If you have any questions about the features included in your edition of MySQL 8.0, refer to your MySQL 8.0 license agreement or contact your Oracle sales representative.</p>
-<p>For notes detailing the changes in each release, see the <a href="https://dev.mysql.com/doc/relnotes/mysql/8.0/en/" target="_blank">MySQL 8.0 Release Notes</a>.</p>
-<p>For legal information, including licensing information, see the 
-<a href="https://dev.mysql.com/doc/refman/8.0/en/preface.html" target="_blank">Preface and Legal Notices</a>.</p>
-<p>For help with using MySQL, please visit either the <a href="http://forums.mysql.com/" target="_blank">MySQL Forums</a> or <a href="http://lists.mysql.com/" target="_blank">MySQL Mailing Lists</a>, where you can discuss your issues with other MySQL users.</p>
-<p>Document generated on: 2019-03-17 (revision: 61269)</p>
+                                <h2 id="81-optimization-overview">8.1 Optimization Overview</h2>
+<p>Database performance depends on several factors at the database level, such as tables, queries, and configuration settings. These software constructs result in CPU and I/O operations at the hardware level, which you must minimize and make as efficient as possible. As you work on database performance, you start by learning the high-level rules and guidelines for the software side, and measuring performance using wall-clock time. As you become an expert, you learn more about what happens internally, and start measuring things such as CPU cycles and I/O operations. </p>
+<p>Typical users aim to get the best database performance out of their existing software and hardware configurations. Advanced users look for opportunities to improve the MySQL software itself, or develop their own storage engines and hardware appliances to expand the MySQL ecosystem. </p>
+<ul>
+<li><a href="https://dev.mysql.com/doc/refman/8.0/en/optimize-overview.html#optimize-database-level" target="_blank">Optimizing at the Database Level</a></li>
+<li><a href="https://dev.mysql.com/doc/refman/8.0/en/optimize-overview.html#optimize-hardware-level" target="_blank">Optimizing at the Hardware Level</a></li>
+<li><a href="https://dev.mysql.com/doc/refman/8.0/en/optimize-overview.html#optimize-portability-performance" target="_blank">Balancing Portability and Performance</a></li>
+</ul>
+<h3 id="optimizing-at-the-database-level">Optimizing at the Database Level</h3>
+<p>The most important factor in making a database application fast is its basic design:</p>
+<ul>
+<li>Are the tables structured properly? In particular, do the columns have the right data types, and does each table have the appropriate columns for the type of work? For example, applications that perform frequent updates often have many tables with few columns, while applications that analyze large amounts of data often have few tables with many columns. </li>
+<li>Are the right <a href="https://dev.mysql.com/doc/refman/8.0/en/optimization-indexes.html" target="_blank">indexes</a> in place to make queries efficient? </li>
+<li><p>Are you using the appropriate storage engine for each table, and taking advantage of the strengths and features of each storage engine you use? In particular, the choice of a transactional storage engine such as <a href="https://dev.mysql.com/doc/refman/8.0/en/optimizing-innodb.html" target="_blank"><code>InnoDB</code></a> or a nontransactional one such as <a href="https://dev.mysql.com/doc/refman/8.0/en/optimizing-myisam.html" target="_blank"><code>MyISAM</code></a> can be very important for performance and scalability. </p>
+<blockquote>
+<p><strong>Note</strong></p>
+<p>InnoDB is the default storage engine for new tables. In practice, the advanced <code>InnoDB</code> performance features mean that <code>InnoDB</code> tables often outperform the simpler <code>MyISAM</code> tables, especially for a busy database. </p>
+</blockquote>
+</li>
+<li><p>Does each table use an appropriate row format? This choice also depends on the storage engine used for the table. In particular, compressed tables use less disk space and so require less disk I/O to read and write the data. Compression is available for all kinds of workloads with <code>InnoDB</code> tables, and for read-only <code>MyISAM</code> tables. </p>
+</li>
+<li>Does the application use an appropriate <a href="https://dev.mysql.com/doc/refman/8.0/en/locking-issues.html" target="_blank">locking strategy</a>? For example, by allowing shared access when possible so that database operations can run concurrently, and requesting exclusive access when appropriate so that critical operations get top priority. Again, the choice of storage engine is significant. The <code>InnoDB</code> storage engine handles most locking issues without involvement from you, allowing for better concurrency in the database and reducing the amount of experimentation and tuning for your code. </li>
+<li>Are all<a href="https://dev.mysql.com/doc/refman/8.0/en/buffering-caching.html" target="_blank"> memory areas used for caching</a> sized correctly? That is, large enough to hold frequently accessed data, but not so large that they overload physical memory and cause paging. The main memory areas to configure are the <code>InnoDB</code> buffer pool and the MyISAM key cache. </li>
+</ul>
+<h3 id="optimizing-at-the-hardware-level">Optimizing at the Hardware Level</h3>
+<p>Any database application eventually hits hardware limits as the database becomes more and more busy. A DBA must evaluate whether it is possible to tune the application or reconfigure the server to avoid these <a href="https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_bottleneck" target="_blank">bottlenecks</a>, or whether more hardware resources are required. System bottlenecks typically arise from these sources: </p>
+<ul>
+<li>Disk seeks. It takes time for the disk to find a piece of data. With modern disks, the mean time for this is usually lower than 10ms, so we can in theory do about 100 seeks a second. This time improves slowly with new disks and is very hard to optimize for a single table. The way to optimize seek time is to distribute the data onto more than one disk. </li>
+<li>Disk reading and writing. When the disk is at the correct position, we need to read or write the data. With modern disks, one disk delivers at least 10&#x2013;20MB/s throughput. This is easier to optimize than seeks because you can read in parallel from multiple disks. </li>
+<li>CPU cycles. When the data is in main memory, we must process it to get our result. Having large tables compared to the amount of memory is the most common limiting factor. But with small tables, speed is usually not the problem. </li>
+<li>Memory bandwidth. When the CPU needs more data than can fit in the CPU cache, main memory bandwidth becomes a bottleneck. This is an uncommon bottleneck for most systems, but one to be aware of. </li>
+</ul>
+<h3 id="balancing-portability-and-performance">Balancing Portability and Performance</h3>
+<p>To use performance-oriented SQL extensions in a portable MySQL program, you can wrap MySQL-specific keywords in a statement within <code>/*! */</code> comment delimiters. Other SQL servers ignore the commented keywords. For information about writing comments, see <a href="https://dev.mysql.com/doc/refman/8.0/en/comments.html" target="_blank">Section 9.6, &#x201C;Comment Syntax&#x201D;</a>. </p>
 
                                 
                                 </section>
@@ -421,8 +447,12 @@ More Topics on Deploying MySQL Server with Docker
 
             
                 
+                <a href="optimization.html" class="navigation navigation-prev " aria-label="Previous page: Optimization">
+                    <i class="fa fa-angle-left"></i>
+                </a>
                 
-                <a href="installing.html" class="navigation navigation-next navigation-unique" aria-label="Next page: Installing and Upgrading MySQL">
+                
+                <a href="statement-optimization.html" class="navigation navigation-next " aria-label="Next page: Optimizing SQL Statements">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -433,7 +463,7 @@ More Topics on Deploying MySQL Server with Docker
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Introduction","level":"1.1","depth":1,"next":{"title":"Installing and Upgrading MySQL","level":"1.2","depth":1,"path":"installing.md","ref":"installing.md","articles":[{"title":"Installing MySQL on Linux","level":"1.2.1","depth":2,"path":"linux-installation.md","ref":"linux-installation.md","articles":[{"title":"Installing MySQL on Linux Using the MySQL APT Repository","level":"1.2.1.1","depth":3,"path":"linux-installation-apt-repo.md","ref":"linux-installation-apt-repo.md","articles":[]},{"title":"Deploying MySQL on Linux with Docker","level":"1.2.1.2","depth":3,"path":"linux-installation-docker.md","ref":"linux-installation-docker.md","articles":[{"title":"Basic Steps for MySQL Server Deployment with Docker","level":"1.2.1.2.1","depth":4,"path":"docker-mysql-getting-started.md","ref":"docker-mysql-getting-started.md","articles":[]},{"title":"\nMore Topics on Deploying MySQL Server with Docker","level":"1.2.1.2.2","depth":4,"path":"docker-mysql-more-topics.md","ref":"docker-mysql-more-topics.md","articles":[]}]}]}]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"en","gitbook":"*"},"file":{"path":"README.md","mtime":"2019-03-29T12:15:19.326Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-29T14:00:39.868Z"},"basePath":".","book":{"language":"en"}});
+            gitbook.page.hasChanged({"page":{"title":"Optimization Overview","level":"1.4.1","depth":2,"next":{"title":"Optimizing SQL Statements","level":"1.4.2","depth":2,"path":"statement-optimization.md","ref":"statement-optimization.md","articles":[]},"previous":{"title":"Optimization","level":"1.4","depth":1,"path":"optimization.md","ref":"optimization.md","articles":[{"title":"Optimization Overview","level":"1.4.1","depth":2,"path":"optimize-overview.md","ref":"optimize-overview.md","articles":[]},{"title":"Optimizing SQL Statements","level":"1.4.2","depth":2,"path":"statement-optimization.md","ref":"statement-optimization.md","articles":[]},{"title":"Optimization and Indexes","level":"1.4.3","depth":2,"path":"optimization-indexes.md","ref":"optimization-indexes.md","articles":[]},{"title":"Optimizing Database Structure","level":"1.4.4","depth":2,"path":"optimizing-database-structure.md","ref":"optimizing-database-structure.md","articles":[]},{"title":"Optimizing for InnoDB Tables","level":"1.4.5","depth":2,"path":"optimizing-innodb.md","ref":"optimizing-innodb.md","articles":[]},{"title":"Optimizing for MyISAM Tables","level":"1.4.6","depth":2,"path":"optimizing-myisam.md","ref":"optimizing-myisam.md","articles":[]},{"title":"Optimizing for MEMORY Tables","level":"1.4.7","depth":2,"path":"optimizing-memory-tables.md","ref":"optimizing-memory-tables.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"en","gitbook":"*"},"file":{"path":"optimize-overview.md","mtime":"2019-03-29T13:38:59.787Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-29T14:00:39.868Z"},"basePath":".","book":{"language":"en"}});
         });
     </script>
 </div>
