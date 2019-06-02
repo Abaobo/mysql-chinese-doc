@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Introduction · GitBook</title>
+        <title>Using MySQL with Apache · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,8 +57,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="installing.html" />
+    <link rel="next" href="optimization.html" />
     
+    
+    <link rel="prev" href="examples.html" />
     
 
     </head>
@@ -87,7 +89,7 @@
         
         
     
-        <li class="chapter active" data-level="1.1" data-path="./">
+        <li class="chapter " data-level="1.1" data-path="./">
             
                 <a href="./">
             
@@ -223,7 +225,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.2" data-path="apache.html">
+        <li class="chapter active" data-level="1.3.2" data-path="apache.html">
             
                 <a href="apache.html">
             
@@ -472,7 +474,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >Introduction</a>
+        <a href="." >Using MySQL with Apache</a>
     </h1>
 </div>
 
@@ -487,16 +489,18 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="mysql-chinese-doc">mysql-chinese-doc</h1>
-<h2 id="including-mysql-ndb-cluster-80">Including MySQL NDB Cluster 8.0</h2>
-<p><strong>Abstract</strong></p>
-<p>This is the MySQL&#x2122; Reference Manual. It documents MySQL 8.0 through 8.0.17, as well as NDB Cluster releases based on version 8.0 of <a href="https://dev.mysql.com/doc/refman/8.0/en/mysql-cluster.html" target="_blank"><code>NDB</code></a> through 8.0.16-ndb-8.0.16, respectively. It may include documentation of features of MySQL versions that have not yet been released. For information about which versions have been released, see the <a href="https://dev.mysql.com/doc/relnotes/mysql/8.0/en/" target="_blank">MySQL 8.0 Release Notes</a>.</p>
-<p><strong>MySQL 8.0 features.</strong>  This manual describes features that are not included in every edition of MySQL 8.0; such features may not be included in the edition of MySQL 8.0 licensed to you. If you have any questions about the features included in your edition of MySQL 8.0, refer to your MySQL 8.0 license agreement or contact your Oracle sales representative.</p>
-<p>For notes detailing the changes in each release, see the <a href="https://dev.mysql.com/doc/relnotes/mysql/8.0/en/" target="_blank">MySQL 8.0 Release Notes</a>.</p>
-<p>For legal information, including licensing information, see the 
-<a href="https://dev.mysql.com/doc/refman/8.0/en/preface.html" target="_blank">Preface and Legal Notices</a>.</p>
-<p>For help with using MySQL, please visit either the <a href="http://forums.mysql.com/" target="_blank">MySQL Forums</a> or <a href="http://lists.mysql.com/" target="_blank">MySQL Mailing Lists</a>, where you can discuss your issues with other MySQL users.</p>
-<p>Document generated on: 2019-03-17 (revision: 61269)</p>
+                                <h1 id="37-using-mysql-with-apache">3.7 Using MySQL with Apache</h1>
+<p>There are programs that let you authenticate your users from a MySQL database and also let you write your log files into a MySQL table.</p>
+<p>You can change the Apache logging format to be easily readable by MySQL by putting the following into the Apache configuration file:</p>
+<pre><code class="lang-ini">LogFormat \
+        &quot;\&quot;%h\&quot;,%{%Y%m%d%H%M%S}t,%&gt;s,\&quot;%b\&quot;,\&quot;%{Content-Type}o\&quot;,  \
+        \&quot;%U\&quot;,\&quot;%{Referer}i\&quot;,\&quot;%{User-Agent}i\&quot;&quot;
+</code></pre>
+<p>To load a log file in that format into MySQL, you can use a statement something like this:</p>
+<pre><code class="lang-sql"><span class="hljs-keyword">LOAD</span> <span class="hljs-keyword">DATA</span> <span class="hljs-keyword">INFILE</span> <span class="hljs-string">&apos;/local/access_log&apos;</span> <span class="hljs-keyword">INTO</span> <span class="hljs-keyword">TABLE</span> tbl_name
+<span class="hljs-keyword">FIELDS</span> <span class="hljs-keyword">TERMINATED</span> <span class="hljs-keyword">BY</span> <span class="hljs-string">&apos;,&apos;</span> <span class="hljs-keyword">OPTIONALLY</span> <span class="hljs-keyword">ENCLOSED</span> <span class="hljs-keyword">BY</span> <span class="hljs-string">&apos;&quot;&apos;</span> <span class="hljs-keyword">ESCAPED</span> <span class="hljs-keyword">BY</span> <span class="hljs-string">&apos;\\&apos;</span>
+</code></pre>
+<p>The named table should be created to have columns that correspond to those that the LogFormat line writes to the log file.</p>
 
                                 
                                 </section>
@@ -524,8 +528,12 @@
 
             
                 
+                <a href="examples.html" class="navigation navigation-prev " aria-label="Previous page: Examples of Common Queries">
+                    <i class="fa fa-angle-left"></i>
+                </a>
                 
-                <a href="installing.html" class="navigation navigation-next navigation-unique" aria-label="Next page: Installing and Upgrading MySQL">
+                
+                <a href="optimization.html" class="navigation navigation-next " aria-label="Next page: Optimization">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -536,7 +544,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Introduction","level":"1.1","depth":1,"next":{"title":"Installing and Upgrading MySQL","level":"1.2","depth":1,"path":"installing.md","ref":"installing.md","articles":[{"title":"Installing MySQL on Linux","level":"1.2.1","depth":2,"path":"linux-installation.md","ref":"linux-installation.md","articles":[{"title":"Installing MySQL on Linux Using the MySQL APT Repository","level":"1.2.1.1","depth":3,"path":"linux-installation-apt-repo.md","ref":"linux-installation-apt-repo.md","articles":[]},{"title":"Deploying MySQL on Linux with Docker","level":"1.2.1.2","depth":3,"path":"linux-installation-docker.md","ref":"linux-installation-docker.md","articles":[{"title":"Basic Steps for MySQL Server Deployment with Docker","level":"1.2.1.2.1","depth":4,"path":"docker-mysql-getting-started.md","ref":"docker-mysql-getting-started.md","articles":[]},{"title":"More Topics on Deploying MySQL Server with Docker","level":"1.2.1.2.2","depth":4,"path":"docker-mysql-more-topics.md","ref":"docker-mysql-more-topics.md","articles":[]}]}]}]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"en","gitbook":"*"},"file":{"path":"README.md","mtime":"2019-06-02T02:45:35.052Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-02T12:15:43.405Z"},"basePath":".","book":{"language":"en"}});
+            gitbook.page.hasChanged({"page":{"title":"Using MySQL with Apache","level":"1.3.2","depth":2,"next":{"title":"Optimization","level":"1.4","depth":1,"path":"optimization.md","ref":"optimization.md","articles":[{"title":"Optimization Overview","level":"1.4.1","depth":2,"path":"optimize-overview.md","ref":"optimize-overview.md","articles":[]},{"title":"Optimizing SQL Statements","level":"1.4.2","depth":2,"path":"statement-optimization.md","ref":"statement-optimization.md","articles":[]},{"title":"Optimization and Indexes","level":"1.4.3","depth":2,"path":"optimization-indexes.md","ref":"optimization-indexes.md","articles":[]},{"title":"Optimizing Database Structure","level":"1.4.4","depth":2,"path":"optimizing-database-structure.md","ref":"optimizing-database-structure.md","articles":[]},{"title":"Optimizing for InnoDB Tables","level":"1.4.5","depth":2,"path":"optimizing-innodb.md","ref":"optimizing-innodb.md","articles":[]},{"title":"Optimizing for MyISAM Tables","level":"1.4.6","depth":2,"path":"optimizing-myisam.md","ref":"optimizing-myisam.md","articles":[]},{"title":"Optimizing for MEMORY Tables","level":"1.4.7","depth":2,"path":"optimizing-memory-tables.md","ref":"optimizing-memory-tables.md","articles":[]},{"title":"Understanding the Query Execution Plan","level":"1.4.8","depth":2,"path":"execution-plan-information.md","ref":"execution-plan-information.md","articles":[]},{"title":"Controlling the Query Optimizer","level":"1.4.9","depth":2,"path":"controlling-optimizer.md","ref":"controlling-optimizer.md","articles":[]},{"title":"Buffering and Caching","level":"1.4.10","depth":2,"path":"buffering-caching.md","ref":"buffering-caching.md","articles":[]},{"title":"Optimizing Locking Operations","level":"1.4.11","depth":2,"path":"locking-issues.md","ref":"locking-issues.md","articles":[]},{"title":"Optimizing the MySQL Server","level":"1.4.12","depth":2,"path":"optimizing-server.md","ref":"optimizing-server.md","articles":[]},{"title":"Measuring Performance (Benchmarking)","level":"1.4.13","depth":2,"path":"optimize-benchmarking.md","ref":"optimize-benchmarking.md","articles":[]},{"title":"Examining Thread Information","level":"1.4.14","depth":2,"path":"thread-information.md","ref":"thread-information.md","articles":[]}]},"previous":{"title":"Examples of Common Queries","level":"1.3.1","depth":2,"path":"examples.md","ref":"examples.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"en","gitbook":"*"},"file":{"path":"apache.md","mtime":"2019-06-02T08:27:57.844Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-02T12:15:43.405Z"},"basePath":".","book":{"language":"en"}});
         });
     </script>
 </div>
