@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Examining Thread Information · GitBook</title>
+        <title>Loading Data into a Table · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,8 +57,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
+    <link rel="next" href="retrieving-data.html" />
     
-    <link rel="prev" href="optimize-benchmarking.html" />
+    
+    <link rel="prev" href="creating-tables.html" />
     
 
     </head>
@@ -289,7 +291,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.3.3" data-path="loading-tables.html">
+        <li class="chapter active" data-level="1.4.3.3" data-path="loading-tables.html">
             
                 <a href="loading-tables.html">
             
@@ -630,7 +632,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.6.14" data-path="thread-information.html">
+        <li class="chapter " data-level="1.6.14" data-path="thread-information.html">
             
                 <a href="thread-information.html">
             
@@ -678,7 +680,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >Examining Thread Information</a>
+        <a href="." >Loading Data into a Table</a>
     </h1>
 </div>
 
@@ -693,34 +695,107 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h2 id="814-examining-thread-information">8.14 Examining Thread Information</h2>
-<p>When you are attempting to ascertain what your MySQL server is doing, it can be helpful to examine the process list, which is the set of threads currently executing within the server. Process list information is available from these sources: </p>
-<ul>
-<li>The <code>SHOW [FULL] PROCESSLIST</code> statement: <a href="https://dev.mysql.com/doc/refman/8.0/en/show-processlist.html" target="_blank">Section 13.7.6.29, &#x201C;SHOW PROCESSLIST Syntax&#x201D;</a> </li>
-<li>The <a href="https://dev.mysql.com/doc/refman/8.0/en/show-profile.html" target="_blank"><code>SHOW PROFILE</code></a> statement: <a href="https://dev.mysql.com/doc/refman/8.0/en/show-profiles.html" target="_blank">Section 13.7.6.31, &#x201C;SHOW PROFILES Syntax&#x201D;</a> </li>
-<li>The <code>INFORMATION_SCHEMA</code> <a href="https://dev.mysql.com/doc/refman/8.0/en/processlist-table.html" target="_blank"><code>PROCESSLIST</code></a> table: <a href="https://dev.mysql.com/doc/refman/8.0/en/processlist-table.html" target="_blank">Section 25.19, &#x201C;The INFORMATION_SCHEMA PROCESSLIST Table&#x201D;</a> </li>
-<li>The <a href="https://dev.mysql.com/doc/refman/8.0/en/mysqladmin.html" target="_blank"><strong>mysqladmin processlist</strong></a> command: <a href="https://dev.mysql.com/doc/refman/8.0/en/mysqladmin.html" target="_blank">Section 4.5.2, &#x201C;<strong>mysqladmin</strong> &#x2014; Client for Administering a MySQL Server&#x201D;</a> </li>
-<li>The Performance Schema <a href="https://dev.mysql.com/doc/refman/8.0/en/threads-table.html" target="_blank"><code>threads</code></a> table, stage tables, and lock tables: <a href="https://dev.mysql.com/doc/refman/8.0/en/performance-schema-miscellaneous-tables.html" target="_blank">Section 26.12.17, &#x201C;Performance Schema Miscellaneous Tables&#x201D;</a>, <a href="https://dev.mysql.com/doc/refman/8.0/en/performance-schema-stage-tables.html" target="_blank">Section 26.12.5, &#x201C;Performance Schema Stage Event Tables&#x201D;</a>, <a href="https://dev.mysql.com/doc/refman/8.0/en/performance-schema-lock-tables.html" target="_blank">Section 26.12.12, &#x201C;Performance Schema Lock Tables&#x201D;</a>. </li>
-</ul>
-<p>Access to <a href="https://dev.mysql.com/doc/refman/8.0/en/threads-table.html" target="_blank"><code>threads</code></a> does not require a mutex and has minimal impact on server performance. <a href="https://dev.mysql.com/doc/refman/8.0/en/processlist-table.html" target="_blank"><code>INFORMATION_SCHEMA.PROCESSLIST</code></a> and <a href="https://dev.mysql.com/doc/refman/8.0/en/show-processlist.html" target="_blank"><code>SHOW PROCESSLIST</code></a> have negative performance consequences because they require a mutex. <a href="https://dev.mysql.com/doc/refman/8.0/en/threads-table.html" target="_blank"><code>threads</code></a> also shows information about background threads, which <a href="https://dev.mysql.com/doc/refman/8.0/en/processlist-table.html" target="_blank"><code>INFORMATION_SCHEMA.PROCESSLIST</code></a> and <a href="https://dev.mysql.com/doc/refman/8.0/en/show-processlist.html" target="_blank"><code>SHOW PROCESSLIST</code></a> do not. This means that <a href="https://dev.mysql.com/doc/refman/8.0/en/threads-table.html" target="_blank"><code>threads</code></a> can be used to monitor activity the other thread information sources cannot. </p>
-<p>You can always view information about your own threads. To view information about threads being executed for other accounts, you must have the <a href="https://dev.mysql.com/doc/refman/8.0/en/privileges-provided.html#priv_process" target="_blank"><code>PROCESS</code></a> privilege. </p>
-<p>Each process list entry contains several pieces of information: </p>
-<ul>
-<li><code>Id</code> is the connection identifier for the client associated with the thread. </li>
-<li><code>User</code> and <code>Host</code> indicate the account associated with the thread. </li>
-<li><code>db</code> is the default database for the thread, or NULL if none is selected. </li>
-<li><p><code>Command</code> and <code>State</code> indicate what the thread is doing. </p>
-<p>  Most states correspond to very quick operations. If a thread stays in a given state for many seconds, there might be a problem that needs to be investigated. </p>
-</li>
-<li><p><code>Time</code> indicates how long the thread has been in its current state. The thread&apos;s notion of the current time may be altered in some cases: The thread can change the time with <a href="https://dev.mysql.com/doc/refman/8.0/en/set-variable.html" target="_blank"><code>SET TIMESTAMP = value</code></a>. For a thread running on a slave that is processing events from the master, the thread time is set to the time found in the events and thus reflects current time on the master and not the slave. </p>
-</li>
-<li><p><code>Info</code> contains the text of the statement being executed by the thread, or NULL if it is not executing one. By default, this value contains only the first 100 characters of the statement. To see the complete statements, use <a href="https://dev.mysql.com/doc/refman/8.0/en/show-processlist.html" target="_blank"><code>SHOW FULL PROCESSLIST</code></a>. </p>
-</li>
-<li><p>The <code>sys</code> schema <a href="https://dev.mysql.com/doc/refman/8.0/en/sys-processlist.html" target="_blank">processlist</a> view, which presents information from the Performance Schema <a href="https://dev.mysql.com/doc/refman/8.0/en/threads-table.html" target="_blank"><code>threads</code></a> table in a more accessible format: <a href="https://dev.mysql.com/doc/refman/8.0/en/sys-processlist.html" target="_blank">Section 27.4.3.22, &#x201C;The processlist and x$processlist Views&#x201D;</a> </p>
-</li>
-<li>The <code>sys</code> schema <a href="https://dev.mysql.com/doc/refman/8.0/en/sys-session.html" target="_blank"><code>session</code></a> view, which presents information about user sessions (like the <code>sys</code> schema <a href="https://dev.mysql.com/doc/refman/8.0/en/sys-processlist.html" target="_blank"><code>processlist</code></a> view, but with background processes filtered out): [Section 27.4.3.33, &#x201C;The session and x$session Views&#x201D;(<a href="https://dev.mysql.com/doc/refman/8.0/en/sys-session.html" target="_blank">https://dev.mysql.com/doc/refman/8.0/en/sys-session.html</a>)] </li>
-</ul>
-<p>The following sections list the possible <code>Command</code> values, and <code>State</code> values grouped by category. The meaning for some of these values is self-evident. For others, additional description is provided. </p>
+                                <h3 id="333-loading-data-into-a-table">3.3.3 Loading Data into a Table</h3>
+<p>After creating your table, you need to populate it. The <a href="https://dev.mysql.com/doc/refman/8.0/en/load-data.html" target="_blank"><code>LOAD DATA</code></a> and <a href="https://dev.mysql.com/doc/refman/8.0/en/insert.html" target="_blank"><code>INSERT</code></a> statements are useful for this.</p>
+<p>Suppose that your pet records can be described as shown here. (Observe that MySQL expects dates in <code>&apos;YYYY-MM-DD&apos;</code> format; this may be different from what you are used to.)</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">name</th>
+<th style="text-align:center">owner</th>
+<th style="text-align:center">species</th>
+<th style="text-align:center">sex</th>
+<th style="text-align:center">birth</th>
+<th style="text-align:center">death</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Fluffy</td>
+<td style="text-align:center">Harold</td>
+<td style="text-align:center">cat</td>
+<td style="text-align:center">f</td>
+<td style="text-align:center">1993-02-04</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">Claws</td>
+<td style="text-align:center">Gwen</td>
+<td style="text-align:center">cat</td>
+<td style="text-align:center">m</td>
+<td style="text-align:center">1994-03-17</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">Buffy</td>
+<td style="text-align:center">Harold</td>
+<td style="text-align:center">dog</td>
+<td style="text-align:center">f</td>
+<td style="text-align:center">1989-05-13</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">Fang</td>
+<td style="text-align:center">Benny</td>
+<td style="text-align:center">dog</td>
+<td style="text-align:center">m</td>
+<td style="text-align:center">1990-08-27</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">Bowser</td>
+<td style="text-align:center">Diane</td>
+<td style="text-align:center">dog</td>
+<td style="text-align:center">m</td>
+<td style="text-align:center">1979-08-31</td>
+<td style="text-align:center">1995-07-29</td>
+</tr>
+<tr>
+<td style="text-align:center">Chirpy</td>
+<td style="text-align:center">Gwen</td>
+<td style="text-align:center">bird</td>
+<td style="text-align:center">f</td>
+<td style="text-align:center">1998-09-11</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">Whistler</td>
+<td style="text-align:center">Gwen</td>
+<td style="text-align:center">bird</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">1997-12-09</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">Slim</td>
+<td style="text-align:center">Benny</td>
+<td style="text-align:center">snake</td>
+<td style="text-align:center">m</td>
+<td style="text-align:center">1996-04-29</td>
+<td style="text-align:center">&#xA0;</td>
+</tr>
+</tbody>
+</table>
+<p>Because you are beginning with an empty table, an easy way to populate it is to create a text file containing a row for each of your animals, then load the contents of the file into the table with a single statement.</p>
+<p>You could create a text file <code>pet.txt</code> containing one record per line, with values separated by tabs, and given in the order in which the columns were listed in the <a href="https://dev.mysql.com/doc/refman/8.0/en/create-table.html" target="_blank"><code>CREATE TABLE</code></a> statement. For missing values (such as unknown sexes or death dates for animals that are still living), you can use <code>NULL</code> values. To represent these in your text file, use <code>\N</code> (backslash, capital-N). For example, the record for Whistler the bird would look like this (where the whitespace between values is a single tab character):</p>
+<pre><code class="lang-text">Whistler        Gwen    bird    \N      1997-12-09      \N
+</code></pre>
+<p>To load the text file <code>pet.txt</code> into the <code>pet</code> table, use this statement:</p>
+<pre><code class="lang-sql">mysql&gt; LOAD DATA LOCAL INFILE &apos;/path/pet.txt&apos; INTO TABLE pet;
+</code></pre>
+<p>If you created the file on Windows with an editor that uses <code>\r\n</code> as a line terminator, you should use this statement instead:</p>
+<pre><code class="lang-sql">mysql&gt; LOAD DATA LOCAL INFILE &apos;/path/pet.txt&apos; INTO TABLE pet
+       LINES TERMINATED BY &apos;\r\n&apos;;
+</code></pre>
+<p>(On an Apple machine running OS X, you would likely want to use <code>LINES TERMINATED BY &apos;\r&apos;</code>.)</p>
+<p>You can specify the column value separator and end of line marker explicitly in the <a href="https://dev.mysql.com/doc/refman/8.0/en/load-data.html" target="_blank"><code>LOAD DATA</code></a> statement if you wish, but the defaults are tab and linefeed. These are sufficient for the statement to read the file <code>pet.txt</code> properly.</p>
+<p>If the statement fails, it is likely that your MySQL installation does not have local file capability enabled by default. See <a href="https://dev.mysql.com/doc/refman/8.0/en/load-data-local.html" target="_blank">Section 6.1.6, &#x201C;Security Issues with LOAD DATA LOCAL&#x201D;</a>, for information on how to change this.</p>
+<p>When you want to add new records one at a time, the <a href="https://dev.mysql.com/doc/refman/8.0/en/insert.html" target="_blank"><code>INSERT</code></a> statement is useful. In its simplest form, you supply values for each column, in the order in which the columns were listed in the <a href="https://dev.mysql.com/doc/refman/8.0/en/create-table.html" target="_blank"><code>CREATE TABLE</code></a> statement. Suppose that Diane gets a new hamster named &#x201C;Puffball&#x201D;. You could add a new record using an <a href="https://dev.mysql.com/doc/refman/8.0/en/insert.html" target="_blank"><code>INSERT</code></a> statement like this:</p>
+<pre><code class="lang-sql">mysql&gt; INSERT INTO pet
+       VALUES (&apos;Puffball&apos;,&apos;Diane&apos;,&apos;hamster&apos;,&apos;f&apos;,&apos;1999-03-30&apos;,NULL);
+</code></pre>
+<p>String and date values are specified as quoted strings here. Also, with <a href="https://dev.mysql.com/doc/refman/8.0/en/insert.html" target="_blank"><code>INSERT</code></a>, you can insert <code>NULL</code> directly to represent a missing value. You do not use <code>\N</code> like you do with <a href="https://dev.mysql.com/doc/refman/8.0/en/load-data.html" target="_blank"><code>LOAD DATA</code></a>.</p>
+<p>From this example, you should be able to see that there would be a lot more typing involved to load your records initially using several <a href="https://dev.mysql.com/doc/refman/8.0/en/insert.html" target="_blank"><code>INSERT</code></a> statements rather than a single <a href="https://dev.mysql.com/doc/refman/8.0/en/load-data.html" target="_blank"><code>LOAD DATA</code></a> statement.</p>
 
                                 
                                 </section>
@@ -748,10 +823,14 @@
 
             
                 
-                <a href="optimize-benchmarking.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Measuring Performance (Benchmarking)">
+                <a href="creating-tables.html" class="navigation navigation-prev " aria-label="Previous page: Creating a Table">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
+                
+                <a href="retrieving-data.html" class="navigation navigation-next " aria-label="Next page: Retrieving Information from a Table">
+                    <i class="fa fa-angle-right"></i>
+                </a>
                 
             
         
@@ -760,7 +839,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Examining Thread Information","level":"1.6.14","depth":2,"previous":{"title":"Measuring Performance (Benchmarking)","level":"1.6.13","depth":2,"path":"optimize-benchmarking.md","ref":"optimize-benchmarking.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"en","gitbook":"*"},"file":{"path":"thread-information.md","mtime":"2019-06-16T04:56:47.523Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-21T17:41:54.269Z"},"basePath":".","book":{"language":"en"}});
+            gitbook.page.hasChanged({"page":{"title":"Loading Data into a Table","level":"1.4.3.3","depth":3,"next":{"title":"Retrieving Information from a Table","level":"1.4.3.4","depth":3,"path":"retrieving-data.md","ref":"retrieving-data.md","articles":[{"title":"Selecting All Data","level":"1.4.3.4.1","depth":4,"path":"selecting-all.md","ref":"selecting-all.md","articles":[]},{"title":"Selecting Particular Rows","level":"1.4.3.4.2","depth":4,"path":"selecting-rows.md","ref":"selecting-rows.md","articles":[]},{"title":"Selecting Particular Columns","level":"1.4.3.4.3","depth":4,"path":"selecting-columns.md","ref":"selecting-columns.md","articles":[]}]},"previous":{"title":"Creating a Table","level":"1.4.3.2","depth":3,"path":"creating-tables.md","ref":"creating-tables.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"en","gitbook":"*"},"file":{"path":"loading-tables.md","mtime":"2019-06-21T15:49:52.580Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-21T17:41:54.269Z"},"basePath":".","book":{"language":"en"}});
         });
     </script>
 </div>

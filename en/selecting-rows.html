@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Examining Thread Information · GitBook</title>
+        <title>Selecting Particular Rows · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,8 +57,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
+    <link rel="next" href="selecting-columns.html" />
     
-    <link rel="prev" href="optimize-benchmarking.html" />
+    
+    <link rel="prev" href="selecting-all.html" />
     
 
     </head>
@@ -329,7 +331,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.3.4.2" data-path="selecting-rows.html">
+        <li class="chapter active" data-level="1.4.3.4.2" data-path="selecting-rows.html">
             
                 <a href="selecting-rows.html">
             
@@ -630,7 +632,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.6.14" data-path="thread-information.html">
+        <li class="chapter " data-level="1.6.14" data-path="thread-information.html">
             
                 <a href="thread-information.html">
             
@@ -678,7 +680,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >Examining Thread Information</a>
+        <a href="." >Selecting Particular Rows</a>
     </h1>
 </div>
 
@@ -693,34 +695,54 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h2 id="814-examining-thread-information">8.14 Examining Thread Information</h2>
-<p>When you are attempting to ascertain what your MySQL server is doing, it can be helpful to examine the process list, which is the set of threads currently executing within the server. Process list information is available from these sources: </p>
-<ul>
-<li>The <code>SHOW [FULL] PROCESSLIST</code> statement: <a href="https://dev.mysql.com/doc/refman/8.0/en/show-processlist.html" target="_blank">Section 13.7.6.29, &#x201C;SHOW PROCESSLIST Syntax&#x201D;</a> </li>
-<li>The <a href="https://dev.mysql.com/doc/refman/8.0/en/show-profile.html" target="_blank"><code>SHOW PROFILE</code></a> statement: <a href="https://dev.mysql.com/doc/refman/8.0/en/show-profiles.html" target="_blank">Section 13.7.6.31, &#x201C;SHOW PROFILES Syntax&#x201D;</a> </li>
-<li>The <code>INFORMATION_SCHEMA</code> <a href="https://dev.mysql.com/doc/refman/8.0/en/processlist-table.html" target="_blank"><code>PROCESSLIST</code></a> table: <a href="https://dev.mysql.com/doc/refman/8.0/en/processlist-table.html" target="_blank">Section 25.19, &#x201C;The INFORMATION_SCHEMA PROCESSLIST Table&#x201D;</a> </li>
-<li>The <a href="https://dev.mysql.com/doc/refman/8.0/en/mysqladmin.html" target="_blank"><strong>mysqladmin processlist</strong></a> command: <a href="https://dev.mysql.com/doc/refman/8.0/en/mysqladmin.html" target="_blank">Section 4.5.2, &#x201C;<strong>mysqladmin</strong> &#x2014; Client for Administering a MySQL Server&#x201D;</a> </li>
-<li>The Performance Schema <a href="https://dev.mysql.com/doc/refman/8.0/en/threads-table.html" target="_blank"><code>threads</code></a> table, stage tables, and lock tables: <a href="https://dev.mysql.com/doc/refman/8.0/en/performance-schema-miscellaneous-tables.html" target="_blank">Section 26.12.17, &#x201C;Performance Schema Miscellaneous Tables&#x201D;</a>, <a href="https://dev.mysql.com/doc/refman/8.0/en/performance-schema-stage-tables.html" target="_blank">Section 26.12.5, &#x201C;Performance Schema Stage Event Tables&#x201D;</a>, <a href="https://dev.mysql.com/doc/refman/8.0/en/performance-schema-lock-tables.html" target="_blank">Section 26.12.12, &#x201C;Performance Schema Lock Tables&#x201D;</a>. </li>
-</ul>
-<p>Access to <a href="https://dev.mysql.com/doc/refman/8.0/en/threads-table.html" target="_blank"><code>threads</code></a> does not require a mutex and has minimal impact on server performance. <a href="https://dev.mysql.com/doc/refman/8.0/en/processlist-table.html" target="_blank"><code>INFORMATION_SCHEMA.PROCESSLIST</code></a> and <a href="https://dev.mysql.com/doc/refman/8.0/en/show-processlist.html" target="_blank"><code>SHOW PROCESSLIST</code></a> have negative performance consequences because they require a mutex. <a href="https://dev.mysql.com/doc/refman/8.0/en/threads-table.html" target="_blank"><code>threads</code></a> also shows information about background threads, which <a href="https://dev.mysql.com/doc/refman/8.0/en/processlist-table.html" target="_blank"><code>INFORMATION_SCHEMA.PROCESSLIST</code></a> and <a href="https://dev.mysql.com/doc/refman/8.0/en/show-processlist.html" target="_blank"><code>SHOW PROCESSLIST</code></a> do not. This means that <a href="https://dev.mysql.com/doc/refman/8.0/en/threads-table.html" target="_blank"><code>threads</code></a> can be used to monitor activity the other thread information sources cannot. </p>
-<p>You can always view information about your own threads. To view information about threads being executed for other accounts, you must have the <a href="https://dev.mysql.com/doc/refman/8.0/en/privileges-provided.html#priv_process" target="_blank"><code>PROCESS</code></a> privilege. </p>
-<p>Each process list entry contains several pieces of information: </p>
-<ul>
-<li><code>Id</code> is the connection identifier for the client associated with the thread. </li>
-<li><code>User</code> and <code>Host</code> indicate the account associated with the thread. </li>
-<li><code>db</code> is the default database for the thread, or NULL if none is selected. </li>
-<li><p><code>Command</code> and <code>State</code> indicate what the thread is doing. </p>
-<p>  Most states correspond to very quick operations. If a thread stays in a given state for many seconds, there might be a problem that needs to be investigated. </p>
-</li>
-<li><p><code>Time</code> indicates how long the thread has been in its current state. The thread&apos;s notion of the current time may be altered in some cases: The thread can change the time with <a href="https://dev.mysql.com/doc/refman/8.0/en/set-variable.html" target="_blank"><code>SET TIMESTAMP = value</code></a>. For a thread running on a slave that is processing events from the master, the thread time is set to the time found in the events and thus reflects current time on the master and not the slave. </p>
-</li>
-<li><p><code>Info</code> contains the text of the statement being executed by the thread, or NULL if it is not executing one. By default, this value contains only the first 100 characters of the statement. To see the complete statements, use <a href="https://dev.mysql.com/doc/refman/8.0/en/show-processlist.html" target="_blank"><code>SHOW FULL PROCESSLIST</code></a>. </p>
-</li>
-<li><p>The <code>sys</code> schema <a href="https://dev.mysql.com/doc/refman/8.0/en/sys-processlist.html" target="_blank">processlist</a> view, which presents information from the Performance Schema <a href="https://dev.mysql.com/doc/refman/8.0/en/threads-table.html" target="_blank"><code>threads</code></a> table in a more accessible format: <a href="https://dev.mysql.com/doc/refman/8.0/en/sys-processlist.html" target="_blank">Section 27.4.3.22, &#x201C;The processlist and x$processlist Views&#x201D;</a> </p>
-</li>
-<li>The <code>sys</code> schema <a href="https://dev.mysql.com/doc/refman/8.0/en/sys-session.html" target="_blank"><code>session</code></a> view, which presents information about user sessions (like the <code>sys</code> schema <a href="https://dev.mysql.com/doc/refman/8.0/en/sys-processlist.html" target="_blank"><code>processlist</code></a> view, but with background processes filtered out): [Section 27.4.3.33, &#x201C;The session and x$session Views&#x201D;(<a href="https://dev.mysql.com/doc/refman/8.0/en/sys-session.html" target="_blank">https://dev.mysql.com/doc/refman/8.0/en/sys-session.html</a>)] </li>
-</ul>
-<p>The following sections list the possible <code>Command</code> values, and <code>State</code> values grouped by category. The meaning for some of these values is self-evident. For others, additional description is provided. </p>
+                                <h4 id="3342-selecting-particular-rows">3.3.4.2 Selecting Particular Rows</h4>
+<p>As shown in the preceding section, it is easy to retrieve an entire table. Just omit the <code>WHERE</code> clause from the <a href="https://dev.mysql.com/doc/refman/8.0/en/select.html" target="_blank"><code>SELECT</code></a> statement. But typically you don&apos;t want to see the entire table, particularly when it becomes large. Instead, you&apos;re usually more interested in answering a particular question, in which case you specify some constraints on the information you want. Let&apos;s look at some selection queries in terms of questions about your pets that they answer.</p>
+<p>You can select only particular rows from your table. For example, if you want to verify the change that you made to Bowser&apos;s birth date, select Bowser&apos;s record like this:</p>
+<pre><code class="lang-sql">mysql&gt; SELECT * FROM pet WHERE name = &apos;Bowser&apos;;
++--------+-------+---------+------+------------+------------+
+| name   | owner | species | sex  | birth      | death      |
++--------+-------+---------+------+------------+------------+
+| Bowser | Diane | dog     | m    | 1989-08-31 | 1995-07-29 |
++--------+-------+---------+------+------------+------------+
+</code></pre>
+<p>The output confirms that the year is correctly recorded as 1989, not 1979.</p>
+<p>String comparisons normally are case-insensitive, so you can specify the name as <code>&apos;bowser&apos;</code>, <code>&apos;BOWSER&apos;</code>, and so forth. The query result is the same.</p>
+<p>You can specify conditions on any column, not just <code>name</code>. For example, if you want to know which animals were born during or after 1998, test the <code>birth</code> column:</p>
+<pre><code class="lang-sql">mysql&gt; SELECT * FROM pet WHERE birth &gt;= &apos;1998-1-1&apos;;
++----------+-------+---------+------+------------+-------+
+| name     | owner | species | sex  | birth      | death |
++----------+-------+---------+------+------------+-------+
+| Chirpy   | Gwen  | bird    | f    | 1998-09-11 | NULL  |
+| Puffball | Diane | hamster | f    | 1999-03-30 | NULL  |
++----------+-------+---------+------+------------+-------+
+</code></pre>
+<p>You can combine conditions, for example, to locate female dogs:</p>
+<pre><code class="lang-sql">mysql&gt; SELECT * FROM pet WHERE species = &apos;dog&apos; AND sex = &apos;f&apos;;
++-------+--------+---------+------+------------+-------+
+| name  | owner  | species | sex  | birth      | death |
++-------+--------+---------+------+------------+-------+
+| Buffy | Harold | dog     | f    | 1989-05-13 | NULL  |
++-------+--------+---------+------+------------+-------+
+</code></pre>
+<p>The preceding query uses the <a href="https://dev.mysql.com/doc/refman/8.0/en/logical-operators.html#operator_and" target="_blank"><code>AND</code></a> logical operator. There is also an <a href="https://dev.mysql.com/doc/refman/8.0/en/logical-operators.html#operator_or" target="_blank"><code>OR</code></a> operator:</p>
+<p>mysql&gt; SELECT * FROM pet WHERE species = &apos;snake&apos; OR species = &apos;bird&apos;;
++----------+-------+---------+------+------------+-------+
+| name     | owner | species | sex  | birth      | death |
++----------+-------+---------+------+------------+-------+
+| Chirpy   | Gwen  | bird    | f    | 1998-09-11 | NULL  |
+| Whistler | Gwen  | bird    | NULL | 1997-12-09 | NULL  |
+| Slim     | Benny | snake   | m    | 1996-04-29 | NULL  |
++----------+-------+---------+------+------------+-------+
+<a href="https://dev.mysql.com/doc/refman/8.0/en/logical-operators.html#operator_and" target="_blank"><code>AND</code></a> and <a href="https://dev.mysql.com/doc/refman/8.0/en/logical-operators.html#operator_or" target="_blank"><code>OR</code></a> may be intermixed, although <a href="https://dev.mysql.com/doc/refman/8.0/en/logical-operators.html#operator_and" target="_blank"><code>AND</code></a> has higher precedence than <a href="https://dev.mysql.com/doc/refman/8.0/en/logical-operators.html#operator_or" target="_blank"><code>OR</code></a>. If you use both operators, it is a good idea to use parentheses to indicate explicitly how conditions should be grouped:</p>
+<pre><code class="lang-sql">mysql&gt; SELECT * FROM pet WHERE (species = &apos;cat&apos; AND sex = &apos;m&apos;)
+       OR (species = &apos;dog&apos; AND sex = &apos;f&apos;);
++-------+--------+---------+------+------------+-------+
+| name  | owner  | species | sex  | birth      | death |
++-------+--------+---------+------+------------+-------+
+| Claws | Gwen   | cat     | m    | 1994-03-17 | NULL  |
+| Buffy | Harold | dog     | f    | 1989-05-13 | NULL  |
++-------+--------+---------+------+------------+-------+
+</code></pre>
 
                                 
                                 </section>
@@ -748,10 +770,14 @@
 
             
                 
-                <a href="optimize-benchmarking.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Measuring Performance (Benchmarking)">
+                <a href="selecting-all.html" class="navigation navigation-prev " aria-label="Previous page: Selecting All Data">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
+                
+                <a href="selecting-columns.html" class="navigation navigation-next " aria-label="Next page: Selecting Particular Columns">
+                    <i class="fa fa-angle-right"></i>
+                </a>
                 
             
         
@@ -760,7 +786,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Examining Thread Information","level":"1.6.14","depth":2,"previous":{"title":"Measuring Performance (Benchmarking)","level":"1.6.13","depth":2,"path":"optimize-benchmarking.md","ref":"optimize-benchmarking.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"en","gitbook":"*"},"file":{"path":"thread-information.md","mtime":"2019-06-16T04:56:47.523Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-21T17:41:54.269Z"},"basePath":".","book":{"language":"en"}});
+            gitbook.page.hasChanged({"page":{"title":"Selecting Particular Rows","level":"1.4.3.4.2","depth":4,"next":{"title":"Selecting Particular Columns","level":"1.4.3.4.3","depth":4,"path":"selecting-columns.md","ref":"selecting-columns.md","articles":[]},"previous":{"title":"Selecting All Data","level":"1.4.3.4.1","depth":4,"path":"selecting-all.md","ref":"selecting-all.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"en","gitbook":"*"},"file":{"path":"selecting-rows.md","mtime":"2019-06-21T17:14:28.761Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-21T17:41:54.269Z"},"basePath":".","book":{"language":"en"}});
         });
     </script>
 </div>

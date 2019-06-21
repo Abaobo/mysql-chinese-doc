@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Examining Thread Information · GitBook</title>
+        <title>Retrieving Information from a Table · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,8 +57,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
+    <link rel="next" href="selecting-all.html" />
     
-    <link rel="prev" href="optimize-benchmarking.html" />
+    
+    <link rel="prev" href="loading-tables.html" />
     
 
     </head>
@@ -302,7 +304,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.3.4" data-path="retrieving-data.html">
+        <li class="chapter active" data-level="1.4.3.4" data-path="retrieving-data.html">
             
                 <a href="retrieving-data.html">
             
@@ -630,7 +632,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.6.14" data-path="thread-information.html">
+        <li class="chapter " data-level="1.6.14" data-path="thread-information.html">
             
                 <a href="thread-information.html">
             
@@ -678,7 +680,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >Examining Thread Information</a>
+        <a href="." >Retrieving Information from a Table</a>
     </h1>
 </div>
 
@@ -693,34 +695,13 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h2 id="814-examining-thread-information">8.14 Examining Thread Information</h2>
-<p>When you are attempting to ascertain what your MySQL server is doing, it can be helpful to examine the process list, which is the set of threads currently executing within the server. Process list information is available from these sources: </p>
-<ul>
-<li>The <code>SHOW [FULL] PROCESSLIST</code> statement: <a href="https://dev.mysql.com/doc/refman/8.0/en/show-processlist.html" target="_blank">Section 13.7.6.29, &#x201C;SHOW PROCESSLIST Syntax&#x201D;</a> </li>
-<li>The <a href="https://dev.mysql.com/doc/refman/8.0/en/show-profile.html" target="_blank"><code>SHOW PROFILE</code></a> statement: <a href="https://dev.mysql.com/doc/refman/8.0/en/show-profiles.html" target="_blank">Section 13.7.6.31, &#x201C;SHOW PROFILES Syntax&#x201D;</a> </li>
-<li>The <code>INFORMATION_SCHEMA</code> <a href="https://dev.mysql.com/doc/refman/8.0/en/processlist-table.html" target="_blank"><code>PROCESSLIST</code></a> table: <a href="https://dev.mysql.com/doc/refman/8.0/en/processlist-table.html" target="_blank">Section 25.19, &#x201C;The INFORMATION_SCHEMA PROCESSLIST Table&#x201D;</a> </li>
-<li>The <a href="https://dev.mysql.com/doc/refman/8.0/en/mysqladmin.html" target="_blank"><strong>mysqladmin processlist</strong></a> command: <a href="https://dev.mysql.com/doc/refman/8.0/en/mysqladmin.html" target="_blank">Section 4.5.2, &#x201C;<strong>mysqladmin</strong> &#x2014; Client for Administering a MySQL Server&#x201D;</a> </li>
-<li>The Performance Schema <a href="https://dev.mysql.com/doc/refman/8.0/en/threads-table.html" target="_blank"><code>threads</code></a> table, stage tables, and lock tables: <a href="https://dev.mysql.com/doc/refman/8.0/en/performance-schema-miscellaneous-tables.html" target="_blank">Section 26.12.17, &#x201C;Performance Schema Miscellaneous Tables&#x201D;</a>, <a href="https://dev.mysql.com/doc/refman/8.0/en/performance-schema-stage-tables.html" target="_blank">Section 26.12.5, &#x201C;Performance Schema Stage Event Tables&#x201D;</a>, <a href="https://dev.mysql.com/doc/refman/8.0/en/performance-schema-lock-tables.html" target="_blank">Section 26.12.12, &#x201C;Performance Schema Lock Tables&#x201D;</a>. </li>
-</ul>
-<p>Access to <a href="https://dev.mysql.com/doc/refman/8.0/en/threads-table.html" target="_blank"><code>threads</code></a> does not require a mutex and has minimal impact on server performance. <a href="https://dev.mysql.com/doc/refman/8.0/en/processlist-table.html" target="_blank"><code>INFORMATION_SCHEMA.PROCESSLIST</code></a> and <a href="https://dev.mysql.com/doc/refman/8.0/en/show-processlist.html" target="_blank"><code>SHOW PROCESSLIST</code></a> have negative performance consequences because they require a mutex. <a href="https://dev.mysql.com/doc/refman/8.0/en/threads-table.html" target="_blank"><code>threads</code></a> also shows information about background threads, which <a href="https://dev.mysql.com/doc/refman/8.0/en/processlist-table.html" target="_blank"><code>INFORMATION_SCHEMA.PROCESSLIST</code></a> and <a href="https://dev.mysql.com/doc/refman/8.0/en/show-processlist.html" target="_blank"><code>SHOW PROCESSLIST</code></a> do not. This means that <a href="https://dev.mysql.com/doc/refman/8.0/en/threads-table.html" target="_blank"><code>threads</code></a> can be used to monitor activity the other thread information sources cannot. </p>
-<p>You can always view information about your own threads. To view information about threads being executed for other accounts, you must have the <a href="https://dev.mysql.com/doc/refman/8.0/en/privileges-provided.html#priv_process" target="_blank"><code>PROCESS</code></a> privilege. </p>
-<p>Each process list entry contains several pieces of information: </p>
-<ul>
-<li><code>Id</code> is the connection identifier for the client associated with the thread. </li>
-<li><code>User</code> and <code>Host</code> indicate the account associated with the thread. </li>
-<li><code>db</code> is the default database for the thread, or NULL if none is selected. </li>
-<li><p><code>Command</code> and <code>State</code> indicate what the thread is doing. </p>
-<p>  Most states correspond to very quick operations. If a thread stays in a given state for many seconds, there might be a problem that needs to be investigated. </p>
-</li>
-<li><p><code>Time</code> indicates how long the thread has been in its current state. The thread&apos;s notion of the current time may be altered in some cases: The thread can change the time with <a href="https://dev.mysql.com/doc/refman/8.0/en/set-variable.html" target="_blank"><code>SET TIMESTAMP = value</code></a>. For a thread running on a slave that is processing events from the master, the thread time is set to the time found in the events and thus reflects current time on the master and not the slave. </p>
-</li>
-<li><p><code>Info</code> contains the text of the statement being executed by the thread, or NULL if it is not executing one. By default, this value contains only the first 100 characters of the statement. To see the complete statements, use <a href="https://dev.mysql.com/doc/refman/8.0/en/show-processlist.html" target="_blank"><code>SHOW FULL PROCESSLIST</code></a>. </p>
-</li>
-<li><p>The <code>sys</code> schema <a href="https://dev.mysql.com/doc/refman/8.0/en/sys-processlist.html" target="_blank">processlist</a> view, which presents information from the Performance Schema <a href="https://dev.mysql.com/doc/refman/8.0/en/threads-table.html" target="_blank"><code>threads</code></a> table in a more accessible format: <a href="https://dev.mysql.com/doc/refman/8.0/en/sys-processlist.html" target="_blank">Section 27.4.3.22, &#x201C;The processlist and x$processlist Views&#x201D;</a> </p>
-</li>
-<li>The <code>sys</code> schema <a href="https://dev.mysql.com/doc/refman/8.0/en/sys-session.html" target="_blank"><code>session</code></a> view, which presents information about user sessions (like the <code>sys</code> schema <a href="https://dev.mysql.com/doc/refman/8.0/en/sys-processlist.html" target="_blank"><code>processlist</code></a> view, but with background processes filtered out): [Section 27.4.3.33, &#x201C;The session and x$session Views&#x201D;(<a href="https://dev.mysql.com/doc/refman/8.0/en/sys-session.html" target="_blank">https://dev.mysql.com/doc/refman/8.0/en/sys-session.html</a>)] </li>
-</ul>
-<p>The following sections list the possible <code>Command</code> values, and <code>State</code> values grouped by category. The meaning for some of these values is self-evident. For others, additional description is provided. </p>
+                                <h3 id="334-retrieving-information-from-a-table">3.3.4 Retrieving Information from a Table</h3>
+<p>The <a href="https://dev.mysql.com/doc/refman/8.0/en/select.html" target="_blank"><code>SELECT</code></a> statement is used to pull information from a table. The general form of the statement is:</p>
+<pre><code class="lang-sql"><span class="hljs-keyword">SELECT</span> what_to_select
+<span class="hljs-keyword">FROM</span> which_table
+<span class="hljs-keyword">WHERE</span> conditions_to_satisfy;
+</code></pre>
+<p><em><code>what_to_select</code></em> indicates what you want to see. This can be a list of columns, or <code>*</code> to indicate &#x201C;all columns.&#x201D; <em><code>which_table</code></em> indicates the table from which you want to retrieve data. The <code>WHERE</code> clause is optional. If it is present, <em><code>conditions_to_satisfy</code></em> specifies one or more conditions that rows must satisfy to qualify for retrieval.</p>
 
                                 
                                 </section>
@@ -748,10 +729,14 @@
 
             
                 
-                <a href="optimize-benchmarking.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Measuring Performance (Benchmarking)">
+                <a href="loading-tables.html" class="navigation navigation-prev " aria-label="Previous page: Loading Data into a Table">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
+                
+                <a href="selecting-all.html" class="navigation navigation-next " aria-label="Next page: Selecting All Data">
+                    <i class="fa fa-angle-right"></i>
+                </a>
                 
             
         
@@ -760,7 +745,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Examining Thread Information","level":"1.6.14","depth":2,"previous":{"title":"Measuring Performance (Benchmarking)","level":"1.6.13","depth":2,"path":"optimize-benchmarking.md","ref":"optimize-benchmarking.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"en","gitbook":"*"},"file":{"path":"thread-information.md","mtime":"2019-06-16T04:56:47.523Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-21T17:41:54.269Z"},"basePath":".","book":{"language":"en"}});
+            gitbook.page.hasChanged({"page":{"title":"Retrieving Information from a Table","level":"1.4.3.4","depth":3,"next":{"title":"Selecting All Data","level":"1.4.3.4.1","depth":4,"path":"selecting-all.md","ref":"selecting-all.md","articles":[]},"previous":{"title":"Loading Data into a Table","level":"1.4.3.3","depth":3,"path":"loading-tables.md","ref":"loading-tables.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"en","gitbook":"*"},"file":{"path":"retrieving-data.md","mtime":"2019-06-21T15:56:23.743Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-21T17:41:54.269Z"},"basePath":".","book":{"language":"en"}});
         });
     </script>
 </div>

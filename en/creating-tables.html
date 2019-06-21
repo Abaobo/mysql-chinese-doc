@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Examining Thread Information · GitBook</title>
+        <title>Creating a Table · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,8 +57,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
+    <link rel="next" href="loading-tables.html" />
     
-    <link rel="prev" href="optimize-benchmarking.html" />
+    
+    <link rel="prev" href="creating-database.html" />
     
 
     </head>
@@ -276,7 +278,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.3.2" data-path="creating-tables.html">
+        <li class="chapter active" data-level="1.4.3.2" data-path="creating-tables.html">
             
                 <a href="creating-tables.html">
             
@@ -630,7 +632,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.6.14" data-path="thread-information.html">
+        <li class="chapter " data-level="1.6.14" data-path="thread-information.html">
             
                 <a href="thread-information.html">
             
@@ -678,7 +680,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >Examining Thread Information</a>
+        <a href="." >Creating a Table</a>
     </h1>
 </div>
 
@@ -693,34 +695,51 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h2 id="814-examining-thread-information">8.14 Examining Thread Information</h2>
-<p>When you are attempting to ascertain what your MySQL server is doing, it can be helpful to examine the process list, which is the set of threads currently executing within the server. Process list information is available from these sources: </p>
+                                <h3 id="332-creating-a-table">3.3.2 Creating a Table</h3>
+<p>Creating the database is the easy part, but at this point it is empty, as <a href="https://dev.mysql.com/doc/refman/8.0/en/show-tables.html" target="_blank"><code>SHOW TABLES</code></a> tells you:</p>
+<pre><code class="lang-sql">mysql&gt; SHOW TABLES;
+Empty set (0.00 sec)
+</code></pre>
+<p>The harder part is deciding what the structure of your database should be: what tables you need and what columns should be in each of them.</p>
+<p>You want a table that contains a record for each of your pets. This can be called the <code>pet</code> table, and it should contain, as a bare minimum, each animal&apos;s name. Because the name by itself is not very interesting, the table should contain other information. For example, if more than one person in your family keeps pets, you might want to list each animal&apos;s owner. You might also want to record some basic descriptive information such as species and sex.</p>
+<p>How about age? That might be of interest, but it is not a good thing to store in a database. Age changes as time passes, which means you&apos;d have to update your records often. Instead, it is better to store a fixed value such as date of birth. Then, whenever you need age, you can calculate it as the difference between the current date and the birth date. MySQL provides functions for doing date arithmetic, so this is not difficult. Storing birth date rather than age has other advantages, too:</p>
 <ul>
-<li>The <code>SHOW [FULL] PROCESSLIST</code> statement: <a href="https://dev.mysql.com/doc/refman/8.0/en/show-processlist.html" target="_blank">Section 13.7.6.29, &#x201C;SHOW PROCESSLIST Syntax&#x201D;</a> </li>
-<li>The <a href="https://dev.mysql.com/doc/refman/8.0/en/show-profile.html" target="_blank"><code>SHOW PROFILE</code></a> statement: <a href="https://dev.mysql.com/doc/refman/8.0/en/show-profiles.html" target="_blank">Section 13.7.6.31, &#x201C;SHOW PROFILES Syntax&#x201D;</a> </li>
-<li>The <code>INFORMATION_SCHEMA</code> <a href="https://dev.mysql.com/doc/refman/8.0/en/processlist-table.html" target="_blank"><code>PROCESSLIST</code></a> table: <a href="https://dev.mysql.com/doc/refman/8.0/en/processlist-table.html" target="_blank">Section 25.19, &#x201C;The INFORMATION_SCHEMA PROCESSLIST Table&#x201D;</a> </li>
-<li>The <a href="https://dev.mysql.com/doc/refman/8.0/en/mysqladmin.html" target="_blank"><strong>mysqladmin processlist</strong></a> command: <a href="https://dev.mysql.com/doc/refman/8.0/en/mysqladmin.html" target="_blank">Section 4.5.2, &#x201C;<strong>mysqladmin</strong> &#x2014; Client for Administering a MySQL Server&#x201D;</a> </li>
-<li>The Performance Schema <a href="https://dev.mysql.com/doc/refman/8.0/en/threads-table.html" target="_blank"><code>threads</code></a> table, stage tables, and lock tables: <a href="https://dev.mysql.com/doc/refman/8.0/en/performance-schema-miscellaneous-tables.html" target="_blank">Section 26.12.17, &#x201C;Performance Schema Miscellaneous Tables&#x201D;</a>, <a href="https://dev.mysql.com/doc/refman/8.0/en/performance-schema-stage-tables.html" target="_blank">Section 26.12.5, &#x201C;Performance Schema Stage Event Tables&#x201D;</a>, <a href="https://dev.mysql.com/doc/refman/8.0/en/performance-schema-lock-tables.html" target="_blank">Section 26.12.12, &#x201C;Performance Schema Lock Tables&#x201D;</a>. </li>
+<li><p>You can use the database for tasks such as generating reminders for upcoming pet birthdays. (If you think this type of query is somewhat silly, note that it is the same question you might ask in the context of a business database to identify clients to whom you need to send out birthday greetings in the current week or month, for that computer-assisted personal touch.)</p>
+</li>
+<li><p>You can calculate age in relation to dates other than the current date. For example, if you store death date in the database, you can easily calculate how old a pet was when it died.</p>
+</li>
 </ul>
-<p>Access to <a href="https://dev.mysql.com/doc/refman/8.0/en/threads-table.html" target="_blank"><code>threads</code></a> does not require a mutex and has minimal impact on server performance. <a href="https://dev.mysql.com/doc/refman/8.0/en/processlist-table.html" target="_blank"><code>INFORMATION_SCHEMA.PROCESSLIST</code></a> and <a href="https://dev.mysql.com/doc/refman/8.0/en/show-processlist.html" target="_blank"><code>SHOW PROCESSLIST</code></a> have negative performance consequences because they require a mutex. <a href="https://dev.mysql.com/doc/refman/8.0/en/threads-table.html" target="_blank"><code>threads</code></a> also shows information about background threads, which <a href="https://dev.mysql.com/doc/refman/8.0/en/processlist-table.html" target="_blank"><code>INFORMATION_SCHEMA.PROCESSLIST</code></a> and <a href="https://dev.mysql.com/doc/refman/8.0/en/show-processlist.html" target="_blank"><code>SHOW PROCESSLIST</code></a> do not. This means that <a href="https://dev.mysql.com/doc/refman/8.0/en/threads-table.html" target="_blank"><code>threads</code></a> can be used to monitor activity the other thread information sources cannot. </p>
-<p>You can always view information about your own threads. To view information about threads being executed for other accounts, you must have the <a href="https://dev.mysql.com/doc/refman/8.0/en/privileges-provided.html#priv_process" target="_blank"><code>PROCESS</code></a> privilege. </p>
-<p>Each process list entry contains several pieces of information: </p>
-<ul>
-<li><code>Id</code> is the connection identifier for the client associated with the thread. </li>
-<li><code>User</code> and <code>Host</code> indicate the account associated with the thread. </li>
-<li><code>db</code> is the default database for the thread, or NULL if none is selected. </li>
-<li><p><code>Command</code> and <code>State</code> indicate what the thread is doing. </p>
-<p>  Most states correspond to very quick operations. If a thread stays in a given state for many seconds, there might be a problem that needs to be investigated. </p>
-</li>
-<li><p><code>Time</code> indicates how long the thread has been in its current state. The thread&apos;s notion of the current time may be altered in some cases: The thread can change the time with <a href="https://dev.mysql.com/doc/refman/8.0/en/set-variable.html" target="_blank"><code>SET TIMESTAMP = value</code></a>. For a thread running on a slave that is processing events from the master, the thread time is set to the time found in the events and thus reflects current time on the master and not the slave. </p>
-</li>
-<li><p><code>Info</code> contains the text of the statement being executed by the thread, or NULL if it is not executing one. By default, this value contains only the first 100 characters of the statement. To see the complete statements, use <a href="https://dev.mysql.com/doc/refman/8.0/en/show-processlist.html" target="_blank"><code>SHOW FULL PROCESSLIST</code></a>. </p>
-</li>
-<li><p>The <code>sys</code> schema <a href="https://dev.mysql.com/doc/refman/8.0/en/sys-processlist.html" target="_blank">processlist</a> view, which presents information from the Performance Schema <a href="https://dev.mysql.com/doc/refman/8.0/en/threads-table.html" target="_blank"><code>threads</code></a> table in a more accessible format: <a href="https://dev.mysql.com/doc/refman/8.0/en/sys-processlist.html" target="_blank">Section 27.4.3.22, &#x201C;The processlist and x$processlist Views&#x201D;</a> </p>
-</li>
-<li>The <code>sys</code> schema <a href="https://dev.mysql.com/doc/refman/8.0/en/sys-session.html" target="_blank"><code>session</code></a> view, which presents information about user sessions (like the <code>sys</code> schema <a href="https://dev.mysql.com/doc/refman/8.0/en/sys-processlist.html" target="_blank"><code>processlist</code></a> view, but with background processes filtered out): [Section 27.4.3.33, &#x201C;The session and x$session Views&#x201D;(<a href="https://dev.mysql.com/doc/refman/8.0/en/sys-session.html" target="_blank">https://dev.mysql.com/doc/refman/8.0/en/sys-session.html</a>)] </li>
-</ul>
-<p>The following sections list the possible <code>Command</code> values, and <code>State</code> values grouped by category. The meaning for some of these values is self-evident. For others, additional description is provided. </p>
+<p>You can probably think of other types of information that would be useful in the <code>pet</code> table, but the ones identified so far are sufficient: name, owner, species, sex, birth, and death.</p>
+<p>Use a <a href="https://dev.mysql.com/doc/refman/8.0/en/create-table.html" target="_blank"><code>CREATE TABLE</code></a> statement to specify the layout of your table:</p>
+<pre><code class="lang-sql">mysql&gt; CREATE TABLE pet (name VARCHAR(20), owner VARCHAR(20),
+       species VARCHAR(20), sex CHAR(1), birth DATE, death DATE);
+</code></pre>
+<p><a href="https://dev.mysql.com/doc/refman/8.0/en/char.html" target="_blank"><code>VARCHAR</code></a> is a good choice for the <code>name</code>, <code>owner</code>, and <code>species</code> columns because the column values vary in length. The lengths in those column definitions need not all be the same, and need not be <strong>20</strong>. You can normally pick any length from <strong>1</strong> to <strong>65535</strong>, whatever seems most reasonable to you. If you make a poor choice and it turns out later that you need a longer field, MySQL provides an <a href="https://dev.mysql.com/doc/refman/8.0/en/alter-table.html" target="_blank"><code>ALTER TABLE</code></a> statement.</p>
+<p>Several types of values can be chosen to represent sex in animal records, such as <code>&apos;m&apos;</code> and <code>&apos;f&apos;</code>, or perhaps <code>&apos;male&apos;</code> and <code>&apos;female&apos;</code>. It is simplest to use the single characters <code>&apos;m&apos;</code> and <code>&apos;f&apos;</code>.</p>
+<p>The use of the <a href="https://dev.mysql.com/doc/refman/8.0/en/datetime.html" target="_blank"><code>DATE</code></a> data type for the birth and death columns is a fairly obvious choice.</p>
+<p>Once you have created a table, <a href="https://dev.mysql.com/doc/refman/8.0/en/show-tables.html" target="_blank"><code>SHOW TABLES</code></a> should produce some output:</p>
+<pre><code class="lang-sql">mysql&gt; SHOW TABLES;
++---------------------+
+| Tables in menagerie |
++---------------------+
+| pet                 |
++---------------------+
+</code></pre>
+<p>To verify that your table was created the way you expected, use a <a href="https://dev.mysql.com/doc/refman/8.0/en/describe.html" target="_blank"><code>DESCRIBE</code></a> statement:</p>
+<pre><code class="lang-sql">mysql&gt; DESCRIBE pet;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| name    | varchar(20) | YES  |     | NULL    |       |
+| owner   | varchar(20) | YES  |     | NULL    |       |
+| species | varchar(20) | YES  |     | NULL    |       |
+| sex     | char(1)     | YES  |     | NULL    |       |
+| birth   | date        | YES  |     | NULL    |       |
+| death   | date        | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+</code></pre>
+<p>You can use <a href="https://dev.mysql.com/doc/refman/8.0/en/describe.html" target="_blank"><code>DESCRIBE</code></a> any time, for example, if you forget the names of the columns in your table or what types they have.</p>
+<p>For more information about MySQL data types, see <a href="https://dev.mysql.com/doc/refman/8.0/en/data-types.html" target="_blank">Chapter 11, <strong><em>Data Types</em></strong></a>.</p>
 
                                 
                                 </section>
@@ -748,10 +767,14 @@
 
             
                 
-                <a href="optimize-benchmarking.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Measuring Performance (Benchmarking)">
+                <a href="creating-database.html" class="navigation navigation-prev " aria-label="Previous page: Creating and Selecting a Database">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
+                
+                <a href="loading-tables.html" class="navigation navigation-next " aria-label="Next page: Loading Data into a Table">
+                    <i class="fa fa-angle-right"></i>
+                </a>
                 
             
         
@@ -760,7 +783,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Examining Thread Information","level":"1.6.14","depth":2,"previous":{"title":"Measuring Performance (Benchmarking)","level":"1.6.13","depth":2,"path":"optimize-benchmarking.md","ref":"optimize-benchmarking.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"en","gitbook":"*"},"file":{"path":"thread-information.md","mtime":"2019-06-16T04:56:47.523Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-21T17:41:54.269Z"},"basePath":".","book":{"language":"en"}});
+            gitbook.page.hasChanged({"page":{"title":"Creating a Table","level":"1.4.3.2","depth":3,"next":{"title":"Loading Data into a Table","level":"1.4.3.3","depth":3,"path":"loading-tables.md","ref":"loading-tables.md","articles":[]},"previous":{"title":"Creating and Selecting a Database","level":"1.4.3.1","depth":3,"path":"creating-database.md","ref":"creating-database.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"en","gitbook":"*"},"file":{"path":"creating-tables.md","mtime":"2019-06-19T15:33:06.768Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-21T17:41:54.269Z"},"basePath":".","book":{"language":"en"}});
         });
     </script>
 </div>
