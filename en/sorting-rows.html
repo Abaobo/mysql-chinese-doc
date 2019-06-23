@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Selecting All Data · GitBook</title>
+        <title>Sorting Rows · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,10 +57,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="selecting-rows.html" />
+    <link rel="next" href="examples.html" />
     
     
-    <link rel="prev" href="retrieving-data.html" />
+    <link rel="prev" href="selecting-columns.html" />
     
 
     </head>
@@ -318,7 +318,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="1.4.3.4.1" data-path="selecting-all.html">
+        <li class="chapter " data-level="1.4.3.4.1" data-path="selecting-all.html">
             
                 <a href="selecting-all.html">
             
@@ -357,7 +357,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.3.4.4" data-path="sorting-rows.html">
+        <li class="chapter active" data-level="1.4.3.4.4" data-path="sorting-rows.html">
             
                 <a href="sorting-rows.html">
             
@@ -693,7 +693,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >Selecting All Data</a>
+        <a href="." >Sorting Rows</a>
     </h1>
 </div>
 
@@ -708,38 +708,59 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h4 id="3341-selecting-all-data">3.3.4.1 Selecting All Data</h4>
-<p>The simplest form of <a href="https://dev.mysql.com/doc/refman/8.0/en/select.html" target="_blank"><code>SELECT</code></a> retrieves everything from a table:</p>
-<pre><code class="lang-sql">mysql&gt; SELECT * FROM pet;
-+----------+--------+---------+------+------------+------------+
-| name     | owner  | species | sex  | birth      | death      |
-+----------+--------+---------+------+------------+------------+
-| Fluffy   | Harold | cat     | f    | 1993-02-04 | NULL       |
-| Claws    | Gwen   | cat     | m    | 1994-03-17 | NULL       |
-| Buffy    | Harold | dog     | f    | 1989-05-13 | NULL       |
-| Fang     | Benny  | dog     | m    | 1990-08-27 | NULL       |
-| Bowser   | Diane  | dog     | m    | 1979-08-31 | 1995-07-29 |
-| Chirpy   | Gwen   | bird    | f    | 1998-09-11 | NULL       |
-| Whistler | Gwen   | bird    | NULL | 1997-12-09 | NULL       |
-| Slim     | Benny  | snake   | m    | 1996-04-29 | NULL       |
-| Puffball | Diane  | hamster | f    | 1999-03-30 | NULL       |
-+----------+--------+---------+------+------------+------------+
+                                <h4 id="3344-sorting-rows">3.3.4.4 Sorting Rows</h4>
+<p>You may have noticed in the preceding examples that the result rows are displayed in no particular order. It is often easier to examine query output when the rows are sorted in some meaningful way. To sort a result, use an <code>ORDER BY</code> clause.</p>
+<p>Here are animal birthdays, sorted by date:</p>
+<pre><code class="lang-sql">mysql&gt; SELECT name, birth FROM pet ORDER BY birth;
++----------+------------+
+| name     | birth      |
++----------+------------+
+| Buffy    | 1989-05-13 |
+| Bowser   | 1989-08-31 |
+| Fang     | 1990-08-27 |
+| Fluffy   | 1993-02-04 |
+| Claws    | 1994-03-17 |
+| Slim     | 1996-04-29 |
+| Whistler | 1997-12-09 |
+| Chirpy   | 1998-09-11 |
+| Puffball | 1999-03-30 |
++----------+------------+
 </code></pre>
-<p>This form of <a href="https://dev.mysql.com/doc/refman/8.0/en/select.html" target="_blank"><code>SELECT</code></a> is useful if you want to review your entire table, for example, after you&apos;ve just loaded it with your initial data set. For example, you may happen to think that the birth date for Bowser doesn&apos;t seem quite right. Consulting your original pedigree papers, you find that the correct birth year should be 1989, not 1979.</p>
-<p>There are at least two ways to fix this:</p>
-<ul>
-<li><p>Edit the file <code>pet.txt</code> to correct the error, then empty the table and reload it using <a href="https://dev.mysql.com/doc/refman/8.0/en/delete.html" target="_blank"><code>DELETE</code></a> and <a href="https://dev.mysql.com/doc/refman/8.0/en/load-data.html" target="_blank"><code>LOAD DATA</code></a>:</p>
-<pre><code class="lang-sql">  mysql&gt; DELETE FROM pet;
-  mysql&gt; LOAD DATA LOCAL INFILE &apos;pet.txt&apos; INTO TABLE pet;
+<p>On character type columns, sorting&#x2014;like all other comparison operations&#x2014;is normally performed in a case-insensitive fashion. This means that the order is undefined for columns that are identical except for their case. You can force a case-sensitive sort for a column by using <a href="https://dev.mysql.com/doc/refman/8.0/en/cast-functions.html#operator_binary" target="_blank"><code>BINARY</code></a> like so: <code>ORDER BY BINARY col_name</code>.</p>
+<p>The default sort order is ascending, with smallest values first. To sort in reverse (descending) order, add the <code>DESC</code> keyword to the name of the column you are sorting by:</p>
+<pre><code class="lang-sql">mysql&gt; SELECT name, birth FROM pet ORDER BY birth DESC;
++----------+------------+
+| name     | birth      |
++----------+------------+
+| Puffball | 1999-03-30 |
+| Chirpy   | 1998-09-11 |
+| Whistler | 1997-12-09 |
+| Slim     | 1996-04-29 |
+| Claws    | 1994-03-17 |
+| Fluffy   | 1993-02-04 |
+| Fang     | 1990-08-27 |
+| Bowser   | 1989-08-31 |
+| Buffy    | 1989-05-13 |
++----------+------------+
 </code></pre>
-<p>  However, if you do this, you must also re-enter the record for Puffball.</p>
-</li>
-<li><p>Fix only the erroneous record with an <a href="https://dev.mysql.com/doc/refman/8.0/en/update.html" target="_blank"><code>UPDATE</code></a> statement:</p>
-<pre><code class="lang-sql">  mysql&gt; UPDATE pet SET birth = &apos;1989-08-31&apos; WHERE name = &apos;Bowser&apos;;
+<p>You can sort on multiple columns, and you can sort different columns in different directions. For example, to sort by type of animal in ascending order, then by birth date within animal type in descending order (youngest animals first), use the following query:</p>
+<pre><code class="lang-sql">mysql&gt; SELECT name, species, birth FROM pet
+       ORDER BY species, birth DESC;
++----------+---------+------------+
+| name     | species | birth      |
++----------+---------+------------+
+| Chirpy   | bird    | 1998-09-11 |
+| Whistler | bird    | 1997-12-09 |
+| Claws    | cat     | 1994-03-17 |
+| Fluffy   | cat     | 1993-02-04 |
+| Fang     | dog     | 1990-08-27 |
+| Bowser   | dog     | 1989-08-31 |
+| Buffy    | dog     | 1989-05-13 |
+| Puffball | hamster | 1999-03-30 |
+| Slim     | snake   | 1996-04-29 |
++----------+---------+------------+
 </code></pre>
-<p>  The <a href="https://dev.mysql.com/doc/refman/8.0/en/update.html" target="_blank"><code>UPDATE</code></a> changes only the record in question and does not require you to reload the table.</p>
-</li>
-</ul>
+<p>The <code>DESC</code> keyword applies only to the column name immediately preceding it (<code>birth</code>); it does not affect the <code>species</code> column sort order.</p>
 
                                 
                                 </section>
@@ -767,12 +788,12 @@
 
             
                 
-                <a href="retrieving-data.html" class="navigation navigation-prev " aria-label="Previous page: Retrieving Information from a Table">
+                <a href="selecting-columns.html" class="navigation navigation-prev " aria-label="Previous page: Selecting Particular Columns">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="selecting-rows.html" class="navigation navigation-next " aria-label="Next page: Selecting Particular Rows">
+                <a href="examples.html" class="navigation navigation-next " aria-label="Next page: Examples of Common Queries">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -783,7 +804,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Selecting All Data","level":"1.4.3.4.1","depth":4,"next":{"title":"Selecting Particular Rows","level":"1.4.3.4.2","depth":4,"path":"selecting-rows.md","ref":"selecting-rows.md","articles":[]},"previous":{"title":"Retrieving Information from a Table","level":"1.4.3.4","depth":3,"path":"retrieving-data.md","ref":"retrieving-data.md","articles":[{"title":"Selecting All Data","level":"1.4.3.4.1","depth":4,"path":"selecting-all.md","ref":"selecting-all.md","articles":[]},{"title":"Selecting Particular Rows","level":"1.4.3.4.2","depth":4,"path":"selecting-rows.md","ref":"selecting-rows.md","articles":[]},{"title":"Selecting Particular Columns","level":"1.4.3.4.3","depth":4,"path":"selecting-columns.md","ref":"selecting-columns.md","articles":[]},{"title":"Sorting Rows","level":"1.4.3.4.4","depth":4,"path":"sorting-rows.md","ref":"sorting-rows.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"en","gitbook":"*"},"file":{"path":"selecting-all.md","mtime":"2019-06-21T17:00:37.089Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-23T00:53:23.933Z"},"basePath":".","book":{"language":"en"}});
+            gitbook.page.hasChanged({"page":{"title":"Sorting Rows","level":"1.4.3.4.4","depth":4,"next":{"title":"Examples of Common Queries","level":"1.4.4","depth":2,"path":"examples.md","ref":"examples.md","articles":[]},"previous":{"title":"Selecting Particular Columns","level":"1.4.3.4.3","depth":4,"path":"selecting-columns.md","ref":"selecting-columns.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"en","gitbook":"*"},"file":{"path":"sorting-rows.md","mtime":"2019-06-23T00:42:22.810Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-23T00:53:23.933Z"},"basePath":".","book":{"language":"en"}});
         });
     </script>
 </div>
