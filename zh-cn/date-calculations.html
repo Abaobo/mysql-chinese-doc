@@ -1,0 +1,968 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>日期计算 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-prism/prism.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-donate/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="examples.html" />
+    
+    
+    <link rel="prev" href="sorting-rows.html" />
+    
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"buttons":[{"user":"Blankj","repo":"glory","type":"star","size":"small","count":true}]};
+    </script>
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="preface.html">
+            
+                <a href="preface.html">
+            
+                    
+                    前言和法律条款
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="installing.html">
+            
+                <a href="installing.html">
+            
+                    
+                    安装和更新 MySQL
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="linux-installation.html">
+            
+                <a href="linux-installation.html">
+            
+                    
+                    在 Linux 上安装 MySQL
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1.1" data-path="linux-installation-apt-repo.html">
+            
+                <a href="linux-installation-apt-repo.html">
+            
+                    
+                    在 Linux 上使用 APT 库安装 MySQL
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.2" data-path="linux-installation-docker.html">
+            
+                <a href="linux-installation-docker.html">
+            
+                    
+                    在 Linux 上使用 Docker 部署 MySQL
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1.2.1" data-path="docker-mysql-getting-started.html">
+            
+                <a href="docker-mysql-getting-started.html">
+            
+                    
+                    使用 Docker 部署 MySQL 服务器的基本步骤
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.2.2" data-path="docker-mysql-more-topics.html">
+            
+                <a href="docker-mysql-more-topics.html">
+            
+                    
+                    使用 Docker 部署 MySQL 服务器的更多主题
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="tutorial.html">
+            
+                <a href="tutorial.html">
+            
+                    
+                    教程
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="connecting-disconnecting.html">
+            
+                <a href="connecting-disconnecting.html">
+            
+                    
+                    连接到服务器和从服务器断开
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="entering-queries.html">
+            
+                <a href="entering-queries.html">
+            
+                    
+                    输入查询
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="database-use.html">
+            
+                <a href="database-use.html">
+            
+                    
+                    创建和使用数据库
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.3.1" data-path="creating-database.html">
+            
+                <a href="creating-database.html">
+            
+                    
+                    创建和选择数据库
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.2" data-path="creating-tables.html">
+            
+                <a href="creating-tables.html">
+            
+                    
+                    创建表
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.3" data-path="loading-tables.html">
+            
+                <a href="loading-tables.html">
+            
+                    
+                    将数据加载到表中
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.4" data-path="retrieving-data.html">
+            
+                <a href="retrieving-data.html">
+            
+                    
+                    从表中检索数据
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.3.4.1" data-path="selecting-all.html">
+            
+                <a href="selecting-all.html">
+            
+                    
+                    选择所有数据
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.4.2" data-path="selecting-rows.html">
+            
+                <a href="selecting-rows.html">
+            
+                    
+                    选择特定行
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.4.3" data-path="selecting-columns.html">
+            
+                <a href="selecting-columns.html">
+            
+                    
+                    选择指定列
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.4.4" data-path="sorting-rows.html">
+            
+                <a href="sorting-rows.html">
+            
+                    
+                    行排序
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.4.3.4.5" data-path="date-calculations.html">
+            
+                <a href="date-calculations.html">
+            
+                    
+                    日期计算
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="examples.html">
+            
+                <a href="examples.html">
+            
+                    
+                    常见查询示例
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="apache.html">
+            
+                <a href="apache.html">
+            
+                    
+                    在 Apache 中使用 MySQL
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="programs.html">
+            
+                <a href="programs.html">
+            
+                    
+                    MySQL 程序
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="programs-client.html">
+            
+                <a href="programs-client.html">
+            
+                    
+                    MySQL 客户端程序
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1.1" data-path="mysql.html">
+            
+                <a href="mysql.html">
+            
+                    
+                    mysql — MySQL 命令行客户端
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="optimization.html">
+            
+                <a href="optimization.html">
+            
+                    
+                    优化
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="optimize-overview.html">
+            
+                <a href="optimize-overview.html">
+            
+                    
+                    优化概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="statement-optimization.html">
+            
+                <a href="statement-optimization.html">
+            
+                    
+                    优化 SQL 语句
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="optimization-indexes.html">
+            
+                <a href="optimization-indexes.html">
+            
+                    
+                    优化和索引
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4" data-path="optimizing-database-structure.html">
+            
+                <a href="optimizing-database-structure.html">
+            
+                    
+                    优化数据库结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.5" data-path="optimizing-innodb.html">
+            
+                <a href="optimizing-innodb.html">
+            
+                    
+                    优化 InnoDB 表
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.6" data-path="optimizing-myisam.html">
+            
+                <a href="optimizing-myisam.html">
+            
+                    
+                    优化 MyISAM 表
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.7" data-path="optimizing-memory-tables.html">
+            
+                <a href="optimizing-memory-tables.html">
+            
+                    
+                    优化 MEMORY 表
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.8" data-path="execution-plan-information.html">
+            
+                <a href="execution-plan-information.html">
+            
+                    
+                    理解查询执行计划
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.9" data-path="controlling-optimizer.html">
+            
+                <a href="controlling-optimizer.html">
+            
+                    
+                    控制查询优化器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.10" data-path="buffering-caching.html">
+            
+                <a href="buffering-caching.html">
+            
+                    
+                    缓冲和缓存
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.11" data-path="locking-issues.html">
+            
+                <a href="locking-issues.html">
+            
+                    
+                    优化锁操作
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.12" data-path="optimizing-server.html">
+            
+                <a href="optimizing-server.html">
+            
+                    
+                    优化 MySQL 服务器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.13" data-path="optimize-benchmarking.html">
+            
+                <a href="optimize-benchmarking.html">
+            
+                    
+                    测量性能 (Benchmarking)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.14" data-path="thread-information.html">
+            
+                <a href="thread-information.html">
+            
+                    
+                    检查线程信息
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >日期计算</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h4 id="3345-&#x65E5;&#x671F;&#x8BA1;&#x7B97;"><a name="3345-&#x65E5;&#x671F;&#x8BA1;&#x7B97;" class="plugin-anchor" href="#3345-&#x65E5;&#x671F;&#x8BA1;&#x7B97;"><i class="fa fa-link" aria-hidden="true"></i></a>3.3.4.5 &#x65E5;&#x671F;&#x8BA1;&#x7B97;</h4>
+<p>MySQL &#x63D0;&#x4F9B;&#x4E86;&#x51E0;&#x4E2A;&#x51FD;&#x6570;&#x53EF;&#x4EE5;&#x7528;&#x6765;&#x5B8C;&#x6210;&#x65E5;&#x671F;&#x8BA1;&#x7B97;, &#x4F8B;&#x5982;, &#x8BA1;&#x7B97;&#x5E74;&#x9F84;&#x6216;&#x8005;&#x63D0;&#x53D6;&#x90E8;&#x5206;&#x65E5;&#x671F;.</p>
+<p>&#x8981;&#x786E;&#x5B9A;&#x6BCF;&#x4E2A;&#x5BA0;&#x7269;&#x7684;&#x5E74;&#x9F84;, &#x53EF;&#x4EE5;&#x4F7F;&#x7528; <a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_timestampdiff" target="_blank"><code>TIMESTAMPDIFF()</code></a> &#x51FD;&#x6570;. &#x5B83;&#x7684;&#x53C2;&#x6570;&#x662F;&#x4F60;&#x60F3;&#x8981;&#x8868;&#x8FBE;&#x7ED3;&#x679C;&#x7684;&#x5355;&#x4F4D;, &#x4EE5;&#x53CA;&#x53D6;&#x5DEE;&#x7684;&#x4E24;&#x4E2A;&#x65E5;&#x671F;. &#x4E0B;&#x9762;&#x7684;&#x67E5;&#x8BE2;&#x663E;&#x793A;&#x4E86;&#x6BCF;&#x53EA;&#x5BA0;&#x7269;&#x7684;&#x51FA;&#x751F;&#x65E5;&#x671F;, &#x5F53;&#x524D;&#x65E5;&#x671F;&#x548C;&#x5E74;&#x9F84;. <strong><em><code>alias</code></em></strong> (<code>age</code>) &#x7528;&#x4E8E;&#x8BA9;&#x6700;&#x7EC8;&#x7684;&#x8F93;&#x51FA;&#x5217;&#x540D;&#x66F4;&#x6709;&#x610F;&#x4E49;.</p>
+<pre class="language-"><code class="lang-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> name<span class="token punctuation">,</span> birth<span class="token punctuation">,</span> CURDATE<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+       TIMESTAMPDIFF<span class="token punctuation">(</span><span class="token keyword">YEAR</span><span class="token punctuation">,</span>birth<span class="token punctuation">,</span>CURDATE<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">AS</span> age
+       <span class="token keyword">FROM</span> pet<span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">----------+------------+------------+------+</span>
+<span class="token operator">|</span> name     <span class="token operator">|</span> birth      <span class="token operator">|</span> CURDATE<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token operator">|</span> age  <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----------+------------+------------+------+</span>
+<span class="token operator">|</span> Fluffy   <span class="token operator">|</span> <span class="token number">1993</span><span class="token operator">-</span><span class="token number">02</span><span class="token operator">-</span><span class="token number">04</span> <span class="token operator">|</span> <span class="token number">2003</span><span class="token operator">-</span><span class="token number">08</span><span class="token operator">-</span><span class="token number">19</span> <span class="token operator">|</span>   <span class="token number">10</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Claws    <span class="token operator">|</span> <span class="token number">1994</span><span class="token operator">-</span><span class="token number">03</span><span class="token operator">-</span><span class="token number">17</span> <span class="token operator">|</span> <span class="token number">2003</span><span class="token operator">-</span><span class="token number">08</span><span class="token operator">-</span><span class="token number">19</span> <span class="token operator">|</span>    <span class="token number">9</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Buffy    <span class="token operator">|</span> <span class="token number">1989</span><span class="token operator">-</span><span class="token number">05</span><span class="token operator">-</span><span class="token number">13</span> <span class="token operator">|</span> <span class="token number">2003</span><span class="token operator">-</span><span class="token number">08</span><span class="token operator">-</span><span class="token number">19</span> <span class="token operator">|</span>   <span class="token number">14</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Fang     <span class="token operator">|</span> <span class="token number">1990</span><span class="token operator">-</span><span class="token number">08</span><span class="token operator">-</span><span class="token number">27</span> <span class="token operator">|</span> <span class="token number">2003</span><span class="token operator">-</span><span class="token number">08</span><span class="token operator">-</span><span class="token number">19</span> <span class="token operator">|</span>   <span class="token number">12</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Bowser   <span class="token operator">|</span> <span class="token number">1989</span><span class="token operator">-</span><span class="token number">08</span><span class="token operator">-</span><span class="token number">31</span> <span class="token operator">|</span> <span class="token number">2003</span><span class="token operator">-</span><span class="token number">08</span><span class="token operator">-</span><span class="token number">19</span> <span class="token operator">|</span>   <span class="token number">13</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Chirpy   <span class="token operator">|</span> <span class="token number">1998</span><span class="token operator">-</span><span class="token number">09</span><span class="token operator">-</span><span class="token number">11</span> <span class="token operator">|</span> <span class="token number">2003</span><span class="token operator">-</span><span class="token number">08</span><span class="token operator">-</span><span class="token number">19</span> <span class="token operator">|</span>    <span class="token number">4</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Whistler <span class="token operator">|</span> <span class="token number">1997</span><span class="token operator">-</span><span class="token number">12</span><span class="token operator">-</span><span class="token number">09</span> <span class="token operator">|</span> <span class="token number">2003</span><span class="token operator">-</span><span class="token number">08</span><span class="token operator">-</span><span class="token number">19</span> <span class="token operator">|</span>    <span class="token number">5</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Slim     <span class="token operator">|</span> <span class="token number">1996</span><span class="token operator">-</span><span class="token number">04</span><span class="token operator">-</span><span class="token number">29</span> <span class="token operator">|</span> <span class="token number">2003</span><span class="token operator">-</span><span class="token number">08</span><span class="token operator">-</span><span class="token number">19</span> <span class="token operator">|</span>    <span class="token number">7</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Puffball <span class="token operator">|</span> <span class="token number">1999</span><span class="token operator">-</span><span class="token number">03</span><span class="token operator">-</span><span class="token number">30</span> <span class="token operator">|</span> <span class="token number">2003</span><span class="token operator">-</span><span class="token number">08</span><span class="token operator">-</span><span class="token number">19</span> <span class="token operator">|</span>    <span class="token number">4</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----------+------------+------------+------+</span>
+</code></pre>
+<p>&#x67E5;&#x8BE2;&#x53EF;&#x4EE5;&#x6B63;&#x5E38;&#x5DE5;&#x4F5C;, &#x4F46;&#x662F;&#x5982;&#x679C;&#x6309;&#x7167;&#x67D0;&#x79CD;&#x987A;&#x5E8F;&#x663E;&#x793A;&#x884C;, &#x5219;&#x53EF;&#x4EE5;&#x66F4;&#x5BB9;&#x6613;&#x7684;&#x626B;&#x63CF;&#x7ED3;&#x679C;. &#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x6DFB;&#x52A0; <code>ORDER BY name</code> &#x5B50;&#x53E5;&#x6309;&#x7167;&#x540D;&#x79F0;&#x6392;&#x5E8F;&#x6765;&#x8F93;&#x51FA;:</p>
+<pre class="language-"><code class="lang-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> name<span class="token punctuation">,</span> birth<span class="token punctuation">,</span> CURDATE<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+       TIMESTAMPDIFF<span class="token punctuation">(</span><span class="token keyword">YEAR</span><span class="token punctuation">,</span>birth<span class="token punctuation">,</span>CURDATE<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">AS</span> age
+       <span class="token keyword">FROM</span> pet <span class="token keyword">ORDER</span> <span class="token keyword">BY</span> name<span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">----------+------------+------------+------+</span>
+<span class="token operator">|</span> name     <span class="token operator">|</span> birth      <span class="token operator">|</span> CURDATE<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token operator">|</span> age  <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----------+------------+------------+------+</span>
+<span class="token operator">|</span> Bowser   <span class="token operator">|</span> <span class="token number">1989</span><span class="token operator">-</span><span class="token number">08</span><span class="token operator">-</span><span class="token number">31</span> <span class="token operator">|</span> <span class="token number">2003</span><span class="token operator">-</span><span class="token number">08</span><span class="token operator">-</span><span class="token number">19</span> <span class="token operator">|</span>   <span class="token number">13</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Buffy    <span class="token operator">|</span> <span class="token number">1989</span><span class="token operator">-</span><span class="token number">05</span><span class="token operator">-</span><span class="token number">13</span> <span class="token operator">|</span> <span class="token number">2003</span><span class="token operator">-</span><span class="token number">08</span><span class="token operator">-</span><span class="token number">19</span> <span class="token operator">|</span>   <span class="token number">14</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Chirpy   <span class="token operator">|</span> <span class="token number">1998</span><span class="token operator">-</span><span class="token number">09</span><span class="token operator">-</span><span class="token number">11</span> <span class="token operator">|</span> <span class="token number">2003</span><span class="token operator">-</span><span class="token number">08</span><span class="token operator">-</span><span class="token number">19</span> <span class="token operator">|</span>    <span class="token number">4</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Claws    <span class="token operator">|</span> <span class="token number">1994</span><span class="token operator">-</span><span class="token number">03</span><span class="token operator">-</span><span class="token number">17</span> <span class="token operator">|</span> <span class="token number">2003</span><span class="token operator">-</span><span class="token number">08</span><span class="token operator">-</span><span class="token number">19</span> <span class="token operator">|</span>    <span class="token number">9</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Fang     <span class="token operator">|</span> <span class="token number">1990</span><span class="token operator">-</span><span class="token number">08</span><span class="token operator">-</span><span class="token number">27</span> <span class="token operator">|</span> <span class="token number">2003</span><span class="token operator">-</span><span class="token number">08</span><span class="token operator">-</span><span class="token number">19</span> <span class="token operator">|</span>   <span class="token number">12</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Fluffy   <span class="token operator">|</span> <span class="token number">1993</span><span class="token operator">-</span><span class="token number">02</span><span class="token operator">-</span><span class="token number">04</span> <span class="token operator">|</span> <span class="token number">2003</span><span class="token operator">-</span><span class="token number">08</span><span class="token operator">-</span><span class="token number">19</span> <span class="token operator">|</span>   <span class="token number">10</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Puffball <span class="token operator">|</span> <span class="token number">1999</span><span class="token operator">-</span><span class="token number">03</span><span class="token operator">-</span><span class="token number">30</span> <span class="token operator">|</span> <span class="token number">2003</span><span class="token operator">-</span><span class="token number">08</span><span class="token operator">-</span><span class="token number">19</span> <span class="token operator">|</span>    <span class="token number">4</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Slim     <span class="token operator">|</span> <span class="token number">1996</span><span class="token operator">-</span><span class="token number">04</span><span class="token operator">-</span><span class="token number">29</span> <span class="token operator">|</span> <span class="token number">2003</span><span class="token operator">-</span><span class="token number">08</span><span class="token operator">-</span><span class="token number">19</span> <span class="token operator">|</span>    <span class="token number">7</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Whistler <span class="token operator">|</span> <span class="token number">1997</span><span class="token operator">-</span><span class="token number">12</span><span class="token operator">-</span><span class="token number">09</span> <span class="token operator">|</span> <span class="token number">2003</span><span class="token operator">-</span><span class="token number">08</span><span class="token operator">-</span><span class="token number">19</span> <span class="token operator">|</span>    <span class="token number">5</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----------+------------+------------+------+</span>
+</code></pre>
+<p>&#x6309;&#x7167; <code>age</code> &#x800C;&#x4E0D;&#x662F; <code>name</code> &#x8FDB;&#x884C;&#x6392;&#x5E8F;&#x8F93;&#x51FA;, &#x53EA;&#x9700;&#x8981;&#x4F7F;&#x7528;&#x4E0D;&#x540C;&#x7684; <code>ORDER BY</code> &#x5B50;&#x53E5;:</p>
+<pre class="language-"><code class="lang-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> name<span class="token punctuation">,</span> birth<span class="token punctuation">,</span> CURDATE<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+       TIMESTAMPDIFF<span class="token punctuation">(</span><span class="token keyword">YEAR</span><span class="token punctuation">,</span>birth<span class="token punctuation">,</span>CURDATE<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">AS</span> age
+       <span class="token keyword">FROM</span> pet <span class="token keyword">ORDER</span> <span class="token keyword">BY</span> age<span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">----------+------------+------------+------+</span>
+<span class="token operator">|</span> name     <span class="token operator">|</span> birth      <span class="token operator">|</span> CURDATE<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token operator">|</span> age  <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----------+------------+------------+------+</span>
+<span class="token operator">|</span> Chirpy   <span class="token operator">|</span> <span class="token number">1998</span><span class="token operator">-</span><span class="token number">09</span><span class="token operator">-</span><span class="token number">11</span> <span class="token operator">|</span> <span class="token number">2003</span><span class="token operator">-</span><span class="token number">08</span><span class="token operator">-</span><span class="token number">19</span> <span class="token operator">|</span>    <span class="token number">4</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Puffball <span class="token operator">|</span> <span class="token number">1999</span><span class="token operator">-</span><span class="token number">03</span><span class="token operator">-</span><span class="token number">30</span> <span class="token operator">|</span> <span class="token number">2003</span><span class="token operator">-</span><span class="token number">08</span><span class="token operator">-</span><span class="token number">19</span> <span class="token operator">|</span>    <span class="token number">4</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Whistler <span class="token operator">|</span> <span class="token number">1997</span><span class="token operator">-</span><span class="token number">12</span><span class="token operator">-</span><span class="token number">09</span> <span class="token operator">|</span> <span class="token number">2003</span><span class="token operator">-</span><span class="token number">08</span><span class="token operator">-</span><span class="token number">19</span> <span class="token operator">|</span>    <span class="token number">5</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Slim     <span class="token operator">|</span> <span class="token number">1996</span><span class="token operator">-</span><span class="token number">04</span><span class="token operator">-</span><span class="token number">29</span> <span class="token operator">|</span> <span class="token number">2003</span><span class="token operator">-</span><span class="token number">08</span><span class="token operator">-</span><span class="token number">19</span> <span class="token operator">|</span>    <span class="token number">7</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Claws    <span class="token operator">|</span> <span class="token number">1994</span><span class="token operator">-</span><span class="token number">03</span><span class="token operator">-</span><span class="token number">17</span> <span class="token operator">|</span> <span class="token number">2003</span><span class="token operator">-</span><span class="token number">08</span><span class="token operator">-</span><span class="token number">19</span> <span class="token operator">|</span>    <span class="token number">9</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Fluffy   <span class="token operator">|</span> <span class="token number">1993</span><span class="token operator">-</span><span class="token number">02</span><span class="token operator">-</span><span class="token number">04</span> <span class="token operator">|</span> <span class="token number">2003</span><span class="token operator">-</span><span class="token number">08</span><span class="token operator">-</span><span class="token number">19</span> <span class="token operator">|</span>   <span class="token number">10</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Fang     <span class="token operator">|</span> <span class="token number">1990</span><span class="token operator">-</span><span class="token number">08</span><span class="token operator">-</span><span class="token number">27</span> <span class="token operator">|</span> <span class="token number">2003</span><span class="token operator">-</span><span class="token number">08</span><span class="token operator">-</span><span class="token number">19</span> <span class="token operator">|</span>   <span class="token number">12</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Bowser   <span class="token operator">|</span> <span class="token number">1989</span><span class="token operator">-</span><span class="token number">08</span><span class="token operator">-</span><span class="token number">31</span> <span class="token operator">|</span> <span class="token number">2003</span><span class="token operator">-</span><span class="token number">08</span><span class="token operator">-</span><span class="token number">19</span> <span class="token operator">|</span>   <span class="token number">13</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Buffy    <span class="token operator">|</span> <span class="token number">1989</span><span class="token operator">-</span><span class="token number">05</span><span class="token operator">-</span><span class="token number">13</span> <span class="token operator">|</span> <span class="token number">2003</span><span class="token operator">-</span><span class="token number">08</span><span class="token operator">-</span><span class="token number">19</span> <span class="token operator">|</span>   <span class="token number">14</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----------+------------+------------+------+</span>
+</code></pre>
+<p>&#x76F8;&#x4F3C;&#x7684;&#x67E5;&#x8BE2;&#x53EF;&#x4EE5;&#x7528;&#x6765;&#x786E;&#x5B9A;&#x5DF2;&#x6B7B;&#x4EA1;&#x52A8;&#x7269;&#x7684;&#x6B7B;&#x4EA1;&#x5E74;&#x9F84;. &#x4F60;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x90A3;&#x4E9B; <code>death</code> &#x7684;&#x503C;&#x4E3A; <code>NULL</code> &#x6765;&#x786E;&#x5B9A;&#x52A8;&#x7269;&#x662F;&#x90A3;&#x4E9B;. &#x7136;&#x540E;, &#x5BF9;&#x90A3;&#x4E9B;&#x975E; <code>NULL</code> &#x503C;, &#x8BA1;&#x7B97;&#x51FA; <code>death</code> &#x548C; <code>birth</code> &#x7684;&#x5DEE;&#x503C;:</p>
+<pre class="language-"><code class="lang-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> name<span class="token punctuation">,</span> birth<span class="token punctuation">,</span> death<span class="token punctuation">,</span>
+       TIMESTAMPDIFF<span class="token punctuation">(</span><span class="token keyword">YEAR</span><span class="token punctuation">,</span>birth<span class="token punctuation">,</span>death<span class="token punctuation">)</span> <span class="token keyword">AS</span> age
+       <span class="token keyword">FROM</span> pet <span class="token keyword">WHERE</span> death <span class="token operator">IS</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">ORDER</span> <span class="token keyword">BY</span> age<span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">--------+------------+------------+------+</span>
+<span class="token operator">|</span> name   <span class="token operator">|</span> birth      <span class="token operator">|</span> death      <span class="token operator">|</span> age  <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">--------+------------+------------+------+</span>
+<span class="token operator">|</span> Bowser <span class="token operator">|</span> <span class="token number">1989</span><span class="token operator">-</span><span class="token number">08</span><span class="token operator">-</span><span class="token number">31</span> <span class="token operator">|</span> <span class="token number">1995</span><span class="token operator">-</span><span class="token number">07</span><span class="token operator">-</span><span class="token number">29</span> <span class="token operator">|</span>    <span class="token number">5</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">--------+------------+------------+------+</span>
+</code></pre>
+<p>&#x67E5;&#x8BE2;&#x4F7F;&#x7528; <code>death IS NOT NULL</code> &#x800C;&#x4E0D;&#x662F; <code>death &lt;&gt; NULL</code> &#x662F;&#x56E0;&#x4E3A; <code>NULL</code> &#x662F;&#x4E00;&#x4E2A;&#x7279;&#x6B8A;&#x503C;, &#x4E0D;&#x80FD;&#x4F7F;&#x7528;&#x5E38;&#x89C4;&#x7684;&#x6BD4;&#x8F83;&#x64CD;&#x4F5C;&#x7B26;&#x6765;&#x64CD;&#x4F5C;. &#x7A0D;&#x540E;&#x5C06;&#x8FDB;&#x884C;&#x8BA8;&#x8BBA;. &#x53C2;&#x9605; <a href="https://dev.mysql.com/doc/refman/8.0/en/working-with-null.html" target="_blank">Section 3.3.4.6, &#x201C;&#x5904;&#x7406; NULL &#x503C;&#x201D;</a>.</p>
+<p>&#x5982;&#x679C;&#x4F60;&#x60F3;&#x77E5;&#x9053;&#x4E0B;&#x4E2A;&#x6708;&#x90A3;&#x4E9B;&#x52A8;&#x7269;&#x8FC7;&#x751F;&#x65E5;&#x5462;? &#x5BF9;&#x4E8E;&#x8FD9;&#x7C7B;&#x8FD0;&#x7B97;, &#x5E74;&#x6708;&#x65E5;&#x65E0;&#x5173;&#x7D27;&#x8981;; &#x4F60;&#x53EA;&#x9700;&#x53D6;&#x51FA; <code>birth</code> &#x5217;&#x7684;&#x6708;&#x4EFD;&#x90E8;&#x5206;. MySQL &#x63D0;&#x4F9B;&#x4E86;&#x51E0;&#x4E2A;&#x63D0;&#x53D6;&#x65E5;&#x671F;&#x90E8;&#x5206;&#x7684;&#x51FD;&#x6570;, &#x6BD4;&#x5982; <a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_year" target="_blank"><code>YEAR()</code></a>, <a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_month" target="_blank"><code>MONTH()</code></a>, &#x548C; <a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_dayofmonth" target="_blank"><code>DAYOFMONTH()</code></a>. <a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_month" target="_blank"><code>MONTH()</code></a> &#x51FD;&#x6570;&#x9002;&#x5408;&#x8FD9;&#x91CC;. &#x8981;&#x67E5;&#x770B;&#x5B83;&#x662F;&#x5982;&#x4F55;&#x5DE5;&#x4F5C;&#x7684;, &#x8FD0;&#x884C;&#x4E00;&#x4E2A;&#x663E;&#x793A;&#x51FA; <code>birth</code> &#x548C; <a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_month" target="_blank"><code>MONTH(birth)</code></a> &#x7684;&#x7B80;&#x5355;&#x67E5;&#x8BE2;:</p>
+<pre class="language-"><code class="lang-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> name<span class="token punctuation">,</span> birth<span class="token punctuation">,</span> <span class="token keyword">MONTH</span><span class="token punctuation">(</span>birth<span class="token punctuation">)</span> <span class="token keyword">FROM</span> pet<span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">----------+------------+--------------+</span>
+<span class="token operator">|</span> name     <span class="token operator">|</span> birth      <span class="token operator">|</span> <span class="token keyword">MONTH</span><span class="token punctuation">(</span>birth<span class="token punctuation">)</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----------+------------+--------------+</span>
+<span class="token operator">|</span> Fluffy   <span class="token operator">|</span> <span class="token number">1993</span><span class="token operator">-</span><span class="token number">02</span><span class="token operator">-</span><span class="token number">04</span> <span class="token operator">|</span>            <span class="token number">2</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Claws    <span class="token operator">|</span> <span class="token number">1994</span><span class="token operator">-</span><span class="token number">03</span><span class="token operator">-</span><span class="token number">17</span> <span class="token operator">|</span>            <span class="token number">3</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Buffy    <span class="token operator">|</span> <span class="token number">1989</span><span class="token operator">-</span><span class="token number">05</span><span class="token operator">-</span><span class="token number">13</span> <span class="token operator">|</span>            <span class="token number">5</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Fang     <span class="token operator">|</span> <span class="token number">1990</span><span class="token operator">-</span><span class="token number">08</span><span class="token operator">-</span><span class="token number">27</span> <span class="token operator">|</span>            <span class="token number">8</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Bowser   <span class="token operator">|</span> <span class="token number">1989</span><span class="token operator">-</span><span class="token number">08</span><span class="token operator">-</span><span class="token number">31</span> <span class="token operator">|</span>            <span class="token number">8</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Chirpy   <span class="token operator">|</span> <span class="token number">1998</span><span class="token operator">-</span><span class="token number">09</span><span class="token operator">-</span><span class="token number">11</span> <span class="token operator">|</span>            <span class="token number">9</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Whistler <span class="token operator">|</span> <span class="token number">1997</span><span class="token operator">-</span><span class="token number">12</span><span class="token operator">-</span><span class="token number">09</span> <span class="token operator">|</span>           <span class="token number">12</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Slim     <span class="token operator">|</span> <span class="token number">1996</span><span class="token operator">-</span><span class="token number">04</span><span class="token operator">-</span><span class="token number">29</span> <span class="token operator">|</span>            <span class="token number">4</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Puffball <span class="token operator">|</span> <span class="token number">1999</span><span class="token operator">-</span><span class="token number">03</span><span class="token operator">-</span><span class="token number">30</span> <span class="token operator">|</span>            <span class="token number">3</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----------+------------+--------------+</span>
+</code></pre>
+<p>&#x627E;&#x51FA;&#x4E0B;&#x4E2A;&#x6708;&#x6709;&#x751F;&#x65E5;&#x7684;&#x52A8;&#x7269;&#x975E;&#x5E38;&#x7B80;&#x5355;. &#x5047;&#x8BBE;&#x5F53;&#x524D;&#x6708;&#x4EFD;&#x662F;&#x56DB;&#x6708;. &#x7136;&#x540E;&#x8FD9;&#x4E2A;&#x6708;&#x4EFD;&#x7684;&#x503C;&#x5C31;&#x662F; <code>4</code>, &#x4F60;&#x53EF;&#x4EE5;&#x8FD9;&#x6837;&#x67E5;&#x627E; <code>5</code> &#x6708;&#x4EFD;&#x51FA;&#x751F;&#x7684;&#x52A8;&#x7269;:</p>
+<pre class="language-"><code class="lang-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> name<span class="token punctuation">,</span> birth <span class="token keyword">FROM</span> pet <span class="token keyword">WHERE</span> <span class="token keyword">MONTH</span><span class="token punctuation">(</span>birth<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">-------+------------+</span>
+<span class="token operator">|</span> name  <span class="token operator">|</span> birth      <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-------+------------+</span>
+<span class="token operator">|</span> Buffy <span class="token operator">|</span> <span class="token number">1989</span><span class="token operator">-</span><span class="token number">05</span><span class="token operator">-</span><span class="token number">13</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-------+------------+</span>
+</code></pre>
+<p>&#x5982;&#x679C;&#x5F53;&#x524D;&#x6708;&#x4EFD;&#x662F; 12 &#x6708;, &#x5C31;&#x4F1A;&#x51FA;&#x73B0;&#x4E00;&#x4E2A;&#x5C0F;&#x95EE;&#x9898;. &#x4F60;&#x4E0D;&#x80FD;&#x4EC5;&#x4EC5;&#x5728; (<code>12</code>) &#x4E0A;&#x9762;&#x52A0; 1, &#x7136;&#x540E;&#x5BFB;&#x627E;&#x7B2C; <code>13</code> &#x4E2A;&#x6708;&#x51FA;&#x751F;&#x7684;&#x52A8;&#x7269;, &#x56E0;&#x4E3A;&#x6CA1;&#x6709;&#x8FD9;&#x4E2A;&#x6708;&#x4EFD;. &#x76F8;&#x53CD;, &#x4F60;&#x8981;&#x5BFB;&#x627E; <code>1</code> &#x6708;&#x7684;&#x52A8;&#x7269;.</p>
+<p>&#x4F60;&#x53EF;&#x4EE5;&#x5199;&#x4E2A;&#x67E5;&#x8BE2;&#x65E0;&#x8BBA;&#x5728;&#x54EA;&#x4E2A;&#x6708;&#x4EFD;&#x90FD;&#x53EF;&#x4EE5;&#x6B63;&#x5E38;&#x5DE5;&#x4F5C;, &#x8FD9;&#x6837;&#x4F60;&#x5C31;&#x4E0D;&#x5FC5;&#x4E3A;&#x7279;&#x5B9A;&#x7684;&#x6708;&#x4EFD;&#x4F7F;&#x7528;&#x6570;&#x5B57;. <a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_date-add" target="_blank"><code>DATE_ADD()</code></a> &#x5141;&#x8BB8;&#x5411;&#x6307;&#x5B9A;&#x65E5;&#x671F;&#x6DFB;&#x52A0;&#x95F4;&#x9694;. &#x5982;&#x679C;&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;&#x6708;&#x5230; <a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_curdate" target="_blank"><code>CURDATE()</code></a> &#x7684;&#x503C;&#x4E2D;, &#x7136;&#x540E;&#x4F7F;&#x7528; <a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_month" target="_blank"><code>MONTH()</code></a> &#x63D0;&#x53D6;&#x6708;&#x4EFD;&#x90E8;&#x5206;, &#x7136;&#x540E;&#x4EA7;&#x751F;&#x4E86;&#x5BFB;&#x627E;&#x751F;&#x65E5;&#x7684;&#x6708;&#x4EFD;:</p>
+<pre class="language-"><code class="lang-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> name<span class="token punctuation">,</span> birth <span class="token keyword">FROM</span> pet
+       <span class="token keyword">WHERE</span> <span class="token keyword">MONTH</span><span class="token punctuation">(</span>birth<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token keyword">MONTH</span><span class="token punctuation">(</span>DATE_ADD<span class="token punctuation">(</span>CURDATE<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token keyword">INTERVAL</span> <span class="token number">1</span> <span class="token keyword">MONTH</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>&#x53E6;&#x4E00;&#x79CD;&#x5B8C;&#x6210;&#x4EFB;&#x52A1;&#x7684;&#x65B9;&#x6CD5;&#x662F;&#x4F7F;&#x7528; <code>MOD</code> &#x65B9;&#x6CD5;&#x5BF9;&#x5176;&#x53D6;&#x6A21;, &#x5982;&#x679C;&#x5F53;&#x524D;&#x6708;&#x4EFD;&#x662F; <code>12</code>, &#x90A3;&#x4E48;&#x53D6;&#x503C;&#x4E3A; <code>0</code>, &#x52A0; <code>1</code> &#x6765;&#x83B7;&#x5F97;&#x5F53;&#x524D;&#x6708;&#x4EFD;&#x7684;&#x4E0B;&#x4E00;&#x4E2A;&#x6708;&#x7684;&#x503C;:</p>
+<pre class="language-"><code class="lang-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> name<span class="token punctuation">,</span> birth <span class="token keyword">FROM</span> pet
+       <span class="token keyword">WHERE</span> <span class="token keyword">MONTH</span><span class="token punctuation">(</span>birth<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">MOD</span><span class="token punctuation">(</span><span class="token keyword">MONTH</span><span class="token punctuation">(</span>CURDATE<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">12</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+</code></pre>
+<p><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_month" target="_blank"><code>MONTH()</code></a> &#x8FD4;&#x56DE; <code>1</code> &#x5230; <code>12</code> &#x4E4B;&#x95F4;&#x7684;&#x6570;&#x5B57;. <a href="https://dev.mysql.com/doc/refman/8.0/en/mathematical-functions.html#function_mod" target="_blank"><code>MOD(something,12)</code></a> &#x8FD4;&#x56DE; <code>0</code> &#x548C; <code>11</code> &#x4E4B;&#x95F4;&#x7684;&#x6570;&#x5B57;. &#x56E0;&#x6B64;, &#x5FC5;&#x987B;&#x5728; <a href="https://dev.mysql.com/doc/refman/8.0/en/mathematical-functions.html#function_mod" target="_blank"><code>MOD()</code></a> &#x4E4B;&#x540E;&#x6DFB;&#x52A0;, &#x5426;&#x5219;&#x5C06;&#x4ECE; <code>11</code> &#x6708;&#x4EFD;&#x76F4;&#x63A5;&#x5230; <code>1</code> &#x6708;&#x4EFD;.</p>
+<p>&#x5982;&#x679C;&#x4F7F;&#x7528;&#x65E0;&#x6548;&#x65E5;&#x671F;, &#x5219;&#x4F1A;&#x8BA1;&#x7B97;&#x5931;&#x8D25;&#x5E76;&#x4EA7;&#x751F;&#x8B66;&#x544A;:</p>
+<pre class="language-"><code class="lang-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> <span class="token string">&apos;2018-10-31&apos;</span> <span class="token operator">+</span> <span class="token keyword">INTERVAL</span> <span class="token number">1</span> <span class="token keyword">DAY</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">-------------------------------+</span>
+<span class="token operator">|</span> <span class="token string">&apos;2018-10-31&apos;</span> <span class="token operator">+</span> <span class="token keyword">INTERVAL</span> <span class="token number">1</span> <span class="token keyword">DAY</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-------------------------------+</span>
+<span class="token operator">|</span> <span class="token number">2018</span><span class="token operator">-</span><span class="token number">11</span><span class="token operator">-</span><span class="token number">01</span>                    <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-------------------------------+</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> <span class="token string">&apos;2018-10-32&apos;</span> <span class="token operator">+</span> <span class="token keyword">INTERVAL</span> <span class="token number">1</span> <span class="token keyword">DAY</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">-------------------------------+</span>
+<span class="token operator">|</span> <span class="token string">&apos;2018-10-32&apos;</span> <span class="token operator">+</span> <span class="token keyword">INTERVAL</span> <span class="token number">1</span> <span class="token keyword">DAY</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-------------------------------+</span>
+<span class="token operator">|</span> <span class="token boolean">NULL</span>                          <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-------------------------------+</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">SHOW</span> <span class="token keyword">WARNINGS</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">---------+------+----------------------------------------+</span>
+<span class="token operator">|</span> <span class="token keyword">Level</span>   <span class="token operator">|</span> Code <span class="token operator">|</span> Message                                <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">---------+------+----------------------------------------+</span>
+<span class="token operator">|</span> Warning <span class="token operator">|</span> <span class="token number">1292</span> <span class="token operator">|</span> Incorrect <span class="token keyword">datetime</span> <span class="token keyword">value</span>: <span class="token string">&apos;2018-10-32&apos;</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">---------+------+----------------------------------------+</span>
+</code></pre>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="sorting-rows.html" class="navigation navigation-prev " aria-label="Previous page: 行排序">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="examples.html" class="navigation navigation-next " aria-label="Next page: 常见查询示例">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"日期计算","level":"1.4.3.4.5","depth":4,"next":{"title":"常见查询示例","level":"1.4.4","depth":2,"path":"examples.md","ref":"examples.md","articles":[]},"previous":{"title":"行排序","level":"1.4.3.4.4","depth":4,"path":"sorting-rows.md","ref":"sorting-rows.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-highlight","-sharing","prism","github","github-buttons","expandable-chapters-small","donate","anchors","edit-link","copy-code-button"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"github":{"url":"https://github.com/mowangjuanzi/mysql-chinese-doc"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"donate":{"alipay":"/assets/alipay.png","alipayText":"支付宝打赏","button":"赏","title":"","wechat":"/assets/wechat.jpg","wechatText":"微信打赏"},"fontsettings":{"theme":"white","family":"sans","size":2},"github-buttons":{"buttons":[{"user":"Blankj","repo":"glory","type":"star","size":"small","count":true}]},"expandable-chapters-small":{},"copy-code-button":{},"edit-link":{"label":"Edit This Page","base":"https://github.com/mowangjuanzi/mysql-chinese-doc/edit/master"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"zh-hans","gitbook":"*"},"file":{"path":"date-calculations.md","mtime":"2019-06-24T13:58:18.711Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-24T14:53:30.845Z"},"basePath":".","book":{"language":"zh-cn"}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-donate/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-edit-link/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-copy-code-button/toggle.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

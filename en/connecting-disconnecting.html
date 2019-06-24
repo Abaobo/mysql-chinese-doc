@@ -17,7 +17,19 @@
     
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-prism/prism.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-donate/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
                 
             
                 
@@ -49,6 +61,7 @@
         
     
     
+    
     <meta name="HandheldFriendly" content="true"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -62,6 +75,17 @@
     
     <link rel="prev" href="tutorial.html" />
     
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"buttons":[{"user":"Blankj","repo":"glory","type":"star","size":"small","count":true}]};
+    </script>
 
     </head>
     <body>
@@ -363,6 +387,19 @@
             
                     
                     Sorting Rows
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.4.5" data-path="date-calculations.html">
+            
+                <a href="date-calculations.html">
+            
+                    
+                    Date Calculationsa
             
                 </a>
             
@@ -708,33 +745,33 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h2 id="31-connecting-to-and-disconnecting-from-the-server">3.1 Connecting to and Disconnecting from the Server</h2>
+                                <h2 id="31-connecting-to-and-disconnecting-from-the-server"><a name="31-connecting-to-and-disconnecting-from-the-server" class="plugin-anchor" href="#31-connecting-to-and-disconnecting-from-the-server"><i class="fa fa-link" aria-hidden="true"></i></a>3.1 Connecting to and Disconnecting from the Server</h2>
 <p>To connect to the server, you will usually need to provide a MySQL user name when you invoke <a href="https://dev.mysql.com/doc/refman/8.0/en/mysql.html" target="_blank"><strong>mysql</strong></a> and, most likely, a password. If the server runs on a machine other than the one where you log in, you will also need to specify a host name. Contact your administrator to find out what connection parameters you should use to connect (that is, what host, user name, and password to use). Once you know the proper parameters, you should be able to connect like this:</p>
-<pre><code class="lang-bash">shell&gt; mysql -h host -u user -p
+<pre class="language-"><code class="lang-bash">shell<span class="token operator">&gt;</span> mysql -h <span class="token function">host</span> -u user -p
 Enter password: ********
 </code></pre>
 <p><em><code>host</code></em> and <em><code>user</code></em> represent the host name where your MySQL server is running and the user name of your MySQL account. Substitute appropriate values for your setup. The <code>********</code> represents your password; enter it when <a href="https://dev.mysql.com/doc/refman/8.0/en/mysql.html" target="_blank"><strong>mysql</strong></a> displays the <code>Enter password:</code> prompt.</p>
 <p>If that works, you should see some introductory information followed by a <code>mysql&gt;</code> prompt:</p>
-<pre><code class="lang-bash">shell&gt; mysql -h host -u user -p
+<pre class="language-"><code class="lang-bash">shell<span class="token operator">&gt;</span> mysql -h <span class="token function">host</span> -u user -p
 Enter password: ********
-Welcome to the MySQL monitor.  Commands end with ; or \g.
-Your MySQL connection id is 25338 to server version: 8.0.18-standard
+Welcome to the MySQL monitor.  Commands end with <span class="token punctuation">;</span> or \g.
+Your MySQL connection <span class="token function">id</span> is 25338 to server version: 8.0.18-standard
 
-Type <span class="hljs-string">&apos;help;&apos;</span> or <span class="hljs-string">&apos;\h&apos;</span> <span class="hljs-keyword">for</span> help. Type <span class="hljs-string">&apos;\c&apos;</span> to clear the buffer.
+Type <span class="token string">&apos;help;&apos;</span> or <span class="token string">&apos;\h&apos;</span> <span class="token keyword">for</span> help. Type <span class="token string">&apos;\c&apos;</span> to <span class="token function">clear</span> the buffer.
 
-mysql&gt;
+mysql<span class="token operator">&gt;</span>
 </code></pre>
 <p>The <code>mysql&gt;</code> prompt tells you that <a href="https://dev.mysql.com/doc/refman/8.0/en/mysql.html" target="_blank"><strong>mysql</strong></a> is ready for you to enter SQL statements.</p>
 <p>If you are logging in on the same machine that MySQL is running on, you can omit the host, and simply use the following:</p>
-<pre><code class="lang-bash">shell&gt; mysql -u user -p
+<pre class="language-"><code class="lang-bash">shell<span class="token operator">&gt;</span> mysql -u user -p
 </code></pre>
 <p>If, when you attempt to log in, you get an error message such as <code>ERROR 2002 (HY000): Can&apos;t connect to local MySQL server through socket &apos;/tmp/mysql.sock&apos; (2)</code>, it means that the MySQL server daemon (Unix) or service (Windows) is not running. Consult the administrator or see the section of <a href="https://dev.mysql.com/doc/refman/8.0/en/installing.html" target="_blank">Chapter 2, <em>Installing and Upgrading MySQL</em></a> that is appropriate to your operating system.</p>
 <p>For help with other problems often encountered when trying to log in, see <a href="https://dev.mysql.com/doc/refman/8.0/en/common-errors.html" target="_blank">Section B.4.2, &#x201C;Common Errors When Using MySQL Programs&#x201D;</a>.</p>
 <p>Some MySQL installations permit users to connect as the anonymous (unnamed) user to the server running on the local host. If this is the case on your machine, you should be able to connect to that server by invoking <a href="https://dev.mysql.com/doc/refman/8.0/en/mysql.html" target="_blank"><strong>mysql</strong></a> without any options:</p>
-<pre><code class="lang-bash">shell&gt; mysql
+<pre class="language-"><code class="lang-bash">shell<span class="token operator">&gt;</span> mysql
 </code></pre>
 <p>After you have connected successfully, you can disconnect any time by typing <code>QUIT</code> (or <code>\q</code>) at the <code>mysql&gt;</code> prompt:</p>
-<pre><code class="lang-bash">mysql&gt; QUIT
+<pre class="language-"><code class="lang-bash">mysql<span class="token operator">&gt;</span> QUIT
 Bye
 </code></pre>
 <p>On Unix, you can also disconnect by pressing Control+D.</p>
@@ -782,7 +819,7 @@ Bye
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Connecting to and Disconnecting from the Server","level":"1.4.1","depth":2,"next":{"title":"Entering Queries","level":"1.4.2","depth":2,"path":"entering-queries.md","ref":"entering-queries.md","articles":[]},"previous":{"title":"Tutorial","level":"1.4","depth":1,"path":"tutorial.md","ref":"tutorial.md","articles":[{"title":"Connecting to and Disconnecting from the Server","level":"1.4.1","depth":2,"path":"connecting-disconnecting.md","ref":"connecting-disconnecting.md","articles":[]},{"title":"Entering Queries","level":"1.4.2","depth":2,"path":"entering-queries.md","ref":"entering-queries.md","articles":[]},{"title":"Creating and Using a Database","level":"1.4.3","depth":2,"path":"database-use.md","ref":"database-use.md","articles":[{"title":"Creating and Selecting a Database","level":"1.4.3.1","depth":3,"path":"creating-database.md","ref":"creating-database.md","articles":[]},{"title":"Creating a Table","level":"1.4.3.2","depth":3,"path":"creating-tables.md","ref":"creating-tables.md","articles":[]},{"title":"Loading Data into a Table","level":"1.4.3.3","depth":3,"path":"loading-tables.md","ref":"loading-tables.md","articles":[]},{"title":"Retrieving Information from a Table","level":"1.4.3.4","depth":3,"path":"retrieving-data.md","ref":"retrieving-data.md","articles":[{"title":"Selecting All Data","level":"1.4.3.4.1","depth":4,"path":"selecting-all.md","ref":"selecting-all.md","articles":[]},{"title":"Selecting Particular Rows","level":"1.4.3.4.2","depth":4,"path":"selecting-rows.md","ref":"selecting-rows.md","articles":[]},{"title":"Selecting Particular Columns","level":"1.4.3.4.3","depth":4,"path":"selecting-columns.md","ref":"selecting-columns.md","articles":[]},{"title":"Sorting Rows","level":"1.4.3.4.4","depth":4,"path":"sorting-rows.md","ref":"sorting-rows.md","articles":[]}]}]},{"title":"Examples of Common Queries","level":"1.4.4","depth":2,"path":"examples.md","ref":"examples.md","articles":[]},{"title":"Using MySQL with Apache","level":"1.4.5","depth":2,"path":"apache.md","ref":"apache.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"en","gitbook":"*"},"file":{"path":"connecting-disconnecting.md","mtime":"2019-06-14T16:31:10.563Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-23T00:55:17.505Z"},"basePath":".","book":{"language":"en"}});
+            gitbook.page.hasChanged({"page":{"title":"Connecting to and Disconnecting from the Server","level":"1.4.1","depth":2,"next":{"title":"Entering Queries","level":"1.4.2","depth":2,"path":"entering-queries.md","ref":"entering-queries.md","articles":[]},"previous":{"title":"Tutorial","level":"1.4","depth":1,"path":"tutorial.md","ref":"tutorial.md","articles":[{"title":"Connecting to and Disconnecting from the Server","level":"1.4.1","depth":2,"path":"connecting-disconnecting.md","ref":"connecting-disconnecting.md","articles":[]},{"title":"Entering Queries","level":"1.4.2","depth":2,"path":"entering-queries.md","ref":"entering-queries.md","articles":[]},{"title":"Creating and Using a Database","level":"1.4.3","depth":2,"path":"database-use.md","ref":"database-use.md","articles":[{"title":"Creating and Selecting a Database","level":"1.4.3.1","depth":3,"path":"creating-database.md","ref":"creating-database.md","articles":[]},{"title":"Creating a Table","level":"1.4.3.2","depth":3,"path":"creating-tables.md","ref":"creating-tables.md","articles":[]},{"title":"Loading Data into a Table","level":"1.4.3.3","depth":3,"path":"loading-tables.md","ref":"loading-tables.md","articles":[]},{"title":"Retrieving Information from a Table","level":"1.4.3.4","depth":3,"path":"retrieving-data.md","ref":"retrieving-data.md","articles":[{"title":"Selecting All Data","level":"1.4.3.4.1","depth":4,"path":"selecting-all.md","ref":"selecting-all.md","articles":[]},{"title":"Selecting Particular Rows","level":"1.4.3.4.2","depth":4,"path":"selecting-rows.md","ref":"selecting-rows.md","articles":[]},{"title":"Selecting Particular Columns","level":"1.4.3.4.3","depth":4,"path":"selecting-columns.md","ref":"selecting-columns.md","articles":[]},{"title":"Sorting Rows","level":"1.4.3.4.4","depth":4,"path":"sorting-rows.md","ref":"sorting-rows.md","articles":[]},{"title":"Date Calculationsa","level":"1.4.3.4.5","depth":4,"path":"date-calculations.md","ref":"date-calculations.md","articles":[]}]}]},{"title":"Examples of Common Queries","level":"1.4.4","depth":2,"path":"examples.md","ref":"examples.md","articles":[]},{"title":"Using MySQL with Apache","level":"1.4.5","depth":2,"path":"apache.md","ref":"apache.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-highlight","-sharing","prism","github","github-buttons","expandable-chapters-small","donate","anchors","edit-link","copy-code-button"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"github":{"url":"https://github.com/mowangjuanzi/mysql-chinese-doc"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"donate":{"alipay":"/assets/alipay.png","alipayText":"支付宝打赏","button":"赏","title":"","wechat":"/assets/wechat.jpg","wechatText":"微信打赏"},"fontsettings":{"theme":"white","family":"sans","size":2},"github-buttons":{"buttons":[{"user":"Blankj","repo":"glory","type":"star","size":"small","count":true}]},"expandable-chapters-small":{},"copy-code-button":{},"edit-link":{"label":"Edit This Page","base":"https://github.com/mowangjuanzi/mysql-chinese-doc/edit/master"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"en","gitbook":"*"},"file":{"path":"connecting-disconnecting.md","mtime":"2019-06-24T12:57:20.330Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-24T14:53:30.845Z"},"basePath":".","book":{"language":"en"}});
         });
     </script>
 </div>
@@ -790,6 +827,30 @@ Bye
         
     <script src="../gitbook/gitbook.js"></script>
     <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-donate/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-edit-link/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-copy-code-button/toggle.js"></script>
+        
     
         
         <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
@@ -805,10 +866,6 @@ Bye
     
         
         <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
         
     
         

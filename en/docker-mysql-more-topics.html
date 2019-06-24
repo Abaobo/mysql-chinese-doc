@@ -17,7 +17,19 @@
     
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-prism/prism.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-donate/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
                 
             
                 
@@ -49,6 +61,7 @@
         
     
     
+    
     <meta name="HandheldFriendly" content="true"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -62,6 +75,17 @@
     
     <link rel="prev" href="docker-mysql-getting-started.html" />
     
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"buttons":[{"user":"Blankj","repo":"glory","type":"star","size":"small","count":true}]};
+    </script>
 
     </head>
     <body>
@@ -363,6 +387,19 @@
             
                     
                     Sorting Rows
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.4.5" data-path="date-calculations.html">
+            
+                <a href="date-calculations.html">
+            
+                    
+                    Date Calculationsa
             
                 </a>
             
@@ -708,12 +745,12 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h4 id="2562-more-topics-on-deploying-mysql-server-with-docker">2.5.6.2 More Topics on Deploying MySQL Server with Docker</h4>
+                                <h4 id="2562-more-topics-on-deploying-mysql-server-with-docker"><a name="2562-more-topics-on-deploying-mysql-server-with-docker" class="plugin-anchor" href="#2562-more-topics-on-deploying-mysql-server-with-docker"><i class="fa fa-link" aria-hidden="true"></i></a>2.5.6.2 More Topics on Deploying MySQL Server with Docker</h4>
 <blockquote>
 <p><strong>Note</strong></p>
 <p>Most of the sample commands below have <code>mysql/mysql-server</code> as the Docker image repository when that has to be specified (like with the <code>docker pull</code> and <code>docker run</code> commands); change that if your image is from another repository&#x2014;for example, replace it with <code>store/oracle/mysql-enterprise-server</code> for MySQL Enterprise Edition images from the Docker Store, or with <code>container-registry.oracle.com/mysql/enterprise-server</code> for MySQL Enterprise Edition images from the Oracle Container Registry.</p>
 </blockquote>
-<h5 id="the-optimized-mysql-installation-for-docker">The Optimized MySQL Installation for Docker</h5>
+<h5 id="the-optimized-mysql-installation-for-docker"><a name="the-optimized-mysql-installation-for-docker" class="plugin-anchor" href="#the-optimized-mysql-installation-for-docker"><i class="fa fa-link" aria-hidden="true"></i></a>The Optimized MySQL Installation for Docker</h5>
 <p>Docker images for MySQL are optimized for code size, which means they only include crucial components that are expected to be relevant for the majority of users who run MySQL instances in Docker containers. A MySQL Docker installation is different from a common, non-Docker installation in the following aspects:</p>
 <ul>
 <li><p>Included binaries are limited to:</p>
@@ -747,68 +784,68 @@
 <li><p>All binaries are stripped; they contain no debug information.</p>
 </li>
 </ul>
-<h5 id="configuring-the-mysql-server">Configuring the MySQL Server</h5>
+<h5 id="configuring-the-mysql-server"><a name="configuring-the-mysql-server" class="plugin-anchor" href="#configuring-the-mysql-server"><i class="fa fa-link" aria-hidden="true"></i></a>Configuring the MySQL Server</h5>
 <p>When you start the MySQL Docker container, you can pass configuration options to the server through the <code>docker run</code> command; for example:</p>
-<pre><code class="lang-bash">docker run --name mysql1 <span class="hljs-_">-d</span> mysql/mysql-server:tag --character-set-server=utf8mb4 --collation-server=utf8mb4_col
+<pre class="language-"><code class="lang-bash">docker run --name mysql1 -d mysql/mysql-server:tag --character-set-server<span class="token operator">=</span>utf8mb4 --collation-server<span class="token operator">=</span>utf8mb4_col
 </code></pre>
 <p>The command starts your MySQL Server with <code>utf8mb4</code> as the default character set and <code>utf8mb4_col</code> as the default collation for your databases.</p>
 <p>Another way to configure the MySQL Server is to prepare a configuration file and mount it at the location of the server configuration file inside the container. See <a href="https://dev.mysql.com/doc/refman/8.0/en/docker-mysql-more-topics.html#docker-persisting-data-configuration" target="_blank">Persisting Data and Configuration Changes</a> for details.</p>
-<h5 id="persisting-data-and-configuration-changes">Persisting Data and Configuration Changes</h5>
+<h5 id="persisting-data-and-configuration-changes"><a name="persisting-data-and-configuration-changes" class="plugin-anchor" href="#persisting-data-and-configuration-changes"><i class="fa fa-link" aria-hidden="true"></i></a>Persisting Data and Configuration Changes</h5>
 <p>Docker containers are in principle ephemeral, and any data or configuration are expected to be lost if the container is deleted or corrupted (see discussions <a href="https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/" target="_blank">here</a>). <a href="https://docs.docker.com/engine/admin/volumes/volumes/" target="_blank">Docker volumes</a>, however, provides a mechanism to persist data created inside a Docker container. At its initialization, the MySQL Server container creates a Docker volume for the server data directory. The JSON output for running the <code>docker inspect</code> command on the container has a <code>Mount</code> key, whose value provides information on the data directory volume:</p>
-<pre><code class="lang-bash">shell&gt; docker inspect mysql1 
-...
- <span class="hljs-string">&quot;Mounts&quot;</span>: [
-            {
-                <span class="hljs-string">&quot;Type&quot;</span>: <span class="hljs-string">&quot;volume&quot;</span>,
-                <span class="hljs-string">&quot;Name&quot;</span>: <span class="hljs-string">&quot;4f2d463cfc4bdd4baebcb098c97d7da3337195ed2c6572bc0b89f7e845d27652&quot;</span>,
-                <span class="hljs-string">&quot;Source&quot;</span>: <span class="hljs-string">&quot;/var/lib/docker/volumes/4f2d463cfc4bdd4baebcb098c97d7da3337195ed2c6572bc0b89f7e845d27652/_data&quot;</span>,
-                <span class="hljs-string">&quot;Destination&quot;</span>: <span class="hljs-string">&quot;/var/lib/mysql&quot;</span>,
-                <span class="hljs-string">&quot;Driver&quot;</span>: <span class="hljs-string">&quot;local&quot;</span>,
-                <span class="hljs-string">&quot;Mode&quot;</span>: <span class="hljs-string">&quot;&quot;</span>,
-                <span class="hljs-string">&quot;RW&quot;</span>: <span class="hljs-literal">true</span>,
-                <span class="hljs-string">&quot;Propagation&quot;</span>: <span class="hljs-string">&quot;&quot;</span>
-            }
-        ],
-...
+<pre class="language-"><code class="lang-bash">shell<span class="token operator">&gt;</span> docker inspect mysql1 
+<span class="token punctuation">..</span>.
+ <span class="token string">&quot;Mounts&quot;</span><span class="token keyword">:</span> <span class="token punctuation">[</span>
+            <span class="token punctuation">{</span>
+                <span class="token string">&quot;Type&quot;</span><span class="token keyword">:</span> <span class="token string">&quot;volume&quot;</span>,
+                <span class="token string">&quot;Name&quot;</span><span class="token keyword">:</span> <span class="token string">&quot;4f2d463cfc4bdd4baebcb098c97d7da3337195ed2c6572bc0b89f7e845d27652&quot;</span>,
+                <span class="token string">&quot;Source&quot;</span><span class="token keyword">:</span> <span class="token string">&quot;/var/lib/docker/volumes/4f2d463cfc4bdd4baebcb098c97d7da3337195ed2c6572bc0b89f7e845d27652/_data&quot;</span>,
+                <span class="token string">&quot;Destination&quot;</span><span class="token keyword">:</span> <span class="token string">&quot;/var/lib/mysql&quot;</span>,
+                <span class="token string">&quot;Driver&quot;</span><span class="token keyword">:</span> <span class="token string">&quot;local&quot;</span>,
+                <span class="token string">&quot;Mode&quot;</span><span class="token keyword">:</span> <span class="token string">&quot;&quot;</span>,
+                <span class="token string">&quot;RW&quot;</span><span class="token keyword">:</span> true,
+                <span class="token string">&quot;Propagation&quot;</span><span class="token keyword">:</span> <span class="token string">&quot;&quot;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">]</span>,
+<span class="token punctuation">..</span>.
 </code></pre>
 <p>The output shows that the source folder <code>/var/lib/docker/volumes/4f2d463cfc4bdd4baebcb098c97d7da3337195ed2c6572bc0b89f7e845d27652/_data</code>, in which data is persisted on the host, has been mounted at <code>/var/lib/mysql</code>, the server data directory inside the container.</p>
 <p>Another way to preserve data is to <a href="https://docs.docker.com/engine/reference/commandline/service_create/#add-bind-mounts-volumes-or-memory-filesystems" target="_blank">bind-mount</a> a host directory using the <code>--mount</code> option when creating the container. The same technique can be used to persist the configuration of the server. The following command creates a MySQL Server container and bind-mounts both the data directory and the server configuration file:</p>
-<pre><code class="lang-bash">docker run --name=mysql1 \
---mount <span class="hljs-built_in">type</span>=<span class="hljs-built_in">bind</span>,src=/path-on-host-machine/my.cnf,dst=/etc/my.cnf \
---mount <span class="hljs-built_in">type</span>=<span class="hljs-built_in">bind</span>,src=/path-on-host-machine/datadir,dst=/var/lib/mysql \
-<span class="hljs-_">-d</span> mysql/mysql-server:tag
+<pre class="language-"><code class="lang-bash">docker run --name<span class="token operator">=</span>mysql1 \
+--mount type<span class="token operator">=</span>bind,src<span class="token operator">=</span>/path-on-host-machine/my.cnf,dst<span class="token operator">=</span>/etc/my.cnf \
+--mount type<span class="token operator">=</span>bind,src<span class="token operator">=</span>/path-on-host-machine/datadir,dst<span class="token operator">=</span>/var/lib/mysql \
+-d mysql/mysql-server:tag
 </code></pre>
 <p>The command mounts <code>path-on-host-machine/my.cnf</code> at <code>/etc/my.cnf</code> (the server configuration file inside the container), and <code>path-on-host-machine/datadir</code> at <code>/var/lib/mysql</code> (the data directory inside the container). The following conditions must be met for the bind-mounting to work:</p>
 <ul>
 <li>The configuration file <code>path-on-host-machine/my.cnf</code> must already exist, and it must contain the specification for starting the server using the user <code>mysql</code>:</li>
 </ul>
-<pre><code class="lang-ini"><span class="hljs-section">[mysqld]</span>
-<span class="hljs-attr">user</span>=mysql
+<pre class="language-"><code class="lang-ini"><span class="token selector">[mysqld]</span>
+<span class="token constant">user</span><span class="token attr-value"><span class="token punctuation">=</span>mysql</span>
 </code></pre>
 <p>You can also include other server configuration options in the file.</p>
 <ul>
 <li>The data directory <code>path-on-host-machine/datadir</code> must already exist. For server initialization to happen, the directory must be empty. You can also mount a directory prepopulated with data and start the server with it; however, you must make sure you start the Docker container with the same configuration as the server that created the data, and any host files or directories required are mounted when starting the container.</li>
 </ul>
-<h5 id="running-additional-initialization-scripts">Running Additional Initialization Scripts</h5>
+<h5 id="running-additional-initialization-scripts"><a name="running-additional-initialization-scripts" class="plugin-anchor" href="#running-additional-initialization-scripts"><i class="fa fa-link" aria-hidden="true"></i></a>Running Additional Initialization Scripts</h5>
 <p>If there are any <code>.sh</code> or <code>.sql</code> scripts you want to run on the database immediately after it has been created, you can put them into a host directory and then mount the directory at <code>/docker-entrypoint-initdb.d/</code> inside the container. For example:</p>
-<pre><code class="lang-bash">docker run --name=mysql1 \
---mount <span class="hljs-built_in">type</span>=<span class="hljs-built_in">bind</span>,src=/path-on-host-machine/scripts/,dst=/docker-entrypoint-initdb.d/ \
-<span class="hljs-_">-d</span> mysql/mysql-server:tag
+<pre class="language-"><code class="lang-bash">docker run --name<span class="token operator">=</span>mysql1 \
+--mount type<span class="token operator">=</span>bind,src<span class="token operator">=</span>/path-on-host-machine/scripts/,dst<span class="token operator">=</span>/docker-entrypoint-initdb.d/ \
+-d mysql/mysql-server:tag
 </code></pre>
-<h5 id="connect-to-mysql-from-an-application-in-another-docker-container">Connect to MySQL from an Application in Another Docker Container</h5>
+<h5 id="connect-to-mysql-from-an-application-in-another-docker-container"><a name="connect-to-mysql-from-an-application-in-another-docker-container" class="plugin-anchor" href="#connect-to-mysql-from-an-application-in-another-docker-container"><i class="fa fa-link" aria-hidden="true"></i></a>Connect to MySQL from an Application in Another Docker Container</h5>
 <p>By setting up a Docker network, you can allow multiple Docker containers to communicate with each other, so that a client application in another Docker container can access the MySQL Server in the server container. First, create a Docker network:</p>
-<pre><code class="lang-bash">docker network create my-custom-net
+<pre class="language-"><code class="lang-bash">docker network create my-custom-net
 </code></pre>
 <p>Then, when you are creating and starting the server and the client containers, use the <code>--network</code> option to put them on network you created. For example:</p>
-<pre><code class="lang-bash">docker run --name=mysql1 --network=my-custom-net <span class="hljs-_">-d</span> mysql/mysql-server
+<pre class="language-"><code class="lang-bash">docker run --name<span class="token operator">=</span>mysql1 --network<span class="token operator">=</span>my-custom-net -d mysql/mysql-server
 </code></pre>
-<pre><code class="lang-bash">docker run --name=myapp1 --network=my-custom-net <span class="hljs-_">-d</span> myapp
+<pre class="language-"><code class="lang-bash">docker run --name<span class="token operator">=</span>myapp1 --network<span class="token operator">=</span>my-custom-net -d myapp
 </code></pre>
 <p>The <code>myapp1</code> container can then connect to the <code>mysql1</code> container with the <code>mysql1</code> hostname and vice versa, as Docker automatically sets up a DNS for the given container names. In the following example, we run the <a href="https://dev.mysql.com/doc/refman/8.0/en/mysql.html" target="_blank"><code>mysql</code></a> client from inside the <code>myapp1</code> container to connect to host <code>mysql1</code> in its own container:</p>
-<pre><code class="lang-bash">docker <span class="hljs-built_in">exec</span> -it myapp1 mysql --host=mysql1 --user=myuser --password
+<pre class="language-"><code class="lang-bash">docker <span class="token function">exec</span> -it myapp1 mysql --host<span class="token operator">=</span>mysql1 --user<span class="token operator">=</span>myuser --password
 </code></pre>
 <p>For other networking techniques for containers, see the <a href="https://docs.docker.com/engine/userguide/networking/" target="_blank">Docker container networking</a> section in the Docker Documentation.</p>
-<h5 id="server-error-log">Server Error Log</h5>
+<h5 id="server-error-log"><a name="server-error-log" class="plugin-anchor" href="#server-error-log"><i class="fa fa-link" aria-hidden="true"></i></a>Server Error Log</h5>
 <p>When the MySQL Server is first started with your server container, a <a href="https://dev.mysql.com/doc/refman/8.0/en/error-log.html" target="_blank">server error log</a> is NOT generated if either of the following conditions is true:</p>
 <ul>
 <li><p>A server configuration file from the host has been mounted, but the file does not contain the system variable <a href="https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_log_error" target="_blank"><code>log_error</code></a> (see <a href="https://dev.mysql.com/doc/refman/8.0/en/docker-mysql-more-topics.html#docker-persisting-data-configuration" target="_blank">Persisting Data and Configuration Changes</a> on bind-mounting a server configuration file).</p>
@@ -817,101 +854,101 @@
 </li>
 </ul>
 <p>To make MySQL Server generate an error log when either of the two conditions is true, use the <a href="https://dev.mysql.com/doc/refman/8.0/en/server-options.html#option_mysqld_log-error" target="_blank"><code>--log-error</code></a> option to <a href="https://dev.mysql.com/doc/refman/8.0/en/docker-mysql-more-topics.html#docker-configuring-server" target="_blank">configure the server</a> to generate the error log at a specific location inside the container. To persist the error log, mount a host file at the location of the error log inside the container as explained in <a href="https://dev.mysql.com/doc/refman/8.0/en/docker-mysql-more-topics.html#docker-persisting-data-configuration" target="_blank">Persisting Data and Configuration Changes</a>. However, you must make sure your MySQL Server inside its container has write access to the mounted host file.</p>
-<h5 id="using-mysql-enterprise-backup-with-docker">Using MySQL Enterprise Backup with Docker</h5>
+<h5 id="using-mysql-enterprise-backup-with-docker"><a name="using-mysql-enterprise-backup-with-docker" class="plugin-anchor" href="#using-mysql-enterprise-backup-with-docker"><i class="fa fa-link" aria-hidden="true"></i></a>Using MySQL Enterprise Backup with Docker</h5>
 <p><a href="https://dev.mysql.com/doc/mysql-enterprise-backup/8.0/en/" target="_blank">MySQL Enterprise Backup</a> is a commercially-licensed backup utility for MySQL Server, available with <a href="https://www.mysql.com/products/enterprise/" target="_blank">MySQL Enterprise Edition</a>. MySQL Enterprise Backup is included in the Docker installation of MySQL Enterprise Edition.</p>
 <p>In the following example, we assume that you already have a MySQL Server running in a Docker container (see <a href="https://dev.mysql.com/doc/refman/8.0/en/docker-mysql-getting-started.html" target="_blank">Section 2.5.6.1, &#x201C;Basic Steps for MySQL Server Deployment with Docker&#x201D;</a> on how to start a MySQL Server instance with Docker). For MySQL Enterprise Backup to back up the MySQL Server, it must have access to the server&apos;s data directory. This can be achieved by, for example, <a href="https://dev.mysql.com/doc/refman/8.0/en/docker-mysql-more-topics.html#docker-persisting-data-configuration" target="_blank">bind-mounting a host directory on the data directory of the MySQL Server</a> when you start the server:</p>
-<pre><code class="lang-bash">docker run --name=mysqlserver \
---mount <span class="hljs-built_in">type</span>=<span class="hljs-built_in">bind</span>,src=/path-on-host-machine/datadir/,dst=/var/lib/mysql \
-<span class="hljs-_">-d</span> store/oracle/mysql-enterprise-server:8.0
+<pre class="language-"><code class="lang-bash">docker run --name<span class="token operator">=</span>mysqlserver \
+--mount type<span class="token operator">=</span>bind,src<span class="token operator">=</span>/path-on-host-machine/datadir/,dst<span class="token operator">=</span>/var/lib/mysql \
+-d store/oracle/mysql-enterprise-server:8.0
 </code></pre>
 <p>With this command, the MySQL Server is started with a Docker image of the MySQL Enterprise Edition, and the host directory <code>/path-on-host-machine/datadir/</code> has been mounted onto the server&apos;s data directory (<code>/var/lib/mysql</code>) inside the server container. We also assume that, after the server has been started, the required privileges have also been set up for MySQL Enterprise Backup to access the server (see <a href="https://dev.mysql.com/doc/mysql-enterprise-backup/8.0/en/mysqlbackup.privileges.html" target="_blank">Grant MySQL Privileges to Backup Administrator</a> for details). Use the following steps then to backup and restore a MySQL Server instance.</p>
 <p><strong>To backup a MySQL Server instance running in a Docker container using MySQL Enterprise Backup with Docker:</strong></p>
 <ol>
 <li>On the same host where the MySQL Server container is running, start another container with an image of MySQL Enterprise Edition to perform a back up with the MySQL Enterprise Backup command <a href="https://dev.mysql.com/doc/mysql-enterprise-backup/8.0/en/backup-commands-backup.html#option_meb_backup-to-image" target="_blank"><code>backup-to-image</code></a>. Provide access to the server&apos;s data directory using the bind mount we created in the last step. Also, mount a host directory (<code>/path-on-host-machine/backups/</code> in this example) onto the storage folder for backups in the container (<code>/data/backups</code> in the example) to persist the backups we are creating. Here is a sample command for this step:</li>
 </ol>
-<pre><code class="lang-bash">shell&gt; docker run \
---mount <span class="hljs-built_in">type</span>=<span class="hljs-built_in">bind</span>,src=/path-on-host-machine/datadir/,dst=/var/lib/mysql \
---mount <span class="hljs-built_in">type</span>=<span class="hljs-built_in">bind</span>,src=/path-on-host-machine/backups/,dst=/data/backups \ 
+<pre class="language-"><code class="lang-bash">shell<span class="token operator">&gt;</span> docker run \
+--mount type<span class="token operator">=</span>bind,src<span class="token operator">=</span>/path-on-host-machine/datadir/,dst<span class="token operator">=</span>/var/lib/mysql \
+--mount type<span class="token operator">=</span>bind,src<span class="token operator">=</span>/path-on-host-machine/backups/,dst<span class="token operator">=</span>/data/backups \ 
 --rm store/oracle/mysql-enterprise-server:8.0 \
-mysqlbackup -umysqlbackup -ppassword --backup-dir=/tmp/backup-tmp --with-timestamp \
---backup-image=/data/backups/db.mbi backup-to-image
+mysqlbackup -umysqlbackup -ppassword --backup-dir<span class="token operator">=</span>/tmp/backup-tmp --with-timestamp \
+--backup-image<span class="token operator">=</span>/data/backups/db.mbi backup-to-image
 
-[Entrypoint] MySQL Docker Image 8.0.11-1.1.5
-MySQL Enterprise Backup version 8.0.11 Linux-4.1.12-61.1.16.el7uek.x86_64-x86_64 [2018-04-08  07:06:45] 
-Copyright (c) 2003, 2018, Oracle and/or its affiliates. All Rights Reserved.
+<span class="token punctuation">[</span>Entrypoint<span class="token punctuation">]</span> MySQL Docker Image 8.0.11-1.1.5
+MySQL Enterprise Backup version 8.0.11 Linux-4.1.12-61.1.16.el7uek.x86_64-x86_64 <span class="token punctuation">[</span>2018-04-08  07:06:45<span class="token punctuation">]</span> 
+Copyright <span class="token punctuation">(</span>c<span class="token punctuation">)</span> 2003, 2018, Oracle and/or its affiliates. All Rights Reserved.
 
-180921 17:27:25 MAIN    INFO: A thread created with Id <span class="hljs-string">&apos;140594390935680&apos;</span> 
-180921 17:27:25 MAIN    INFO: Starting with following <span class="hljs-built_in">command</span> line ...
-...
+180921 17:27:25 MAIN    INFO: A thread created with Id <span class="token string">&apos;140594390935680&apos;</span> 
+180921 17:27:25 MAIN    INFO: Starting with following <span class="token function">command</span> line <span class="token punctuation">..</span>.
+<span class="token punctuation">..</span>.
 
 -------------------------------------------------------------
    Parameters Summary         
 -------------------------------------------------------------
-   Start LSN                  : 29615616
-   End LSN                    : 29651854
+   Start LSN                  <span class="token keyword">:</span> 29615616
+   End LSN                    <span class="token keyword">:</span> 29651854
 -------------------------------------------------------------
 
-mysqlbackup completed OK!
+mysqlbackup completed OK<span class="token operator">!</span>
 </code></pre>
 <p>It is important to check the end of the output by <strong>mysqlbackup</strong> to make sure the backup has been completed successfully.</p>
 <ol>
 <li>The container exits once the backup job is finished and, with the <code>--rm</code> option used to start it, it is removed after it exits. An image backup has been created, and can be found in the host directory mounted in the last step for storing backups:</li>
 </ol>
-<pre><code class="lang-bash">shell&gt; ls /tmp/backups
+<pre class="language-"><code class="lang-bash">shell<span class="token operator">&gt;</span> <span class="token function">ls</span> /tmp/backups
 db.mbi
 </code></pre>
 <p><strong>To restore a MySQL Server instance in a Docker container using MySQL Enterprise Backup with Docker:</strong></p>
 <ol>
 <li>Stop the MySQL Server container, which also stops the MySQL Server running inside:</li>
 </ol>
-<pre><code class="lang-bash">docker stop mysqlserver
+<pre class="language-"><code class="lang-bash">docker stop mysqlserver
 </code></pre>
 <ol>
 <li>On the host, delete all contents in the bind mount for the MySQL Server data directory:</li>
 </ol>
-<pre><code class="lang-bash">rm -rf /path-on-host-machine/datadir/*
+<pre class="language-"><code class="lang-bash"><span class="token function">rm</span> -rf /path-on-host-machine/datadir/*
 </code></pre>
 <ol>
 <li>Start a container with an image of MySQL Enterprise Edition to perform the restore with the MySQL Enterprise Backup command <a href="https://dev.mysql.com/doc/mysql-enterprise-backup/8.0/en/backup-commands-restore.html#option_meb_copy-back-and-apply-log" target="_blank"><code>copy-back-and-apply-log</code></a>. Bind-mount the server&apos;s data directory and the storage folder for the backups, like what we did when we backed up the server:</li>
 </ol>
-<pre><code class="lang-bash">shell&gt; docker run \
---mount <span class="hljs-built_in">type</span>=<span class="hljs-built_in">bind</span>,src=/path-on-host-machine/datadir/,dst=/var/lib/mysql \
---mount <span class="hljs-built_in">type</span>=<span class="hljs-built_in">bind</span>,src=/path-on-host-machine/backups/,dst=/data/backups \ 
+<pre class="language-"><code class="lang-bash">shell<span class="token operator">&gt;</span> docker run \
+--mount type<span class="token operator">=</span>bind,src<span class="token operator">=</span>/path-on-host-machine/datadir/,dst<span class="token operator">=</span>/var/lib/mysql \
+--mount type<span class="token operator">=</span>bind,src<span class="token operator">=</span>/path-on-host-machine/backups/,dst<span class="token operator">=</span>/data/backups \ 
 --rm store/oracle/mysql-enterprise-server:8.0 \
-mysqlbackup --backup-dir=/tmp/backup-tmp --with-timestamp \
---datadir=/var/lib/mysql --backup-image=/data/backups/db.mbi copy-back-and-apply-log
+mysqlbackup --backup-dir<span class="token operator">=</span>/tmp/backup-tmp --with-timestamp \
+--datadir<span class="token operator">=</span>/var/lib/mysql --backup-image<span class="token operator">=</span>/data/backups/db.mbi copy-back-and-apply-log
 
-[Entrypoint] MySQL Docker Image 8.0.11-1.1.5
-MySQL Enterprise Backup version 8.0.11 Linux-4.1.12-61.1.16.el7uek.x86_64-x86_64 [2018-04-08  07:06:45] 
-Copyright (c) 2003, 2018, Oracle and/or its affiliates. All Rights Reserved.
+<span class="token punctuation">[</span>Entrypoint<span class="token punctuation">]</span> MySQL Docker Image 8.0.11-1.1.5
+MySQL Enterprise Backup version 8.0.11 Linux-4.1.12-61.1.16.el7uek.x86_64-x86_64 <span class="token punctuation">[</span>2018-04-08  07:06:45<span class="token punctuation">]</span> 
+Copyright <span class="token punctuation">(</span>c<span class="token punctuation">)</span> 2003, 2018, Oracle and/or its affiliates. All Rights Reserved.
 
-180921 22:06:52 MAIN    INFO: A thread created with Id <span class="hljs-string">&apos;139768047519872&apos;</span> 
-180921 22:06:52 MAIN    INFO: Starting with following <span class="hljs-built_in">command</span> line ...
-...
+180921 22:06:52 MAIN    INFO: A thread created with Id <span class="token string">&apos;139768047519872&apos;</span> 
+180921 22:06:52 MAIN    INFO: Starting with following <span class="token function">command</span> line <span class="token punctuation">..</span>.
+<span class="token punctuation">..</span>.
 180921 22:06:52 PCR1    INFO: We were able to parse ibbackup_logfile up to
           lsn 29680612.
-180921 22:06:52 PCR1    INFO: Last MySQL binlog file position 0 155, file name binlog.000003
-180921 22:06:52 PCR1    INFO: The first data file is <span class="hljs-string">&apos;/var/lib/mysql/ibdata1&apos;</span>
-                              and the new created <span class="hljs-built_in">log</span> files are at <span class="hljs-string">&apos;/var/lib/mysql&apos;</span>
-180921 22:06:52 MAIN    INFO: No Keyring file to process.
+180921 22:06:52 PCR1    INFO: Last MySQL binlog <span class="token function">file</span> position 0 155, <span class="token function">file</span> name binlog.000003
+180921 22:06:52 PCR1    INFO: The first data <span class="token function">file</span> is <span class="token string">&apos;/var/lib/mysql/ibdata1&apos;</span>
+                              and the new created log files are at <span class="token string">&apos;/var/lib/mysql&apos;</span>
+180921 22:06:52 MAIN    INFO: No Keyring <span class="token function">file</span> to process.
 180921 22:06:52 MAIN    INFO: Apply-log operation completed successfully.
 180921 22:06:52 MAIN    INFO: Full Backup has been restored successfully.
 
-mysqlbackup completed OK! with 3 warnings
+mysqlbackup completed OK<span class="token operator">!</span> with 3 warnings
 </code></pre>
 <p>The container exits once the backup job is finished and, with the <code>--rm</code> option used when starting it, it is removed after it exits.</p>
 <ol>
 <li>Restart the server container, which also restarts the restored server:</li>
 </ol>
-<pre><code class="lang-bash">docker restart mysqlserver
+<pre class="language-"><code class="lang-bash">docker restart mysqlserver
 </code></pre>
 <p>Or, start a new MySQL Server on the restored data directory:</p>
-<pre><code class="lang-bash">docker run --name=mysqlserver2 \
---mount <span class="hljs-built_in">type</span>=<span class="hljs-built_in">bind</span>,src=/path-on-host-machine/datadir/,dst=/var/lib/mysql \
-<span class="hljs-_">-d</span> store/oracle/mysql-enterprise-server:8.0
+<pre class="language-"><code class="lang-bash">docker run --name<span class="token operator">=</span>mysqlserver2 \
+--mount type<span class="token operator">=</span>bind,src<span class="token operator">=</span>/path-on-host-machine/datadir/,dst<span class="token operator">=</span>/var/lib/mysql \
+-d store/oracle/mysql-enterprise-server:8.0
 </code></pre>
 <p>Log on to the server to check that the server is running with the restored data.</p>
-<h5 id="docker-environment-variables">Docker Environment Variables</h5>
+<h5 id="docker-environment-variables"><a name="docker-environment-variables" class="plugin-anchor" href="#docker-environment-variables"><i class="fa fa-link" aria-hidden="true"></i></a>Docker Environment Variables</h5>
 <p>When you create a MySQL Server container, you can configure the MySQL instance by using the <code>--env</code> option (<code>-e</code> in short) and specifying one or more of the following environment variables.</p>
 <blockquote>
 <p><strong>Notes</strong></p>
@@ -1002,7 +1039,7 @@ mysqlbackup completed OK! with 3 warnings
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"More Topics on Deploying MySQL Server with Docker","level":"1.3.1.2.2","depth":4,"next":{"title":"Tutorial","level":"1.4","depth":1,"path":"tutorial.md","ref":"tutorial.md","articles":[{"title":"Connecting to and Disconnecting from the Server","level":"1.4.1","depth":2,"path":"connecting-disconnecting.md","ref":"connecting-disconnecting.md","articles":[]},{"title":"Entering Queries","level":"1.4.2","depth":2,"path":"entering-queries.md","ref":"entering-queries.md","articles":[]},{"title":"Creating and Using a Database","level":"1.4.3","depth":2,"path":"database-use.md","ref":"database-use.md","articles":[{"title":"Creating and Selecting a Database","level":"1.4.3.1","depth":3,"path":"creating-database.md","ref":"creating-database.md","articles":[]},{"title":"Creating a Table","level":"1.4.3.2","depth":3,"path":"creating-tables.md","ref":"creating-tables.md","articles":[]},{"title":"Loading Data into a Table","level":"1.4.3.3","depth":3,"path":"loading-tables.md","ref":"loading-tables.md","articles":[]},{"title":"Retrieving Information from a Table","level":"1.4.3.4","depth":3,"path":"retrieving-data.md","ref":"retrieving-data.md","articles":[{"title":"Selecting All Data","level":"1.4.3.4.1","depth":4,"path":"selecting-all.md","ref":"selecting-all.md","articles":[]},{"title":"Selecting Particular Rows","level":"1.4.3.4.2","depth":4,"path":"selecting-rows.md","ref":"selecting-rows.md","articles":[]},{"title":"Selecting Particular Columns","level":"1.4.3.4.3","depth":4,"path":"selecting-columns.md","ref":"selecting-columns.md","articles":[]},{"title":"Sorting Rows","level":"1.4.3.4.4","depth":4,"path":"sorting-rows.md","ref":"sorting-rows.md","articles":[]}]}]},{"title":"Examples of Common Queries","level":"1.4.4","depth":2,"path":"examples.md","ref":"examples.md","articles":[]},{"title":"Using MySQL with Apache","level":"1.4.5","depth":2,"path":"apache.md","ref":"apache.md","articles":[]}]},"previous":{"title":"Basic Steps for MySQL Server Deployment with Docker","level":"1.3.1.2.1","depth":4,"path":"docker-mysql-getting-started.md","ref":"docker-mysql-getting-started.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"en","gitbook":"*"},"file":{"path":"docker-mysql-more-topics.md","mtime":"2019-06-21T18:14:29.722Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-23T00:55:17.505Z"},"basePath":".","book":{"language":"en"}});
+            gitbook.page.hasChanged({"page":{"title":"More Topics on Deploying MySQL Server with Docker","level":"1.3.1.2.2","depth":4,"next":{"title":"Tutorial","level":"1.4","depth":1,"path":"tutorial.md","ref":"tutorial.md","articles":[{"title":"Connecting to and Disconnecting from the Server","level":"1.4.1","depth":2,"path":"connecting-disconnecting.md","ref":"connecting-disconnecting.md","articles":[]},{"title":"Entering Queries","level":"1.4.2","depth":2,"path":"entering-queries.md","ref":"entering-queries.md","articles":[]},{"title":"Creating and Using a Database","level":"1.4.3","depth":2,"path":"database-use.md","ref":"database-use.md","articles":[{"title":"Creating and Selecting a Database","level":"1.4.3.1","depth":3,"path":"creating-database.md","ref":"creating-database.md","articles":[]},{"title":"Creating a Table","level":"1.4.3.2","depth":3,"path":"creating-tables.md","ref":"creating-tables.md","articles":[]},{"title":"Loading Data into a Table","level":"1.4.3.3","depth":3,"path":"loading-tables.md","ref":"loading-tables.md","articles":[]},{"title":"Retrieving Information from a Table","level":"1.4.3.4","depth":3,"path":"retrieving-data.md","ref":"retrieving-data.md","articles":[{"title":"Selecting All Data","level":"1.4.3.4.1","depth":4,"path":"selecting-all.md","ref":"selecting-all.md","articles":[]},{"title":"Selecting Particular Rows","level":"1.4.3.4.2","depth":4,"path":"selecting-rows.md","ref":"selecting-rows.md","articles":[]},{"title":"Selecting Particular Columns","level":"1.4.3.4.3","depth":4,"path":"selecting-columns.md","ref":"selecting-columns.md","articles":[]},{"title":"Sorting Rows","level":"1.4.3.4.4","depth":4,"path":"sorting-rows.md","ref":"sorting-rows.md","articles":[]},{"title":"Date Calculationsa","level":"1.4.3.4.5","depth":4,"path":"date-calculations.md","ref":"date-calculations.md","articles":[]}]}]},{"title":"Examples of Common Queries","level":"1.4.4","depth":2,"path":"examples.md","ref":"examples.md","articles":[]},{"title":"Using MySQL with Apache","level":"1.4.5","depth":2,"path":"apache.md","ref":"apache.md","articles":[]}]},"previous":{"title":"Basic Steps for MySQL Server Deployment with Docker","level":"1.3.1.2.1","depth":4,"path":"docker-mysql-getting-started.md","ref":"docker-mysql-getting-started.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-highlight","-sharing","prism","github","github-buttons","expandable-chapters-small","donate","anchors","edit-link","copy-code-button"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"github":{"url":"https://github.com/mowangjuanzi/mysql-chinese-doc"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"donate":{"alipay":"/assets/alipay.png","alipayText":"支付宝打赏","button":"赏","title":"","wechat":"/assets/wechat.jpg","wechatText":"微信打赏"},"fontsettings":{"theme":"white","family":"sans","size":2},"github-buttons":{"buttons":[{"user":"Blankj","repo":"glory","type":"star","size":"small","count":true}]},"expandable-chapters-small":{},"copy-code-button":{},"edit-link":{"label":"Edit This Page","base":"https://github.com/mowangjuanzi/mysql-chinese-doc/edit/master"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"en","gitbook":"*"},"file":{"path":"docker-mysql-more-topics.md","mtime":"2019-06-24T12:57:20.330Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-24T14:53:30.845Z"},"basePath":".","book":{"language":"en"}});
         });
     </script>
 </div>
@@ -1010,6 +1047,30 @@ mysqlbackup completed OK! with 3 warnings
         
     <script src="../gitbook/gitbook.js"></script>
     <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-donate/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-edit-link/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-copy-code-button/toggle.js"></script>
+        
     
         
         <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
@@ -1025,10 +1086,6 @@ mysqlbackup completed OK! with 3 warnings
     
         
         <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
         
     
         

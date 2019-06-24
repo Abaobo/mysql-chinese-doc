@@ -17,7 +17,19 @@
     
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-prism/prism.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-donate/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
                 
             
                 
@@ -49,6 +61,7 @@
         
     
     
+    
     <meta name="HandheldFriendly" content="true"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -62,6 +75,17 @@
     
     <link rel="prev" href="selecting-all.html" />
     
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"buttons":[{"user":"Blankj","repo":"glory","type":"star","size":"small","count":true}]};
+    </script>
 
     </head>
     <body>
@@ -363,6 +387,19 @@
             
                     
                     Sorting Rows
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.4.5" data-path="date-calculations.html">
+            
+                <a href="date-calculations.html">
+            
+                    
+                    Date Calculationsa
             
                 </a>
             
@@ -708,34 +745,34 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h4 id="3342-selecting-particular-rows">3.3.4.2 Selecting Particular Rows</h4>
+                                <h4 id="3342-selecting-particular-rows"><a name="3342-selecting-particular-rows" class="plugin-anchor" href="#3342-selecting-particular-rows"><i class="fa fa-link" aria-hidden="true"></i></a>3.3.4.2 Selecting Particular Rows</h4>
 <p>As shown in the preceding section, it is easy to retrieve an entire table. Just omit the <code>WHERE</code> clause from the <a href="https://dev.mysql.com/doc/refman/8.0/en/select.html" target="_blank"><code>SELECT</code></a> statement. But typically you don&apos;t want to see the entire table, particularly when it becomes large. Instead, you&apos;re usually more interested in answering a particular question, in which case you specify some constraints on the information you want. Let&apos;s look at some selection queries in terms of questions about your pets that they answer.</p>
 <p>You can select only particular rows from your table. For example, if you want to verify the change that you made to Bowser&apos;s birth date, select Bowser&apos;s record like this:</p>
-<pre><code class="lang-sql">mysql&gt; SELECT * FROM pet WHERE name = &apos;Bowser&apos;;
-+--------+-------+---------+------+------------+------------+
-| name   | owner | species | sex  | birth      | death      |
-+--------+-------+---------+------+------------+------------+
-| Bowser | Diane | dog     | m    | 1989-08-31 | 1995-07-29 |
-+--------+-------+---------+------+------------+------------+
+<pre class="language-"><code class="lang-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> pet <span class="token keyword">WHERE</span> name <span class="token operator">=</span> <span class="token string">&apos;Bowser&apos;</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">--------+-------+---------+------+------------+------------+</span>
+<span class="token operator">|</span> name   <span class="token operator">|</span> owner <span class="token operator">|</span> species <span class="token operator">|</span> sex  <span class="token operator">|</span> birth      <span class="token operator">|</span> death      <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">--------+-------+---------+------+------------+------------+</span>
+<span class="token operator">|</span> Bowser <span class="token operator">|</span> Diane <span class="token operator">|</span> dog     <span class="token operator">|</span> m    <span class="token operator">|</span> <span class="token number">1989</span><span class="token operator">-</span><span class="token number">08</span><span class="token operator">-</span><span class="token number">31</span> <span class="token operator">|</span> <span class="token number">1995</span><span class="token operator">-</span><span class="token number">07</span><span class="token operator">-</span><span class="token number">29</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">--------+-------+---------+------+------------+------------+</span>
 </code></pre>
 <p>The output confirms that the year is correctly recorded as 1989, not 1979.</p>
 <p>String comparisons normally are case-insensitive, so you can specify the name as <code>&apos;bowser&apos;</code>, <code>&apos;BOWSER&apos;</code>, and so forth. The query result is the same.</p>
 <p>You can specify conditions on any column, not just <code>name</code>. For example, if you want to know which animals were born during or after 1998, test the <code>birth</code> column:</p>
-<pre><code class="lang-sql">mysql&gt; SELECT * FROM pet WHERE birth &gt;= &apos;1998-1-1&apos;;
-+----------+-------+---------+------+------------+-------+
-| name     | owner | species | sex  | birth      | death |
-+----------+-------+---------+------+------------+-------+
-| Chirpy   | Gwen  | bird    | f    | 1998-09-11 | NULL  |
-| Puffball | Diane | hamster | f    | 1999-03-30 | NULL  |
-+----------+-------+---------+------+------------+-------+
+<pre class="language-"><code class="lang-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> pet <span class="token keyword">WHERE</span> birth <span class="token operator">&gt;=</span> <span class="token string">&apos;1998-1-1&apos;</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">----------+-------+---------+------+------------+-------+</span>
+<span class="token operator">|</span> name     <span class="token operator">|</span> owner <span class="token operator">|</span> species <span class="token operator">|</span> sex  <span class="token operator">|</span> birth      <span class="token operator">|</span> death <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----------+-------+---------+------+------------+-------+</span>
+<span class="token operator">|</span> Chirpy   <span class="token operator">|</span> Gwen  <span class="token operator">|</span> bird    <span class="token operator">|</span> f    <span class="token operator">|</span> <span class="token number">1998</span><span class="token operator">-</span><span class="token number">09</span><span class="token operator">-</span><span class="token number">11</span> <span class="token operator">|</span> <span class="token boolean">NULL</span>  <span class="token operator">|</span>
+<span class="token operator">|</span> Puffball <span class="token operator">|</span> Diane <span class="token operator">|</span> hamster <span class="token operator">|</span> f    <span class="token operator">|</span> <span class="token number">1999</span><span class="token operator">-</span><span class="token number">03</span><span class="token operator">-</span><span class="token number">30</span> <span class="token operator">|</span> <span class="token boolean">NULL</span>  <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----------+-------+---------+------+------------+-------+</span>
 </code></pre>
 <p>You can combine conditions, for example, to locate female dogs:</p>
-<pre><code class="lang-sql">mysql&gt; SELECT * FROM pet WHERE species = &apos;dog&apos; AND sex = &apos;f&apos;;
-+-------+--------+---------+------+------------+-------+
-| name  | owner  | species | sex  | birth      | death |
-+-------+--------+---------+------+------------+-------+
-| Buffy | Harold | dog     | f    | 1989-05-13 | NULL  |
-+-------+--------+---------+------+------------+-------+
+<pre class="language-"><code class="lang-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> pet <span class="token keyword">WHERE</span> species <span class="token operator">=</span> <span class="token string">&apos;dog&apos;</span> <span class="token operator">AND</span> sex <span class="token operator">=</span> <span class="token string">&apos;f&apos;</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">-------+--------+---------+------+------------+-------+</span>
+<span class="token operator">|</span> name  <span class="token operator">|</span> owner  <span class="token operator">|</span> species <span class="token operator">|</span> sex  <span class="token operator">|</span> birth      <span class="token operator">|</span> death <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-------+--------+---------+------+------------+-------+</span>
+<span class="token operator">|</span> Buffy <span class="token operator">|</span> Harold <span class="token operator">|</span> dog     <span class="token operator">|</span> f    <span class="token operator">|</span> <span class="token number">1989</span><span class="token operator">-</span><span class="token number">05</span><span class="token operator">-</span><span class="token number">13</span> <span class="token operator">|</span> <span class="token boolean">NULL</span>  <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-------+--------+---------+------+------------+-------+</span>
 </code></pre>
 <p>The preceding query uses the <a href="https://dev.mysql.com/doc/refman/8.0/en/logical-operators.html#operator_and" target="_blank"><code>AND</code></a> logical operator. There is also an <a href="https://dev.mysql.com/doc/refman/8.0/en/logical-operators.html#operator_or" target="_blank"><code>OR</code></a> operator:</p>
 <p>mysql&gt; SELECT * FROM pet WHERE species = &apos;snake&apos; OR species = &apos;bird&apos;;
@@ -747,14 +784,14 @@
 | Slim     | Benny | snake   | m    | 1996-04-29 | NULL  |
 +----------+-------+---------+------+------------+-------+
 <a href="https://dev.mysql.com/doc/refman/8.0/en/logical-operators.html#operator_and" target="_blank"><code>AND</code></a> and <a href="https://dev.mysql.com/doc/refman/8.0/en/logical-operators.html#operator_or" target="_blank"><code>OR</code></a> may be intermixed, although <a href="https://dev.mysql.com/doc/refman/8.0/en/logical-operators.html#operator_and" target="_blank"><code>AND</code></a> has higher precedence than <a href="https://dev.mysql.com/doc/refman/8.0/en/logical-operators.html#operator_or" target="_blank"><code>OR</code></a>. If you use both operators, it is a good idea to use parentheses to indicate explicitly how conditions should be grouped:</p>
-<pre><code class="lang-sql">mysql&gt; SELECT * FROM pet WHERE (species = &apos;cat&apos; AND sex = &apos;m&apos;)
-       OR (species = &apos;dog&apos; AND sex = &apos;f&apos;);
-+-------+--------+---------+------+------------+-------+
-| name  | owner  | species | sex  | birth      | death |
-+-------+--------+---------+------+------------+-------+
-| Claws | Gwen   | cat     | m    | 1994-03-17 | NULL  |
-| Buffy | Harold | dog     | f    | 1989-05-13 | NULL  |
-+-------+--------+---------+------+------------+-------+
+<pre class="language-"><code class="lang-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> pet <span class="token keyword">WHERE</span> <span class="token punctuation">(</span>species <span class="token operator">=</span> <span class="token string">&apos;cat&apos;</span> <span class="token operator">AND</span> sex <span class="token operator">=</span> <span class="token string">&apos;m&apos;</span><span class="token punctuation">)</span>
+       <span class="token operator">OR</span> <span class="token punctuation">(</span>species <span class="token operator">=</span> <span class="token string">&apos;dog&apos;</span> <span class="token operator">AND</span> sex <span class="token operator">=</span> <span class="token string">&apos;f&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">-------+--------+---------+------+------------+-------+</span>
+<span class="token operator">|</span> name  <span class="token operator">|</span> owner  <span class="token operator">|</span> species <span class="token operator">|</span> sex  <span class="token operator">|</span> birth      <span class="token operator">|</span> death <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-------+--------+---------+------+------------+-------+</span>
+<span class="token operator">|</span> Claws <span class="token operator">|</span> Gwen   <span class="token operator">|</span> cat     <span class="token operator">|</span> m    <span class="token operator">|</span> <span class="token number">1994</span><span class="token operator">-</span><span class="token number">03</span><span class="token operator">-</span><span class="token number">17</span> <span class="token operator">|</span> <span class="token boolean">NULL</span>  <span class="token operator">|</span>
+<span class="token operator">|</span> Buffy <span class="token operator">|</span> Harold <span class="token operator">|</span> dog     <span class="token operator">|</span> f    <span class="token operator">|</span> <span class="token number">1989</span><span class="token operator">-</span><span class="token number">05</span><span class="token operator">-</span><span class="token number">13</span> <span class="token operator">|</span> <span class="token boolean">NULL</span>  <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-------+--------+---------+------+------------+-------+</span>
 </code></pre>
 
                                 
@@ -799,7 +836,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Selecting Particular Rows","level":"1.4.3.4.2","depth":4,"next":{"title":"Selecting Particular Columns","level":"1.4.3.4.3","depth":4,"path":"selecting-columns.md","ref":"selecting-columns.md","articles":[]},"previous":{"title":"Selecting All Data","level":"1.4.3.4.1","depth":4,"path":"selecting-all.md","ref":"selecting-all.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"en","gitbook":"*"},"file":{"path":"selecting-rows.md","mtime":"2019-06-21T17:14:28.761Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-23T00:55:17.505Z"},"basePath":".","book":{"language":"en"}});
+            gitbook.page.hasChanged({"page":{"title":"Selecting Particular Rows","level":"1.4.3.4.2","depth":4,"next":{"title":"Selecting Particular Columns","level":"1.4.3.4.3","depth":4,"path":"selecting-columns.md","ref":"selecting-columns.md","articles":[]},"previous":{"title":"Selecting All Data","level":"1.4.3.4.1","depth":4,"path":"selecting-all.md","ref":"selecting-all.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-highlight","-sharing","prism","github","github-buttons","expandable-chapters-small","donate","anchors","edit-link","copy-code-button"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"github":{"url":"https://github.com/mowangjuanzi/mysql-chinese-doc"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"donate":{"alipay":"/assets/alipay.png","alipayText":"支付宝打赏","button":"赏","title":"","wechat":"/assets/wechat.jpg","wechatText":"微信打赏"},"fontsettings":{"theme":"white","family":"sans","size":2},"github-buttons":{"buttons":[{"user":"Blankj","repo":"glory","type":"star","size":"small","count":true}]},"expandable-chapters-small":{},"copy-code-button":{},"edit-link":{"label":"Edit This Page","base":"https://github.com/mowangjuanzi/mysql-chinese-doc/edit/master"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"en","gitbook":"*"},"file":{"path":"selecting-rows.md","mtime":"2019-06-24T12:57:20.334Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-24T14:53:30.845Z"},"basePath":".","book":{"language":"en"}});
         });
     </script>
 </div>
@@ -807,6 +844,30 @@
         
     <script src="../gitbook/gitbook.js"></script>
     <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-donate/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-edit-link/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-copy-code-button/toggle.js"></script>
+        
     
         
         <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
@@ -822,10 +883,6 @@
     
         
         <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
         
     
         

@@ -17,7 +17,19 @@
     
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-prism/prism.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-donate/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
                 
             
                 
@@ -49,6 +61,7 @@
         
     
     
+    
     <meta name="HandheldFriendly" content="true"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -62,6 +75,17 @@
     
     <link rel="prev" href="./" />
     
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"buttons":[{"user":"Blankj","repo":"glory","type":"star","size":"small","count":true}]};
+    </script>
 
     </head>
     <body>
@@ -363,6 +387,19 @@
             
                     
                     Sorting Rows
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.4.5" data-path="date-calculations.html">
+            
+                <a href="date-calculations.html">
+            
+                    
+                    Date Calculationsa
             
                 </a>
             
@@ -708,12 +745,12 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="preface-and-legal-notices">Preface and Legal Notices</h1>
+                                <h1 id="preface-and-legal-notices"><a name="preface-and-legal-notices" class="plugin-anchor" href="#preface-and-legal-notices"><i class="fa fa-link" aria-hidden="true"></i></a>Preface and Legal Notices</h1>
 <p>This is the Reference Manual for the MySQL Database System, version 8.0, through release 8.0.18. Differences between minor versions of MySQL 8.0 are noted in the present text with reference to release numbers (8.0.<strong><em>x</em></strong>). For license information, see the <a href="#legal-notices">Legal Notices</a>.</p>
 <p>This manual is not intended for use with older versions of the MySQL software due to the many functional and other differences between MySQL 8.0 and previous versions. If you are using an earlier release of the MySQL software, please refer to the appropriate manual. For example, <a href="https://dev.mysql.com/doc/refman/5.7/en/" target="_blank"><em>MySQL 5.7 Reference Manual</em></a> covers the 5.7 series of MySQL software releases.</p>
 <p><strong>Licensing information&#x2014;MySQL 8.0.</strong> This product may include third-party software, used under license. If you are using a Commercial release of MySQL 8.0, see the <a href="https://downloads.mysql.com/docs/licenses/mysqld-8.0-com-en.pdf" target="_blank">MySQL 8.0 Commercial Release License Information User Manual</a> for licensing information, including licensing information relating to third-party software that may be included in this Commercial release. If you are using a Community release of MySQL 8.0, see the <a href="https://downloads.mysql.com/docs/licenses/mysqld-8.0-gpl-en.pdf" target="_blank">MySQL 8.0 Community Release License Information User Manual</a> for licensing information, including licensing information relating to third-party software that may be included in this Community release.</p>
 <p><strong>Licensing information&#x2014;MySQL NDB Cluster 8.0.</strong> If you are using a <em>Community</em> release of MySQL NDB Cluster 8.0, see the <a href="https://downloads.mysql.com/docs/licenses/cluster-8.0-gpl-en.pdf" target="_blank">MySQL NDB Cluster 8.0 Community Release License Information User Manual</a> for licensing information, including licensing information relating to third-party software that may be included in this Community release.</p>
-<h2 id="legal-notices">Legal Notices</h2>
+<h2 id="legal-notices"><a name="legal-notices" class="plugin-anchor" href="#legal-notices"><i class="fa fa-link" aria-hidden="true"></i></a>Legal Notices</h2>
 <p>Copyright &#xA9; 1997, 2019, Oracle and/or its affiliates. All rights reserved.</p>
 <p>This software and related documentation are provided under a license agreement containing restrictions on use and disclosure and are protected by intellectual property laws. Except as expressly permitted in your license agreement or allowed by law, you may not use, copy, reproduce, translate, broadcast, modify, license, transmit, distribute, exhibit, perform, publish, or display any part, in any form, or by any means. Reverse engineering, disassembly, or decompilation of this software, unless required by law for interoperability, is prohibited.</p>
 <p>The information contained herein is subject to change without notice and is not warranted to be error-free. If you find any errors, please report them to us in writing.</p>
@@ -725,9 +762,9 @@
 <p>This software or hardware and documentation may provide access to or information about content, products, and services from third parties. Oracle Corporation and its affiliates are not responsible for and expressly disclaim all warranties of any kind with respect to third-party content, products, and services unless otherwise set forth in an applicable agreement between you and Oracle. Oracle Corporation and its affiliates will not be responsible for any loss, costs, or damages incurred due to your access to or use of third-party content, products, or services, except as set forth in an applicable agreement between you and Oracle.</p>
 <p>This documentation is NOT distributed under a GPL license. Use of this documentation is subject to the following terms:</p>
 <p>You may create a printed copy of this documentation solely for your own personal use. Conversion to other formats is allowed as long as the actual content is not altered or edited in any way. You shall not publish or distribute this documentation in any form or on any media, except if you distribute the documentation in a manner similar to how Oracle disseminates it (that is, electronically for download on a Web site with the software) or on a CD-ROM or similar medium, provided however that the documentation is disseminated together with the software on the same medium. Any other use, such as any dissemination of printed copies or use of this documentation, in whole or in part, in another publication, requires the prior written consent from an authorized representative of Oracle. Oracle and/or its affiliates reserve any and all rights to this documentation not expressly granted above.</p>
-<h2 id="documentation-accessibility">Documentation Accessibility</h2>
+<h2 id="documentation-accessibility"><a name="documentation-accessibility" class="plugin-anchor" href="#documentation-accessibility"><i class="fa fa-link" aria-hidden="true"></i></a>Documentation Accessibility</h2>
 <p>For information about Oracle&apos;s commitment to accessibility, visit the Oracle Accessibility Program website at <a href="http://www.oracle.com/pls/topic/lookup?ctx=acc&amp;id=docacc" target="_blank">http://www.oracle.com/pls/topic/lookup?ctx=acc&amp;id=docacc</a>.</p>
-<h2 id="access-to-oracle-support">Access to Oracle Support</h2>
+<h2 id="access-to-oracle-support"><a name="access-to-oracle-support" class="plugin-anchor" href="#access-to-oracle-support"><i class="fa fa-link" aria-hidden="true"></i></a>Access to Oracle Support</h2>
 <p>Oracle customers that have purchased support have access to electronic support through My Oracle Support. For information, visit <a href="http://www.oracle.com/pls/topic/lookup?ctx=acc&amp;id=info" target="_blank">http://www.oracle.com/pls/topic/lookup?ctx=acc&amp;id=info</a> or visit <a href="http://www.oracle.com/pls/topic/lookup?ctx=acc&amp;id=trs" target="_blank">http://www.oracle.com/pls/topic/lookup?ctx=acc&amp;id=trs</a> if you are hearing impaired.</p>
 
                                 
@@ -772,7 +809,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Preface and Legal Notices","level":"1.2","depth":1,"next":{"title":"Installing and Upgrading MySQL","level":"1.3","depth":1,"path":"installing.md","ref":"installing.md","articles":[{"title":"Installing MySQL on Linux","level":"1.3.1","depth":2,"path":"linux-installation.md","ref":"linux-installation.md","articles":[{"title":"Installing MySQL on Linux Using the MySQL APT Repository","level":"1.3.1.1","depth":3,"path":"linux-installation-apt-repo.md","ref":"linux-installation-apt-repo.md","articles":[]},{"title":"Deploying MySQL on Linux with Docker","level":"1.3.1.2","depth":3,"path":"linux-installation-docker.md","ref":"linux-installation-docker.md","articles":[{"title":"Basic Steps for MySQL Server Deployment with Docker","level":"1.3.1.2.1","depth":4,"path":"docker-mysql-getting-started.md","ref":"docker-mysql-getting-started.md","articles":[]},{"title":"More Topics on Deploying MySQL Server with Docker","level":"1.3.1.2.2","depth":4,"path":"docker-mysql-more-topics.md","ref":"docker-mysql-more-topics.md","articles":[]}]}]}]},"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"en","gitbook":"*"},"file":{"path":"preface.md","mtime":"2019-06-14T13:54:49.299Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-23T00:55:17.505Z"},"basePath":".","book":{"language":"en"}});
+            gitbook.page.hasChanged({"page":{"title":"Preface and Legal Notices","level":"1.2","depth":1,"next":{"title":"Installing and Upgrading MySQL","level":"1.3","depth":1,"path":"installing.md","ref":"installing.md","articles":[{"title":"Installing MySQL on Linux","level":"1.3.1","depth":2,"path":"linux-installation.md","ref":"linux-installation.md","articles":[{"title":"Installing MySQL on Linux Using the MySQL APT Repository","level":"1.3.1.1","depth":3,"path":"linux-installation-apt-repo.md","ref":"linux-installation-apt-repo.md","articles":[]},{"title":"Deploying MySQL on Linux with Docker","level":"1.3.1.2","depth":3,"path":"linux-installation-docker.md","ref":"linux-installation-docker.md","articles":[{"title":"Basic Steps for MySQL Server Deployment with Docker","level":"1.3.1.2.1","depth":4,"path":"docker-mysql-getting-started.md","ref":"docker-mysql-getting-started.md","articles":[]},{"title":"More Topics on Deploying MySQL Server with Docker","level":"1.3.1.2.2","depth":4,"path":"docker-mysql-more-topics.md","ref":"docker-mysql-more-topics.md","articles":[]}]}]}]},"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-highlight","-sharing","prism","github","github-buttons","expandable-chapters-small","donate","anchors","edit-link","copy-code-button"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"github":{"url":"https://github.com/mowangjuanzi/mysql-chinese-doc"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"donate":{"alipay":"/assets/alipay.png","alipayText":"支付宝打赏","button":"赏","title":"","wechat":"/assets/wechat.jpg","wechatText":"微信打赏"},"fontsettings":{"theme":"white","family":"sans","size":2},"github-buttons":{"buttons":[{"user":"Blankj","repo":"glory","type":"star","size":"small","count":true}]},"expandable-chapters-small":{},"copy-code-button":{},"edit-link":{"label":"Edit This Page","base":"https://github.com/mowangjuanzi/mysql-chinese-doc/edit/master"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"en","gitbook":"*"},"file":{"path":"preface.md","mtime":"2019-06-24T12:57:20.334Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-24T14:53:30.845Z"},"basePath":".","book":{"language":"en"}});
         });
     </script>
 </div>
@@ -780,6 +817,30 @@
         
     <script src="../gitbook/gitbook.js"></script>
     <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-donate/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-edit-link/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-copy-code-button/toggle.js"></script>
+        
     
         
         <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
@@ -795,10 +856,6 @@
     
         
         <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
         
     
         

@@ -17,7 +17,19 @@
     
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-prism/prism.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-donate/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
                 
             
                 
@@ -49,6 +61,7 @@
         
     
     
+    
     <meta name="HandheldFriendly" content="true"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -62,6 +75,17 @@
     
     <link rel="prev" href="statement-optimization.html" />
     
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"buttons":[{"user":"Blankj","repo":"glory","type":"star","size":"small","count":true}]};
+    </script>
 
     </head>
     <body>
@@ -363,6 +387,19 @@
             
                     
                     行排序
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.4.5" data-path="date-calculations.html">
+            
+                <a href="date-calculations.html">
+            
+                    
+                    日期计算
             
                 </a>
             
@@ -708,7 +745,7 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h2 id="83-&#x4F18;&#x5316;&#x548C;&#x7D22;&#x5F15;">8.3 &#x4F18;&#x5316;&#x548C;&#x7D22;&#x5F15;</h2>
+                                <h2 id="83-&#x4F18;&#x5316;&#x548C;&#x7D22;&#x5F15;"><a name="83-&#x4F18;&#x5316;&#x548C;&#x7D22;&#x5F15;" class="plugin-anchor" href="#83-&#x4F18;&#x5316;&#x548C;&#x7D22;&#x5F15;"><i class="fa fa-link" aria-hidden="true"></i></a>8.3 &#x4F18;&#x5316;&#x548C;&#x7D22;&#x5F15;</h2>
 <p>&#x63D0;&#x5347; <a href="https://dev.mysql.com/doc/refman/8.0/en/select.html" target="_blank"><code>SELECT</code></a> &#x64CD;&#x4F5C;&#x7684;&#x6027;&#x80FD;&#x7684;&#x6700;&#x597D;&#x65B9;&#x5F0F;&#x662F;&#x6D4B;&#x8BD5;&#x5728;&#x4E00;&#x4E2A;&#x6216;&#x591A;&#x4E2A;&#x5217;&#x4E0A;&#x521B;&#x5EFA;&#x7D22;&#x5F15;. &#x7D22;&#x5F15;&#x7684;&#x4F5C;&#x7528;&#x7C7B;&#x4F3C;&#x4E8E;&#x8868;&#x7684;&#x8BB0;&#x5F55;&#x6307;&#x9488;, &#x5141;&#x8BB8;&#x67E5;&#x8BE2;&#x5FEB;&#x901F;&#x786E;&#x8BA4;&#x54EA;&#x4E9B;&#x8BB0;&#x5F55;&#x5339;&#x914D; <code>WHERE</code> &#x6761;&#x4EF6;&#x5B50;&#x53E5;, &#x5E76;&#x68C0;&#x7D22;&#x8FD9;&#x4E9B;&#x5C31;&#x8BB0;&#x5F55;&#x7684;&#x5176;&#x4ED6;&#x5217;&#x503C;. &#x6240;&#x6709;&#x7684; MySQL &#x6570;&#x636E;&#x7C7B;&#x578B;&#x90FD;&#x53EF;&#x4EE5;&#x88AB;&#x7D22;&#x5F15;.</p>
 <p>&#x5C3D;&#x7BA1;&#x4E3A;&#x67E5;&#x8BE2;&#x4E2D;&#x6BCF;&#x4E2A;&#x53EF;&#x80FD;&#x4F1A;&#x7528;&#x5230;&#x7684;&#x5217;&#x521B;&#x5EFA;&#x7D22;&#x5F15;&#x975E;&#x5E38;&#x6709;&#x8BF1;&#x60D1;&#x529B;, &#x4F46;&#x4E0D;&#x5FC5;&#x8981;&#x7684;&#x7D22;&#x5F15;&#x4E3A; MySQL &#x786E;&#x5B9A;&#x4F7F;&#x7528;&#x54EA;&#x4E9B;&#x7D22;&#x5F15;&#x6D6A;&#x8D39;&#x7A7A;&#x95F4;&#x548C;&#x65F6;&#x95F4;. &#x7D22;&#x5F15;&#x4F1A;&#x589E;&#x52A0;&#x63D2;&#x5165;, &#x66F4;&#x65B0;&#x548C;&#x5220;&#x9664;&#x7684;&#x6210;&#x672C;, &#x56E0;&#x4E3A;&#x5FC5;&#x987B;&#x66F4;&#x65B0;&#x6BCF;&#x4E2A;&#x7D22;&#x5F15;. &#x4F60;&#x5FC5;&#x987B;&#x627E;&#x5230;&#x6700;&#x4F73;&#x5E73;&#x8861;&#x4EE5;&#x4FBF;&#x4F7F;&#x7528;&#x6700;&#x4F73;&#x7D22;&#x5F15;&#x5B9E;&#x73B0;&#x5FEB;&#x901F;&#x67E5;&#x8BE2;. </p>
 
@@ -754,7 +791,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"优化和索引","level":"1.6.3","depth":2,"next":{"title":"优化数据库结构","level":"1.6.4","depth":2,"path":"optimizing-database-structure.md","ref":"optimizing-database-structure.md","articles":[]},"previous":{"title":"优化 SQL 语句","level":"1.6.2","depth":2,"path":"statement-optimization.md","ref":"statement-optimization.md","articles":[]},"dir":"ltr"},"config":{"plugins":["highlight"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"zh-hans","gitbook":"*"},"file":{"path":"optimization-indexes.md","mtime":"2019-06-14T13:37:48.379Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-23T00:55:17.505Z"},"basePath":".","book":{"language":"zh-cn"}});
+            gitbook.page.hasChanged({"page":{"title":"优化和索引","level":"1.6.3","depth":2,"next":{"title":"优化数据库结构","level":"1.6.4","depth":2,"path":"optimizing-database-structure.md","ref":"optimizing-database-structure.md","articles":[]},"previous":{"title":"优化 SQL 语句","level":"1.6.2","depth":2,"path":"statement-optimization.md","ref":"statement-optimization.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-highlight","-sharing","prism","github","github-buttons","expandable-chapters-small","donate","anchors","edit-link","copy-code-button"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"github":{"url":"https://github.com/mowangjuanzi/mysql-chinese-doc"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"donate":{"alipay":"/assets/alipay.png","alipayText":"支付宝打赏","button":"赏","title":"","wechat":"/assets/wechat.jpg","wechatText":"微信打赏"},"fontsettings":{"theme":"white","family":"sans","size":2},"github-buttons":{"buttons":[{"user":"Blankj","repo":"glory","type":"star","size":"small","count":true}]},"expandable-chapters-small":{},"copy-code-button":{},"edit-link":{"label":"Edit This Page","base":"https://github.com/mowangjuanzi/mysql-chinese-doc/edit/master"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"zh-hans","gitbook":"*"},"file":{"path":"optimization-indexes.md","mtime":"2019-06-24T12:57:20.334Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-24T14:53:30.845Z"},"basePath":".","book":{"language":"zh-cn"}});
         });
     </script>
 </div>
@@ -762,6 +799,30 @@
         
     <script src="../gitbook/gitbook.js"></script>
     <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-donate/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-edit-link/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-copy-code-button/toggle.js"></script>
+        
     
         
         <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
@@ -777,10 +838,6 @@
     
         
         <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
         
     
         

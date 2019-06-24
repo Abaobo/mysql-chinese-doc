@@ -17,7 +17,19 @@
     
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-prism/prism.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-donate/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
                 
             
                 
@@ -49,6 +61,7 @@
         
     
     
+    
     <meta name="HandheldFriendly" content="true"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -57,11 +70,22 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="examples.html" />
+    <link rel="next" href="date-calculations.html" />
     
     
     <link rel="prev" href="selecting-columns.html" />
     
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"buttons":[{"user":"Blankj","repo":"glory","type":"star","size":"small","count":true}]};
+    </script>
 
     </head>
     <body>
@@ -363,6 +387,19 @@
             
                     
                     行排序
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.4.5" data-path="date-calculations.html">
+            
+                <a href="date-calculations.html">
+            
+                    
+                    日期计算
             
                 </a>
             
@@ -708,57 +745,57 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h4 id="3344-&#x884C;&#x6392;&#x5E8F;">3.3.4.4 &#x884C;&#x6392;&#x5E8F;</h4>
+                                <h4 id="3344-&#x884C;&#x6392;&#x5E8F;"><a name="3344-&#x884C;&#x6392;&#x5E8F;" class="plugin-anchor" href="#3344-&#x884C;&#x6392;&#x5E8F;"><i class="fa fa-link" aria-hidden="true"></i></a>3.3.4.4 &#x884C;&#x6392;&#x5E8F;</h4>
 <p>&#x4F60;&#x53EF;&#x80FD;&#x5DF2;&#x7ECF;&#x6CE8;&#x610F;&#x5230;, &#x5728;&#x524D;&#x9762;&#x7684;&#x793A;&#x4F8B;&#x4E2D;, &#x67E5;&#x8BE2;&#x7684;&#x7ED3;&#x679C;&#x8BB0;&#x5F55;&#x5E76;&#x6CA1;&#x6709;&#x6309;&#x7167;&#x7279;&#x5B9A;&#x7684;&#x987A;&#x5E8F;&#x663E;&#x793A;. &#x5F53;&#x4EE5;&#x67D0;&#x79CD;&#x6709;&#x610F;&#x4E49;&#x7684;&#x65B9;&#x5F0F;&#x5BF9;&#x884C;&#x8FDB;&#x884C;&#x6392;&#x5E8F;&#x65F6;, &#x901A;&#x8FC7;&#x66F4;&#x5BB9;&#x6613;&#x68C0;&#x67E5;&#x67E5;&#x8BE2;&#x8F93;&#x51FA;. &#x8981;&#x5BF9;&#x7ED3;&#x679C;&#x6392;&#x5E8F;, &#x4F7F;&#x7528; <code>ORDER BY</code> &#x5B50;&#x53E5;.</p>
 <p>&#x4EE5;&#x4E0B;&#x662F;&#x52A8;&#x7269;&#x7684;&#x751F;&#x65E5;, &#x6309;&#x7167;&#x65E5;&#x671F;&#x6392;&#x5E8F;:</p>
-<pre><code class="lang-sql">mysql&gt; SELECT name, birth FROM pet ORDER BY birth;
-+----------+------------+
-| name     | birth      |
-+----------+------------+
-| Buffy    | 1989-05-13 |
-| Bowser   | 1989-08-31 |
-| Fang     | 1990-08-27 |
-| Fluffy   | 1993-02-04 |
-| Claws    | 1994-03-17 |
-| Slim     | 1996-04-29 |
-| Whistler | 1997-12-09 |
-| Chirpy   | 1998-09-11 |
-| Puffball | 1999-03-30 |
-+----------+------------+
+<pre class="language-"><code class="lang-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> name<span class="token punctuation">,</span> birth <span class="token keyword">FROM</span> pet <span class="token keyword">ORDER</span> <span class="token keyword">BY</span> birth<span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">----------+------------+</span>
+<span class="token operator">|</span> name     <span class="token operator">|</span> birth      <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----------+------------+</span>
+<span class="token operator">|</span> Buffy    <span class="token operator">|</span> <span class="token number">1989</span><span class="token operator">-</span><span class="token number">05</span><span class="token operator">-</span><span class="token number">13</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Bowser   <span class="token operator">|</span> <span class="token number">1989</span><span class="token operator">-</span><span class="token number">08</span><span class="token operator">-</span><span class="token number">31</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Fang     <span class="token operator">|</span> <span class="token number">1990</span><span class="token operator">-</span><span class="token number">08</span><span class="token operator">-</span><span class="token number">27</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Fluffy   <span class="token operator">|</span> <span class="token number">1993</span><span class="token operator">-</span><span class="token number">02</span><span class="token operator">-</span><span class="token number">04</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Claws    <span class="token operator">|</span> <span class="token number">1994</span><span class="token operator">-</span><span class="token number">03</span><span class="token operator">-</span><span class="token number">17</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Slim     <span class="token operator">|</span> <span class="token number">1996</span><span class="token operator">-</span><span class="token number">04</span><span class="token operator">-</span><span class="token number">29</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Whistler <span class="token operator">|</span> <span class="token number">1997</span><span class="token operator">-</span><span class="token number">12</span><span class="token operator">-</span><span class="token number">09</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Chirpy   <span class="token operator">|</span> <span class="token number">1998</span><span class="token operator">-</span><span class="token number">09</span><span class="token operator">-</span><span class="token number">11</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Puffball <span class="token operator">|</span> <span class="token number">1999</span><span class="token operator">-</span><span class="token number">03</span><span class="token operator">-</span><span class="token number">30</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----------+------------+</span>
 </code></pre>
 <p>&#x5728;&#x5B57;&#x7B26;&#x4E32;&#x7C7B;&#x578B;&#x7C7B;&#x4E0A;, &#x6392;&#x5E8F;&#x4E0E;&#x5176;&#x5B83;&#x6240;&#x6709;&#x6BD4;&#x8F83;&#x64CD;&#x4F5C;&#x4E00;&#x6837;, &#x901A;&#x5E38;&#x4EE5;&#x4E0D;&#x533A;&#x5206;&#x5927;&#x5C0F;&#x5199;&#x7684;&#x65B9;&#x5F0F;&#x6267;&#x884C;. &#x8FD9;&#x610F;&#x5473;&#x7740;&#x9664;&#x4E86;&#x5176;&#x5927;&#x5C0F;&#x5199;&#x4E4B;&#x5916;, &#x5176;&#x4F59;&#x76F8;&#x540C;&#x5217;&#x7684;&#x987A;&#x5E8F;&#x662F;&#x672A;&#x5B9A;&#x4E49;&#x7684;. &#x4F60;&#x53EF;&#x4EE5;&#x5F3A;&#x5236;&#x4F7F;&#x7528; <a href="https://dev.mysql.com/doc/refman/8.0/en/cast-functions.html#operator_binary" target="_blank"><code>BINARY</code></a> &#x5BF9;&#x5217;&#x8FDB;&#x884C;&#x533A;&#x5206;&#x5927;&#x5C0F;&#x5199;, &#x50CF;&#x662F;: <code>ORDER BY BINARY col_name</code>.</p>
 <p>&#x9ED8;&#x8BA4;&#x7684;&#x6392;&#x5E8F;&#x987A;&#x5E8F;&#x662F;&#x5347;&#x5E8F;, &#x9996;&#x5148;&#x662F;&#x6700;&#x5C0F;&#x7684;&#x503C;, &#x82E5;&#x8981;&#x6309;&#x7167;&#x76F8;&#x53CD;&#x7684;&#x987A;&#x5E8F;(&#x964D;&#x5E8F;)&#x6392;&#x5E8F;, &#x8BF7;&#x5C06; <code>DESC</code> &#x5173;&#x952E;&#x5B57;&#x6DFB;&#x52A0;&#x5230;&#x6B63;&#x5728;&#x6392;&#x5E8F;&#x7684;&#x5217;&#x7684;&#x540D;&#x79F0;&#x4E2D;:</p>
-<pre><code class="lang-sql">mysql&gt; SELECT name, birth FROM pet ORDER BY birth DESC;
-+----------+------------+
-| name     | birth      |
-+----------+------------+
-| Puffball | 1999-03-30 |
-| Chirpy   | 1998-09-11 |
-| Whistler | 1997-12-09 |
-| Slim     | 1996-04-29 |
-| Claws    | 1994-03-17 |
-| Fluffy   | 1993-02-04 |
-| Fang     | 1990-08-27 |
-| Bowser   | 1989-08-31 |
-| Buffy    | 1989-05-13 |
-+----------+------------+
+<pre class="language-"><code class="lang-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> name<span class="token punctuation">,</span> birth <span class="token keyword">FROM</span> pet <span class="token keyword">ORDER</span> <span class="token keyword">BY</span> birth <span class="token keyword">DESC</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">----------+------------+</span>
+<span class="token operator">|</span> name     <span class="token operator">|</span> birth      <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----------+------------+</span>
+<span class="token operator">|</span> Puffball <span class="token operator">|</span> <span class="token number">1999</span><span class="token operator">-</span><span class="token number">03</span><span class="token operator">-</span><span class="token number">30</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Chirpy   <span class="token operator">|</span> <span class="token number">1998</span><span class="token operator">-</span><span class="token number">09</span><span class="token operator">-</span><span class="token number">11</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Whistler <span class="token operator">|</span> <span class="token number">1997</span><span class="token operator">-</span><span class="token number">12</span><span class="token operator">-</span><span class="token number">09</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Slim     <span class="token operator">|</span> <span class="token number">1996</span><span class="token operator">-</span><span class="token number">04</span><span class="token operator">-</span><span class="token number">29</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Claws    <span class="token operator">|</span> <span class="token number">1994</span><span class="token operator">-</span><span class="token number">03</span><span class="token operator">-</span><span class="token number">17</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Fluffy   <span class="token operator">|</span> <span class="token number">1993</span><span class="token operator">-</span><span class="token number">02</span><span class="token operator">-</span><span class="token number">04</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Fang     <span class="token operator">|</span> <span class="token number">1990</span><span class="token operator">-</span><span class="token number">08</span><span class="token operator">-</span><span class="token number">27</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Bowser   <span class="token operator">|</span> <span class="token number">1989</span><span class="token operator">-</span><span class="token number">08</span><span class="token operator">-</span><span class="token number">31</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Buffy    <span class="token operator">|</span> <span class="token number">1989</span><span class="token operator">-</span><span class="token number">05</span><span class="token operator">-</span><span class="token number">13</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----------+------------+</span>
 </code></pre>
 <p>&#x4F60;&#x53EF;&#x4EE5;&#x5BF9;&#x591A;&#x4E2A;&#x5217;&#x8FDB;&#x884C;&#x6392;&#x5E8F;, &#x4E5F;&#x53EF;&#x4EE5;&#x5BF9;&#x4E0D;&#x540C;&#x7684;&#x5217;&#x8FDB;&#x884C;&#x4E0D;&#x540C;&#x7684;&#x6392;&#x5E8F;. &#x4F8B;&#x5982;, &#x6309;&#x7167;&#x52A8;&#x7269;&#x7684;&#x7C7B;&#x578B;&#x8FDB;&#x884C;&#x5347;&#x5E8F;&#x6392;&#x5217;, &#x7136;&#x540E;&#x6309;&#x7167;&#x52A8;&#x7269;&#x7C7B;&#x578B;&#x5185;&#x7684;&#x51FA;&#x751F;&#x65E5;&#x671F;&#x8FDB;&#x884C;&#x964D;&#x5E8F;&#x6392;&#x5217; (&#x6700;&#x5C0F;&#x7684;&#x52A8;&#x7269;&#x4F18;&#x5148;), &#x4F7F;&#x7528;&#x4EE5;&#x4E0B;&#x67E5;&#x8BE2;:</p>
-<pre><code class="lang-sql">mysql&gt; SELECT name, species, birth FROM pet
-       ORDER BY species, birth DESC;
-+----------+---------+------------+
-| name     | species | birth      |
-+----------+---------+------------+
-| Chirpy   | bird    | 1998-09-11 |
-| Whistler | bird    | 1997-12-09 |
-| Claws    | cat     | 1994-03-17 |
-| Fluffy   | cat     | 1993-02-04 |
-| Fang     | dog     | 1990-08-27 |
-| Bowser   | dog     | 1989-08-31 |
-| Buffy    | dog     | 1989-05-13 |
-| Puffball | hamster | 1999-03-30 |
-| Slim     | snake   | 1996-04-29 |
-+----------+---------+------------+
+<pre class="language-"><code class="lang-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> name<span class="token punctuation">,</span> species<span class="token punctuation">,</span> birth <span class="token keyword">FROM</span> pet
+       <span class="token keyword">ORDER</span> <span class="token keyword">BY</span> species<span class="token punctuation">,</span> birth <span class="token keyword">DESC</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">----------+---------+------------+</span>
+<span class="token operator">|</span> name     <span class="token operator">|</span> species <span class="token operator">|</span> birth      <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----------+---------+------------+</span>
+<span class="token operator">|</span> Chirpy   <span class="token operator">|</span> bird    <span class="token operator">|</span> <span class="token number">1998</span><span class="token operator">-</span><span class="token number">09</span><span class="token operator">-</span><span class="token number">11</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Whistler <span class="token operator">|</span> bird    <span class="token operator">|</span> <span class="token number">1997</span><span class="token operator">-</span><span class="token number">12</span><span class="token operator">-</span><span class="token number">09</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Claws    <span class="token operator">|</span> cat     <span class="token operator">|</span> <span class="token number">1994</span><span class="token operator">-</span><span class="token number">03</span><span class="token operator">-</span><span class="token number">17</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Fluffy   <span class="token operator">|</span> cat     <span class="token operator">|</span> <span class="token number">1993</span><span class="token operator">-</span><span class="token number">02</span><span class="token operator">-</span><span class="token number">04</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Fang     <span class="token operator">|</span> dog     <span class="token operator">|</span> <span class="token number">1990</span><span class="token operator">-</span><span class="token number">08</span><span class="token operator">-</span><span class="token number">27</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Bowser   <span class="token operator">|</span> dog     <span class="token operator">|</span> <span class="token number">1989</span><span class="token operator">-</span><span class="token number">08</span><span class="token operator">-</span><span class="token number">31</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Buffy    <span class="token operator">|</span> dog     <span class="token operator">|</span> <span class="token number">1989</span><span class="token operator">-</span><span class="token number">05</span><span class="token operator">-</span><span class="token number">13</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Puffball <span class="token operator">|</span> hamster <span class="token operator">|</span> <span class="token number">1999</span><span class="token operator">-</span><span class="token number">03</span><span class="token operator">-</span><span class="token number">30</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Slim     <span class="token operator">|</span> snake   <span class="token operator">|</span> <span class="token number">1996</span><span class="token operator">-</span><span class="token number">04</span><span class="token operator">-</span><span class="token number">29</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----------+---------+------------+</span>
 </code></pre>
 <p><code>DESC</code> &#x5173;&#x952E;&#x5B57;&#x53EA;&#x9002;&#x5408;&#x7D27;&#x63A5;&#x5728;&#x5B83;&#x524D;&#x9762;&#x7684;&#x5217;&#x540D; (<code>birth</code>); &#x5B83;&#x4E0D;&#x5F71;&#x54CD; <code>species</code> &#x5217;&#x7684;&#x6392;&#x5217;&#x987A;&#x5E8F;.</p>
 
@@ -793,7 +830,7 @@
                 </a>
                 
                 
-                <a href="examples.html" class="navigation navigation-next " aria-label="Next page: 常见查询示例">
+                <a href="date-calculations.html" class="navigation navigation-next " aria-label="Next page: 日期计算">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -804,7 +841,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"行排序","level":"1.4.3.4.4","depth":4,"next":{"title":"常见查询示例","level":"1.4.4","depth":2,"path":"examples.md","ref":"examples.md","articles":[]},"previous":{"title":"选择指定列","level":"1.4.3.4.3","depth":4,"path":"selecting-columns.md","ref":"selecting-columns.md","articles":[]},"dir":"ltr"},"config":{"plugins":["highlight"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"zh-hans","gitbook":"*"},"file":{"path":"sorting-rows.md","mtime":"2019-06-23T00:46:25.747Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-23T00:55:17.505Z"},"basePath":".","book":{"language":"zh-cn"}});
+            gitbook.page.hasChanged({"page":{"title":"行排序","level":"1.4.3.4.4","depth":4,"next":{"title":"日期计算","level":"1.4.3.4.5","depth":4,"path":"date-calculations.md","ref":"date-calculations.md","articles":[]},"previous":{"title":"选择指定列","level":"1.4.3.4.3","depth":4,"path":"selecting-columns.md","ref":"selecting-columns.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-highlight","-sharing","prism","github","github-buttons","expandable-chapters-small","donate","anchors","edit-link","copy-code-button"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"github":{"url":"https://github.com/mowangjuanzi/mysql-chinese-doc"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"donate":{"alipay":"/assets/alipay.png","alipayText":"支付宝打赏","button":"赏","title":"","wechat":"/assets/wechat.jpg","wechatText":"微信打赏"},"fontsettings":{"theme":"white","family":"sans","size":2},"github-buttons":{"buttons":[{"user":"Blankj","repo":"glory","type":"star","size":"small","count":true}]},"expandable-chapters-small":{},"copy-code-button":{},"edit-link":{"label":"Edit This Page","base":"https://github.com/mowangjuanzi/mysql-chinese-doc/edit/master"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"zh-hans","gitbook":"*"},"file":{"path":"sorting-rows.md","mtime":"2019-06-24T12:57:20.334Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-24T14:53:30.845Z"},"basePath":".","book":{"language":"zh-cn"}});
         });
     </script>
 </div>
@@ -812,6 +849,30 @@
         
     <script src="../gitbook/gitbook.js"></script>
     <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-donate/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-edit-link/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-copy-code-button/toggle.js"></script>
+        
     
         
         <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
@@ -827,10 +888,6 @@
     
         
         <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
         
     
         

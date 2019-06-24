@@ -17,7 +17,19 @@
     
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-prism/prism.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-donate/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
                 
             
                 
@@ -49,6 +61,7 @@
         
     
     
+    
     <meta name="HandheldFriendly" content="true"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -62,6 +75,17 @@
     
     <link rel="prev" href="creating-database.html" />
     
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"buttons":[{"user":"Blankj","repo":"glory","type":"star","size":"small","count":true}]};
+    </script>
 
     </head>
     <body>
@@ -363,6 +387,19 @@
             
                     
                     Sorting Rows
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.4.5" data-path="date-calculations.html">
+            
+                <a href="date-calculations.html">
+            
+                    
+                    Date Calculationsa
             
                 </a>
             
@@ -708,10 +745,10 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h3 id="332-creating-a-table">3.3.2 Creating a Table</h3>
+                                <h3 id="332-creating-a-table"><a name="332-creating-a-table" class="plugin-anchor" href="#332-creating-a-table"><i class="fa fa-link" aria-hidden="true"></i></a>3.3.2 Creating a Table</h3>
 <p>Creating the database is the easy part, but at this point it is empty, as <a href="https://dev.mysql.com/doc/refman/8.0/en/show-tables.html" target="_blank"><code>SHOW TABLES</code></a> tells you:</p>
-<pre><code class="lang-sql">mysql&gt; SHOW TABLES;
-Empty set (0.00 sec)
+<pre class="language-"><code class="lang-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SHOW</span> <span class="token keyword">TABLES</span><span class="token punctuation">;</span>
+Empty <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
 </code></pre>
 <p>The harder part is deciding what the structure of your database should be: what tables you need and what columns should be in each of them.</p>
 <p>You want a table that contains a record for each of your pets. This can be called the <code>pet</code> table, and it should contain, as a bare minimum, each animal&apos;s name. Because the name by itself is not very interesting, the table should contain other information. For example, if more than one person in your family keeps pets, you might want to list each animal&apos;s owner. You might also want to record some basic descriptive information such as species and sex.</p>
@@ -724,32 +761,32 @@ Empty set (0.00 sec)
 </ul>
 <p>You can probably think of other types of information that would be useful in the <code>pet</code> table, but the ones identified so far are sufficient: name, owner, species, sex, birth, and death.</p>
 <p>Use a <a href="https://dev.mysql.com/doc/refman/8.0/en/create-table.html" target="_blank"><code>CREATE TABLE</code></a> statement to specify the layout of your table:</p>
-<pre><code class="lang-sql">mysql&gt; CREATE TABLE pet (name VARCHAR(20), owner VARCHAR(20),
-       species VARCHAR(20), sex CHAR(1), birth DATE, death DATE);
+<pre class="language-"><code class="lang-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> pet <span class="token punctuation">(</span>name <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">,</span> owner <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+       species <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">,</span> sex <span class="token keyword">CHAR</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span> birth <span class="token keyword">DATE</span><span class="token punctuation">,</span> death <span class="token keyword">DATE</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <p><a href="https://dev.mysql.com/doc/refman/8.0/en/char.html" target="_blank"><code>VARCHAR</code></a> is a good choice for the <code>name</code>, <code>owner</code>, and <code>species</code> columns because the column values vary in length. The lengths in those column definitions need not all be the same, and need not be <strong>20</strong>. You can normally pick any length from <strong>1</strong> to <strong>65535</strong>, whatever seems most reasonable to you. If you make a poor choice and it turns out later that you need a longer field, MySQL provides an <a href="https://dev.mysql.com/doc/refman/8.0/en/alter-table.html" target="_blank"><code>ALTER TABLE</code></a> statement.</p>
 <p>Several types of values can be chosen to represent sex in animal records, such as <code>&apos;m&apos;</code> and <code>&apos;f&apos;</code>, or perhaps <code>&apos;male&apos;</code> and <code>&apos;female&apos;</code>. It is simplest to use the single characters <code>&apos;m&apos;</code> and <code>&apos;f&apos;</code>.</p>
 <p>The use of the <a href="https://dev.mysql.com/doc/refman/8.0/en/datetime.html" target="_blank"><code>DATE</code></a> data type for the birth and death columns is a fairly obvious choice.</p>
 <p>Once you have created a table, <a href="https://dev.mysql.com/doc/refman/8.0/en/show-tables.html" target="_blank"><code>SHOW TABLES</code></a> should produce some output:</p>
-<pre><code class="lang-sql">mysql&gt; SHOW TABLES;
-+---------------------+
-| Tables in menagerie |
-+---------------------+
-| pet                 |
-+---------------------+
+<pre class="language-"><code class="lang-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SHOW</span> <span class="token keyword">TABLES</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">---------------------+</span>
+<span class="token operator">|</span> <span class="token keyword">Tables</span> <span class="token operator">in</span> menagerie <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">---------------------+</span>
+<span class="token operator">|</span> pet                 <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">---------------------+</span>
 </code></pre>
 <p>To verify that your table was created the way you expected, use a <a href="https://dev.mysql.com/doc/refman/8.0/en/describe.html" target="_blank"><code>DESCRIBE</code></a> statement:</p>
-<pre><code class="lang-sql">mysql&gt; DESCRIBE pet;
-+---------+-------------+------+-----+---------+-------+
-| Field   | Type        | Null | Key | Default | Extra |
-+---------+-------------+------+-----+---------+-------+
-| name    | varchar(20) | YES  |     | NULL    |       |
-| owner   | varchar(20) | YES  |     | NULL    |       |
-| species | varchar(20) | YES  |     | NULL    |       |
-| sex     | char(1)     | YES  |     | NULL    |       |
-| birth   | date        | YES  |     | NULL    |       |
-| death   | date        | YES  |     | NULL    |       |
-+---------+-------------+------+-----+---------+-------+
+<pre class="language-"><code class="lang-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">DESCRIBE</span> pet<span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">---------+-------------+------+-----+---------+-------+</span>
+<span class="token operator">|</span> Field   <span class="token operator">|</span> <span class="token keyword">Type</span>        <span class="token operator">|</span> <span class="token boolean">Null</span> <span class="token operator">|</span> <span class="token keyword">Key</span> <span class="token operator">|</span> <span class="token keyword">Default</span> <span class="token operator">|</span> Extra <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">---------+-------------+------+-----+---------+-------+</span>
+<span class="token operator">|</span> name    <span class="token operator">|</span> <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span> <span class="token operator">|</span> YES  <span class="token operator">|</span>     <span class="token operator">|</span> <span class="token boolean">NULL</span>    <span class="token operator">|</span>       <span class="token operator">|</span>
+<span class="token operator">|</span> owner   <span class="token operator">|</span> <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span> <span class="token operator">|</span> YES  <span class="token operator">|</span>     <span class="token operator">|</span> <span class="token boolean">NULL</span>    <span class="token operator">|</span>       <span class="token operator">|</span>
+<span class="token operator">|</span> species <span class="token operator">|</span> <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span> <span class="token operator">|</span> YES  <span class="token operator">|</span>     <span class="token operator">|</span> <span class="token boolean">NULL</span>    <span class="token operator">|</span>       <span class="token operator">|</span>
+<span class="token operator">|</span> sex     <span class="token operator">|</span> <span class="token keyword">char</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>     <span class="token operator">|</span> YES  <span class="token operator">|</span>     <span class="token operator">|</span> <span class="token boolean">NULL</span>    <span class="token operator">|</span>       <span class="token operator">|</span>
+<span class="token operator">|</span> birth   <span class="token operator">|</span> <span class="token keyword">date</span>        <span class="token operator">|</span> YES  <span class="token operator">|</span>     <span class="token operator">|</span> <span class="token boolean">NULL</span>    <span class="token operator">|</span>       <span class="token operator">|</span>
+<span class="token operator">|</span> death   <span class="token operator">|</span> <span class="token keyword">date</span>        <span class="token operator">|</span> YES  <span class="token operator">|</span>     <span class="token operator">|</span> <span class="token boolean">NULL</span>    <span class="token operator">|</span>       <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">---------+-------------+------+-----+---------+-------+</span>
 </code></pre>
 <p>You can use <a href="https://dev.mysql.com/doc/refman/8.0/en/describe.html" target="_blank"><code>DESCRIBE</code></a> any time, for example, if you forget the names of the columns in your table or what types they have.</p>
 <p>For more information about MySQL data types, see <a href="https://dev.mysql.com/doc/refman/8.0/en/data-types.html" target="_blank">Chapter 11, <strong><em>Data Types</em></strong></a>.</p>
@@ -796,7 +833,7 @@ Empty set (0.00 sec)
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Creating a Table","level":"1.4.3.2","depth":3,"next":{"title":"Loading Data into a Table","level":"1.4.3.3","depth":3,"path":"loading-tables.md","ref":"loading-tables.md","articles":[]},"previous":{"title":"Creating and Selecting a Database","level":"1.4.3.1","depth":3,"path":"creating-database.md","ref":"creating-database.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"en","gitbook":"*"},"file":{"path":"creating-tables.md","mtime":"2019-06-19T15:33:06.768Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-23T00:55:17.505Z"},"basePath":".","book":{"language":"en"}});
+            gitbook.page.hasChanged({"page":{"title":"Creating a Table","level":"1.4.3.2","depth":3,"next":{"title":"Loading Data into a Table","level":"1.4.3.3","depth":3,"path":"loading-tables.md","ref":"loading-tables.md","articles":[]},"previous":{"title":"Creating and Selecting a Database","level":"1.4.3.1","depth":3,"path":"creating-database.md","ref":"creating-database.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-highlight","-sharing","prism","github","github-buttons","expandable-chapters-small","donate","anchors","edit-link","copy-code-button"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"github":{"url":"https://github.com/mowangjuanzi/mysql-chinese-doc"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"donate":{"alipay":"/assets/alipay.png","alipayText":"支付宝打赏","button":"赏","title":"","wechat":"/assets/wechat.jpg","wechatText":"微信打赏"},"fontsettings":{"theme":"white","family":"sans","size":2},"github-buttons":{"buttons":[{"user":"Blankj","repo":"glory","type":"star","size":"small","count":true}]},"expandable-chapters-small":{},"copy-code-button":{},"edit-link":{"label":"Edit This Page","base":"https://github.com/mowangjuanzi/mysql-chinese-doc/edit/master"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"en","gitbook":"*"},"file":{"path":"creating-tables.md","mtime":"2019-06-24T12:57:20.330Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-24T14:53:30.845Z"},"basePath":".","book":{"language":"en"}});
         });
     </script>
 </div>
@@ -804,6 +841,30 @@ Empty set (0.00 sec)
         
     <script src="../gitbook/gitbook.js"></script>
     <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-donate/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-edit-link/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-copy-code-button/toggle.js"></script>
+        
     
         
         <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
@@ -819,10 +880,6 @@ Empty set (0.00 sec)
     
         
         <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
         
     
         

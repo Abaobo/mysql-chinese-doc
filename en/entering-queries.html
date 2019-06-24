@@ -17,7 +17,19 @@
     
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-prism/prism.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-donate/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
                 
             
                 
@@ -49,6 +61,7 @@
         
     
     
+    
     <meta name="HandheldFriendly" content="true"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -62,6 +75,17 @@
     
     <link rel="prev" href="connecting-disconnecting.html" />
     
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"buttons":[{"user":"Blankj","repo":"glory","type":"star","size":"small","count":true}]};
+    </script>
 
     </head>
     <body>
@@ -363,6 +387,19 @@
             
                     
                     Sorting Rows
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.4.5" data-path="date-calculations.html">
+            
+                <a href="date-calculations.html">
+            
+                    
+                    Date Calculationsa
             
                 </a>
             
@@ -708,17 +745,17 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h2 id="32-entering-queries">3.2 Entering Queries</h2>
+                                <h2 id="32-entering-queries"><a name="32-entering-queries" class="plugin-anchor" href="#32-entering-queries"><i class="fa fa-link" aria-hidden="true"></i></a>3.2 Entering Queries</h2>
 <p>Make sure that you are connected to the server, as discussed in the previous section. Doing so does not in itself select any database to work with, but that is okay. At this point, it is more important to find out a little about how to issue queries than to jump right in creating tables, loading data into them, and retrieving data from them. This section describes the basic principles of entering queries, using several queries you can try out to familiarize yourself with how <a href="mysql.html">mysql</a> works.</p>
 <p>Here is a simple query that asks the server to tell you its version number and the current date. Type it in as shown here following the <code>mysql&gt;</code> prompt and press Enter:</p>
-<pre><code class="lang-sql">mysql&gt; SELECT VERSION(), CURRENT_DATE;
-+-----------+--------------+
-| VERSION() | CURRENT_DATE |
-+-----------+--------------+
-| 5.8.0-m17 | 2015-12-21   |
-+-----------+--------------+
-1 row in set (0.02 sec)
-mysql&gt;
+<pre class="language-"><code class="lang-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> VERSION<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword">CURRENT_DATE</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">-----------+--------------+</span>
+<span class="token operator">|</span> VERSION<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">|</span> <span class="token keyword">CURRENT_DATE</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-----------+--------------+</span>
+<span class="token operator">|</span> <span class="token number">5.8</span><span class="token number">.0</span><span class="token operator">-</span>m17 <span class="token operator">|</span> <span class="token number">2015</span><span class="token operator">-</span><span class="token number">12</span><span class="token operator">-</span><span class="token number">21</span>   <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-----------+--------------+</span>
+<span class="token number">1</span> <span class="token keyword">row</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.02</span> sec<span class="token punctuation">)</span>
+mysql<span class="token operator">&gt;</span>
 </code></pre>
 <p>This query illustrates several things about <a href="mysql.html">mysql</a>:</p>
 <ul>
@@ -732,53 +769,53 @@ mysql&gt;
 </li>
 </ul>
 <p>Keywords may be entered in any lettercase. The following queries are equivalent:</p>
-<pre><code class="lang-sql">mysql&gt; SELECT VERSION(), CURRENT_DATE;
-mysql&gt; select version(), current_date;
-mysql&gt; SeLeCt vErSiOn(), current_DATE;
+<pre class="language-"><code class="lang-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> VERSION<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword">CURRENT_DATE</span><span class="token punctuation">;</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">select</span> version<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword">current_date</span><span class="token punctuation">;</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">SeLeCt</span> vErSiOn<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword">current_DATE</span><span class="token punctuation">;</span>
 </code></pre>
 <p>Here is another query. It demonstrates that you can use <a href="mysql.html">mysql</a> as a simple calculator:</p>
-<pre><code class="lang-sql">mysql&gt; SELECT SIN(PI()/4), (4+1)*5;
-+------------------+---------+
-| SIN(PI()/4)      | (4+1)*5 |
-+------------------+---------+
-| 0.70710678118655 |      25 |
-+------------------+---------+
-1 row in set (0.02 sec)
+<pre class="language-"><code class="lang-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> SIN<span class="token punctuation">(</span>PI<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">4</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">5</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">------------------+---------+</span>
+<span class="token operator">|</span> SIN<span class="token punctuation">(</span>PI<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">4</span><span class="token punctuation">)</span>      <span class="token operator">|</span> <span class="token punctuation">(</span><span class="token number">4</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">5</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">------------------+---------+</span>
+<span class="token operator">|</span> <span class="token number">0.70710678118655</span> <span class="token operator">|</span>      <span class="token number">25</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">------------------+---------+</span>
+<span class="token number">1</span> <span class="token keyword">row</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.02</span> sec<span class="token punctuation">)</span>
 </code></pre>
 <p>The queries shown thus far have been relatively short, single-line statements. You can even enter multiple statements on a single line. Just end each one with a semicolon:</p>
-<pre><code class="lang-sql">mysql&gt; SELECT VERSION(); SELECT NOW();
-+-----------+
-| VERSION() |
-+-----------+
-| 8.0.13    |
-+-----------+
-1 row in set (0.00 sec)
+<pre class="language-"><code class="lang-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> VERSION<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token keyword">SELECT</span> <span class="token function">NOW</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">-----------+</span>
+<span class="token operator">|</span> VERSION<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-----------+</span>
+<span class="token operator">|</span> <span class="token number">8.0</span><span class="token number">.13</span>    <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-----------+</span>
+<span class="token number">1</span> <span class="token keyword">row</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
 
-+---------------------+
-| NOW()               |
-+---------------------+
-| 2018-08-24 00:56:40 |
-+---------------------+
-1 row in set (0.00 sec)
+<span class="token operator">+</span><span class="token comment">---------------------+</span>
+<span class="token operator">|</span> <span class="token function">NOW</span><span class="token punctuation">(</span><span class="token punctuation">)</span>               <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">---------------------+</span>
+<span class="token operator">|</span> <span class="token number">2018</span><span class="token operator">-</span><span class="token number">08</span><span class="token operator">-</span><span class="token number">24</span> <span class="token number">00</span>:<span class="token number">56</span>:<span class="token number">40</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">---------------------+</span>
+<span class="token number">1</span> <span class="token keyword">row</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
 </code></pre>
 <p>A query need not be given all on a single line, so lengthy queries that require several lines are not a problem. <a href="mysql.html">mysql</a> determines where your statement ends by looking for the terminating semicolon, not by looking for the end of the input line. (In other words, <a href="mysql.html">mysql</a> accepts free-format input: it collects input lines but does not execute them until it sees the semicolon.)</p>
 <p>Here is a simple multiple-line statement:</p>
-<pre><code class="lang-bash">mysql&gt; SELECT
-    -&gt; USER()
-    -&gt; ,
-    -&gt; CURRENT_DATE;
+<pre class="language-"><code class="lang-bash">mysql<span class="token operator">&gt;</span> SELECT
+    -<span class="token operator">&gt;</span> USER<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    -<span class="token operator">&gt;</span> ,
+    -<span class="token operator">&gt;</span> CURRENT_DATE<span class="token punctuation">;</span>
 +---------------+--------------+
-| USER()        | CURRENT_DATE |
+<span class="token operator">|</span> USER<span class="token punctuation">(</span><span class="token punctuation">)</span>        <span class="token operator">|</span> CURRENT_DATE <span class="token operator">|</span>
 +---------------+--------------+
-| jon@localhost | 2018-08-24   |
+<span class="token operator">|</span> jon@localhost <span class="token operator">|</span> 2018-08-24   <span class="token operator">|</span>
 +---------------+--------------+
 </code></pre>
 <p>In this example, notice how the prompt changes from <code>mysql&gt;</code> to <code>-&gt;</code> after you enter the first line of a multiple-line query. This is how <a href="mysql.html">mysql</a> indicates that it has not yet seen a complete statement and is waiting for the rest. The prompt is your friend, because it provides valuable feedback. If you use that feedback, you can always be aware of what <a href="mysql.html">mysql</a> is waiting for.</p>
 <p>If you decide you do not want to execute a query that you are in the process of entering, cancel it by typing <code>\c</code>:</p>
-<pre><code class="lang-sql">mysql&gt; SELECT
-    -&gt; USER()
-    -&gt; \c
-mysql&gt;
+<pre class="language-"><code class="lang-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span>
+    <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token keyword">USER</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token operator">-</span><span class="token operator">&gt;</span> \c
+mysql<span class="token operator">&gt;</span>
 </code></pre>
 <p>Here, too, notice the prompt. It switches back to <code>mysql&gt;</code> after you type <code>\c</code>, providing feedback to indicate that <a href="mysql.html">mysql</a> is ready for a new query.</p>
 <p>The following table shows each of the prompts you may see and summarizes what they mean about the state that <a href="mysql.html">mysql</a> is in.</p>
@@ -817,27 +854,27 @@ mysql&gt;
 </tbody>
 </table>
 <p>Multiple-line statements commonly occur by accident when you intend to issue a query on a single line, but forget the terminating semicolon. In this case, <a href="mysql.html">mysql</a> waits for more input:</p>
-<pre><code class="lang-sql">mysql&gt; SELECT USER()
-    -&gt;
+<pre class="language-"><code class="lang-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> <span class="token keyword">USER</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token operator">-</span><span class="token operator">&gt;</span>
 </code></pre>
 <p>If this happens to you (you think you&apos;ve entered a statement but the only response is a <code>-&gt;</code> prompt), most likely <a href="mysql.html">mysql</a> is waiting for the semicolon. If you don&apos;t notice what the prompt is telling you, you might sit there for a while before realizing what you need to do. Enter a semicolon to complete the statement, and <a href="mysql.html">mysql</a> executes it:</p>
-<pre><code class="lang-sql">mysql&gt; SELECT USER()
-    -&gt; ;
-+---------------+
-| USER()        |
-+---------------+
-| jon@localhost |
-+---------------+
+<pre class="language-"><code class="lang-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> <span class="token keyword">USER</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">---------------+</span>
+<span class="token operator">|</span> <span class="token keyword">USER</span><span class="token punctuation">(</span><span class="token punctuation">)</span>        <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">---------------+</span>
+<span class="token operator">|</span> jon<span class="token variable">@localhost</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">---------------+</span>
 </code></pre>
 <p>The <code>&apos;&gt;</code> and <code>&quot;&gt;</code> prompts occur during string collection (another way of saying that MySQL is waiting for completion of a string). In MySQL, you can write strings surrounded by either <code>&apos;</code> or <code>&quot;</code> characters (for example, <code>&apos;hello&apos;</code> or <code>&quot;goodbye&quot;</code>), and <a href="mysql.html">mysql</a> lets you enter strings that span multiple lines. When you see a <code>&apos;&gt;</code> or <code>&quot;&gt;</code> prompt, it means that you have entered a line containing a string that begins with a <code>&apos;</code> or <code>&quot;</code> quote character, but have not yet entered the matching quote that terminates the string. This often indicates that you have inadvertently left out a quote character. For example:</p>
-<pre><code class="lang-sql">mysql&gt; SELECT * FROM my_table WHERE name = &apos;Smith AND age &lt; 30;
-    &apos;&gt;
+<pre class="language-"><code class="lang-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> my_table <span class="token keyword">WHERE</span> name <span class="token operator">=</span> <span class="token string">&apos;Smith AND age &lt; 30;
+    &apos;</span><span class="token operator">&gt;</span>
 </code></pre>
 <p>If you enter this <a href="https://dev.mysql.com/doc/refman/8.0/en/select.html" target="_blank"><code>SELECT</code></a> statement, then press <code>Enter</code> and wait for the result, nothing happens. Instead of wondering why this query takes so long, notice the clue provided by the <code>&apos;&gt;</code> prompt. It tells you that <a href="mysql.html">mysql</a> expects to see the rest of an unterminated string. (Do you see the error in the statement? The string <code>&apos;Smith</code> is missing the second single quotation mark.)</p>
 <p>At this point, what do you do? The simplest thing is to cancel the query. However, you cannot just type <code>\c</code> in this case, because <a href="mysql.html">mysql</a> interprets it as part of the string that it is collecting. Instead, enter the closing quote character (so <a href="mysql.html">mysql</a> knows you&apos;ve finished the string), then type <code>\c</code>:</p>
-<pre><code class="lang-sql">mysql&gt; SELECT * FROM my_table WHERE name = &apos;Smith AND age &lt; 30;
-    &apos;&gt; &apos;\c
-mysql&gt;
+<pre class="language-"><code class="lang-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> my_table <span class="token keyword">WHERE</span> name <span class="token operator">=</span> <span class="token string">&apos;Smith AND age &lt; 30;
+    &apos;</span><span class="token operator">&gt;</span> &apos;\c
+mysql<span class="token operator">&gt;</span>
 </code></pre>
 <p>The prompt changes back to <code>mysql&gt;</code>, indicating that <a href="mysql.html">mysql</a> is ready for a new query.</p>
 <p>The <code>`&gt;</code> prompt is similar to the <code>&apos;&gt;</code> and <code>&quot;&gt;</code> prompts, but indicates that you have begun but not completed a backtick-quoted identifier.</p>
@@ -889,7 +926,7 @@ mysql&gt;
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Entering Queries","level":"1.4.2","depth":2,"next":{"title":"Creating and Using a Database","level":"1.4.3","depth":2,"path":"database-use.md","ref":"database-use.md","articles":[{"title":"Creating and Selecting a Database","level":"1.4.3.1","depth":3,"path":"creating-database.md","ref":"creating-database.md","articles":[]},{"title":"Creating a Table","level":"1.4.3.2","depth":3,"path":"creating-tables.md","ref":"creating-tables.md","articles":[]},{"title":"Loading Data into a Table","level":"1.4.3.3","depth":3,"path":"loading-tables.md","ref":"loading-tables.md","articles":[]},{"title":"Retrieving Information from a Table","level":"1.4.3.4","depth":3,"path":"retrieving-data.md","ref":"retrieving-data.md","articles":[{"title":"Selecting All Data","level":"1.4.3.4.1","depth":4,"path":"selecting-all.md","ref":"selecting-all.md","articles":[]},{"title":"Selecting Particular Rows","level":"1.4.3.4.2","depth":4,"path":"selecting-rows.md","ref":"selecting-rows.md","articles":[]},{"title":"Selecting Particular Columns","level":"1.4.3.4.3","depth":4,"path":"selecting-columns.md","ref":"selecting-columns.md","articles":[]},{"title":"Sorting Rows","level":"1.4.3.4.4","depth":4,"path":"sorting-rows.md","ref":"sorting-rows.md","articles":[]}]}]},"previous":{"title":"Connecting to and Disconnecting from the Server","level":"1.4.1","depth":2,"path":"connecting-disconnecting.md","ref":"connecting-disconnecting.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"en","gitbook":"*"},"file":{"path":"entering-queries.md","mtime":"2019-06-16T05:37:21.370Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-23T00:55:17.505Z"},"basePath":".","book":{"language":"en"}});
+            gitbook.page.hasChanged({"page":{"title":"Entering Queries","level":"1.4.2","depth":2,"next":{"title":"Creating and Using a Database","level":"1.4.3","depth":2,"path":"database-use.md","ref":"database-use.md","articles":[{"title":"Creating and Selecting a Database","level":"1.4.3.1","depth":3,"path":"creating-database.md","ref":"creating-database.md","articles":[]},{"title":"Creating a Table","level":"1.4.3.2","depth":3,"path":"creating-tables.md","ref":"creating-tables.md","articles":[]},{"title":"Loading Data into a Table","level":"1.4.3.3","depth":3,"path":"loading-tables.md","ref":"loading-tables.md","articles":[]},{"title":"Retrieving Information from a Table","level":"1.4.3.4","depth":3,"path":"retrieving-data.md","ref":"retrieving-data.md","articles":[{"title":"Selecting All Data","level":"1.4.3.4.1","depth":4,"path":"selecting-all.md","ref":"selecting-all.md","articles":[]},{"title":"Selecting Particular Rows","level":"1.4.3.4.2","depth":4,"path":"selecting-rows.md","ref":"selecting-rows.md","articles":[]},{"title":"Selecting Particular Columns","level":"1.4.3.4.3","depth":4,"path":"selecting-columns.md","ref":"selecting-columns.md","articles":[]},{"title":"Sorting Rows","level":"1.4.3.4.4","depth":4,"path":"sorting-rows.md","ref":"sorting-rows.md","articles":[]},{"title":"Date Calculationsa","level":"1.4.3.4.5","depth":4,"path":"date-calculations.md","ref":"date-calculations.md","articles":[]}]}]},"previous":{"title":"Connecting to and Disconnecting from the Server","level":"1.4.1","depth":2,"path":"connecting-disconnecting.md","ref":"connecting-disconnecting.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-highlight","-sharing","prism","github","github-buttons","expandable-chapters-small","donate","anchors","edit-link","copy-code-button"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"github":{"url":"https://github.com/mowangjuanzi/mysql-chinese-doc"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"donate":{"alipay":"/assets/alipay.png","alipayText":"支付宝打赏","button":"赏","title":"","wechat":"/assets/wechat.jpg","wechatText":"微信打赏"},"fontsettings":{"theme":"white","family":"sans","size":2},"github-buttons":{"buttons":[{"user":"Blankj","repo":"glory","type":"star","size":"small","count":true}]},"expandable-chapters-small":{},"copy-code-button":{},"edit-link":{"label":"Edit This Page","base":"https://github.com/mowangjuanzi/mysql-chinese-doc/edit/master"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"en","gitbook":"*"},"file":{"path":"entering-queries.md","mtime":"2019-06-24T12:57:20.334Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-24T14:53:30.845Z"},"basePath":".","book":{"language":"en"}});
         });
     </script>
 </div>
@@ -897,6 +934,30 @@ mysql&gt;
         
     <script src="../gitbook/gitbook.js"></script>
     <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-donate/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-edit-link/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-copy-code-button/toggle.js"></script>
+        
     
         
         <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
@@ -912,10 +973,6 @@ mysql&gt;
     
         
         <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
         
     
         

@@ -17,7 +17,19 @@
     
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-prism/prism.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-donate/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
                 
             
                 
@@ -49,6 +61,7 @@
         
     
     
+    
     <meta name="HandheldFriendly" content="true"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -57,11 +70,22 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="examples.html" />
+    <link rel="next" href="date-calculations.html" />
     
     
     <link rel="prev" href="selecting-columns.html" />
     
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"buttons":[{"user":"Blankj","repo":"glory","type":"star","size":"small","count":true}]};
+    </script>
 
     </head>
     <body>
@@ -363,6 +387,19 @@
             
                     
                     Sorting Rows
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.4.5" data-path="date-calculations.html">
+            
+                <a href="date-calculations.html">
+            
+                    
+                    Date Calculationsa
             
                 </a>
             
@@ -708,57 +745,57 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h4 id="3344-sorting-rows">3.3.4.4 Sorting Rows</h4>
+                                <h4 id="3344-sorting-rows"><a name="3344-sorting-rows" class="plugin-anchor" href="#3344-sorting-rows"><i class="fa fa-link" aria-hidden="true"></i></a>3.3.4.4 Sorting Rows</h4>
 <p>You may have noticed in the preceding examples that the result rows are displayed in no particular order. It is often easier to examine query output when the rows are sorted in some meaningful way. To sort a result, use an <code>ORDER BY</code> clause.</p>
 <p>Here are animal birthdays, sorted by date:</p>
-<pre><code class="lang-sql">mysql&gt; SELECT name, birth FROM pet ORDER BY birth;
-+----------+------------+
-| name     | birth      |
-+----------+------------+
-| Buffy    | 1989-05-13 |
-| Bowser   | 1989-08-31 |
-| Fang     | 1990-08-27 |
-| Fluffy   | 1993-02-04 |
-| Claws    | 1994-03-17 |
-| Slim     | 1996-04-29 |
-| Whistler | 1997-12-09 |
-| Chirpy   | 1998-09-11 |
-| Puffball | 1999-03-30 |
-+----------+------------+
+<pre class="language-"><code class="lang-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> name<span class="token punctuation">,</span> birth <span class="token keyword">FROM</span> pet <span class="token keyword">ORDER</span> <span class="token keyword">BY</span> birth<span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">----------+------------+</span>
+<span class="token operator">|</span> name     <span class="token operator">|</span> birth      <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----------+------------+</span>
+<span class="token operator">|</span> Buffy    <span class="token operator">|</span> <span class="token number">1989</span><span class="token operator">-</span><span class="token number">05</span><span class="token operator">-</span><span class="token number">13</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Bowser   <span class="token operator">|</span> <span class="token number">1989</span><span class="token operator">-</span><span class="token number">08</span><span class="token operator">-</span><span class="token number">31</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Fang     <span class="token operator">|</span> <span class="token number">1990</span><span class="token operator">-</span><span class="token number">08</span><span class="token operator">-</span><span class="token number">27</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Fluffy   <span class="token operator">|</span> <span class="token number">1993</span><span class="token operator">-</span><span class="token number">02</span><span class="token operator">-</span><span class="token number">04</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Claws    <span class="token operator">|</span> <span class="token number">1994</span><span class="token operator">-</span><span class="token number">03</span><span class="token operator">-</span><span class="token number">17</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Slim     <span class="token operator">|</span> <span class="token number">1996</span><span class="token operator">-</span><span class="token number">04</span><span class="token operator">-</span><span class="token number">29</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Whistler <span class="token operator">|</span> <span class="token number">1997</span><span class="token operator">-</span><span class="token number">12</span><span class="token operator">-</span><span class="token number">09</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Chirpy   <span class="token operator">|</span> <span class="token number">1998</span><span class="token operator">-</span><span class="token number">09</span><span class="token operator">-</span><span class="token number">11</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Puffball <span class="token operator">|</span> <span class="token number">1999</span><span class="token operator">-</span><span class="token number">03</span><span class="token operator">-</span><span class="token number">30</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----------+------------+</span>
 </code></pre>
 <p>On character type columns, sorting&#x2014;like all other comparison operations&#x2014;is normally performed in a case-insensitive fashion. This means that the order is undefined for columns that are identical except for their case. You can force a case-sensitive sort for a column by using <a href="https://dev.mysql.com/doc/refman/8.0/en/cast-functions.html#operator_binary" target="_blank"><code>BINARY</code></a> like so: <code>ORDER BY BINARY col_name</code>.</p>
 <p>The default sort order is ascending, with smallest values first. To sort in reverse (descending) order, add the <code>DESC</code> keyword to the name of the column you are sorting by:</p>
-<pre><code class="lang-sql">mysql&gt; SELECT name, birth FROM pet ORDER BY birth DESC;
-+----------+------------+
-| name     | birth      |
-+----------+------------+
-| Puffball | 1999-03-30 |
-| Chirpy   | 1998-09-11 |
-| Whistler | 1997-12-09 |
-| Slim     | 1996-04-29 |
-| Claws    | 1994-03-17 |
-| Fluffy   | 1993-02-04 |
-| Fang     | 1990-08-27 |
-| Bowser   | 1989-08-31 |
-| Buffy    | 1989-05-13 |
-+----------+------------+
+<pre class="language-"><code class="lang-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> name<span class="token punctuation">,</span> birth <span class="token keyword">FROM</span> pet <span class="token keyword">ORDER</span> <span class="token keyword">BY</span> birth <span class="token keyword">DESC</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">----------+------------+</span>
+<span class="token operator">|</span> name     <span class="token operator">|</span> birth      <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----------+------------+</span>
+<span class="token operator">|</span> Puffball <span class="token operator">|</span> <span class="token number">1999</span><span class="token operator">-</span><span class="token number">03</span><span class="token operator">-</span><span class="token number">30</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Chirpy   <span class="token operator">|</span> <span class="token number">1998</span><span class="token operator">-</span><span class="token number">09</span><span class="token operator">-</span><span class="token number">11</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Whistler <span class="token operator">|</span> <span class="token number">1997</span><span class="token operator">-</span><span class="token number">12</span><span class="token operator">-</span><span class="token number">09</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Slim     <span class="token operator">|</span> <span class="token number">1996</span><span class="token operator">-</span><span class="token number">04</span><span class="token operator">-</span><span class="token number">29</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Claws    <span class="token operator">|</span> <span class="token number">1994</span><span class="token operator">-</span><span class="token number">03</span><span class="token operator">-</span><span class="token number">17</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Fluffy   <span class="token operator">|</span> <span class="token number">1993</span><span class="token operator">-</span><span class="token number">02</span><span class="token operator">-</span><span class="token number">04</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Fang     <span class="token operator">|</span> <span class="token number">1990</span><span class="token operator">-</span><span class="token number">08</span><span class="token operator">-</span><span class="token number">27</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Bowser   <span class="token operator">|</span> <span class="token number">1989</span><span class="token operator">-</span><span class="token number">08</span><span class="token operator">-</span><span class="token number">31</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Buffy    <span class="token operator">|</span> <span class="token number">1989</span><span class="token operator">-</span><span class="token number">05</span><span class="token operator">-</span><span class="token number">13</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----------+------------+</span>
 </code></pre>
 <p>You can sort on multiple columns, and you can sort different columns in different directions. For example, to sort by type of animal in ascending order, then by birth date within animal type in descending order (youngest animals first), use the following query:</p>
-<pre><code class="lang-sql">mysql&gt; SELECT name, species, birth FROM pet
-       ORDER BY species, birth DESC;
-+----------+---------+------------+
-| name     | species | birth      |
-+----------+---------+------------+
-| Chirpy   | bird    | 1998-09-11 |
-| Whistler | bird    | 1997-12-09 |
-| Claws    | cat     | 1994-03-17 |
-| Fluffy   | cat     | 1993-02-04 |
-| Fang     | dog     | 1990-08-27 |
-| Bowser   | dog     | 1989-08-31 |
-| Buffy    | dog     | 1989-05-13 |
-| Puffball | hamster | 1999-03-30 |
-| Slim     | snake   | 1996-04-29 |
-+----------+---------+------------+
+<pre class="language-"><code class="lang-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> name<span class="token punctuation">,</span> species<span class="token punctuation">,</span> birth <span class="token keyword">FROM</span> pet
+       <span class="token keyword">ORDER</span> <span class="token keyword">BY</span> species<span class="token punctuation">,</span> birth <span class="token keyword">DESC</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">----------+---------+------------+</span>
+<span class="token operator">|</span> name     <span class="token operator">|</span> species <span class="token operator">|</span> birth      <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----------+---------+------------+</span>
+<span class="token operator">|</span> Chirpy   <span class="token operator">|</span> bird    <span class="token operator">|</span> <span class="token number">1998</span><span class="token operator">-</span><span class="token number">09</span><span class="token operator">-</span><span class="token number">11</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Whistler <span class="token operator">|</span> bird    <span class="token operator">|</span> <span class="token number">1997</span><span class="token operator">-</span><span class="token number">12</span><span class="token operator">-</span><span class="token number">09</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Claws    <span class="token operator">|</span> cat     <span class="token operator">|</span> <span class="token number">1994</span><span class="token operator">-</span><span class="token number">03</span><span class="token operator">-</span><span class="token number">17</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Fluffy   <span class="token operator">|</span> cat     <span class="token operator">|</span> <span class="token number">1993</span><span class="token operator">-</span><span class="token number">02</span><span class="token operator">-</span><span class="token number">04</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Fang     <span class="token operator">|</span> dog     <span class="token operator">|</span> <span class="token number">1990</span><span class="token operator">-</span><span class="token number">08</span><span class="token operator">-</span><span class="token number">27</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Bowser   <span class="token operator">|</span> dog     <span class="token operator">|</span> <span class="token number">1989</span><span class="token operator">-</span><span class="token number">08</span><span class="token operator">-</span><span class="token number">31</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Buffy    <span class="token operator">|</span> dog     <span class="token operator">|</span> <span class="token number">1989</span><span class="token operator">-</span><span class="token number">05</span><span class="token operator">-</span><span class="token number">13</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Puffball <span class="token operator">|</span> hamster <span class="token operator">|</span> <span class="token number">1999</span><span class="token operator">-</span><span class="token number">03</span><span class="token operator">-</span><span class="token number">30</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Slim     <span class="token operator">|</span> snake   <span class="token operator">|</span> <span class="token number">1996</span><span class="token operator">-</span><span class="token number">04</span><span class="token operator">-</span><span class="token number">29</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----------+---------+------------+</span>
 </code></pre>
 <p>The <code>DESC</code> keyword applies only to the column name immediately preceding it (<code>birth</code>); it does not affect the <code>species</code> column sort order.</p>
 
@@ -793,7 +830,7 @@
                 </a>
                 
                 
-                <a href="examples.html" class="navigation navigation-next " aria-label="Next page: Examples of Common Queries">
+                <a href="date-calculations.html" class="navigation navigation-next " aria-label="Next page: Date Calculationsa">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -804,7 +841,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Sorting Rows","level":"1.4.3.4.4","depth":4,"next":{"title":"Examples of Common Queries","level":"1.4.4","depth":2,"path":"examples.md","ref":"examples.md","articles":[]},"previous":{"title":"Selecting Particular Columns","level":"1.4.3.4.3","depth":4,"path":"selecting-columns.md","ref":"selecting-columns.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"en","gitbook":"*"},"file":{"path":"sorting-rows.md","mtime":"2019-06-23T00:42:22.810Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-23T00:55:17.505Z"},"basePath":".","book":{"language":"en"}});
+            gitbook.page.hasChanged({"page":{"title":"Sorting Rows","level":"1.4.3.4.4","depth":4,"next":{"title":"Date Calculationsa","level":"1.4.3.4.5","depth":4,"path":"date-calculations.md","ref":"date-calculations.md","articles":[]},"previous":{"title":"Selecting Particular Columns","level":"1.4.3.4.3","depth":4,"path":"selecting-columns.md","ref":"selecting-columns.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-highlight","-sharing","prism","github","github-buttons","expandable-chapters-small","donate","anchors","edit-link","copy-code-button"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"github":{"url":"https://github.com/mowangjuanzi/mysql-chinese-doc"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"donate":{"alipay":"/assets/alipay.png","alipayText":"支付宝打赏","button":"赏","title":"","wechat":"/assets/wechat.jpg","wechatText":"微信打赏"},"fontsettings":{"theme":"white","family":"sans","size":2},"github-buttons":{"buttons":[{"user":"Blankj","repo":"glory","type":"star","size":"small","count":true}]},"expandable-chapters-small":{},"copy-code-button":{},"edit-link":{"label":"Edit This Page","base":"https://github.com/mowangjuanzi/mysql-chinese-doc/edit/master"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"en","gitbook":"*"},"file":{"path":"sorting-rows.md","mtime":"2019-06-24T12:57:20.334Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-24T14:53:30.845Z"},"basePath":".","book":{"language":"en"}});
         });
     </script>
 </div>
@@ -812,6 +849,30 @@
         
     <script src="../gitbook/gitbook.js"></script>
     <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-donate/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-edit-link/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-copy-code-button/toggle.js"></script>
+        
     
         
         <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
@@ -827,10 +888,6 @@
     
         
         <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
         
     
         

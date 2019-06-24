@@ -17,7 +17,19 @@
     
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-prism/prism.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-donate/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
                 
             
                 
@@ -49,6 +61,7 @@
         
     
     
+    
     <meta name="HandheldFriendly" content="true"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -62,6 +75,17 @@
     
     <link rel="prev" href="creating-tables.html" />
     
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"buttons":[{"user":"Blankj","repo":"glory","type":"star","size":"small","count":true}]};
+    </script>
 
     </head>
     <body>
@@ -363,6 +387,19 @@
             
                     
                     Sorting Rows
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.4.5" data-path="date-calculations.html">
+            
+                <a href="date-calculations.html">
+            
+                    
+                    Date Calculationsa
             
                 </a>
             
@@ -708,7 +745,7 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h3 id="333-loading-data-into-a-table">3.3.3 Loading Data into a Table</h3>
+                                <h3 id="333-loading-data-into-a-table"><a name="333-loading-data-into-a-table" class="plugin-anchor" href="#333-loading-data-into-a-table"><i class="fa fa-link" aria-hidden="true"></i></a>3.3.3 Loading Data into a Table</h3>
 <p>After creating your table, you need to populate it. The <a href="https://dev.mysql.com/doc/refman/8.0/en/load-data.html" target="_blank"><code>LOAD DATA</code></a> and <a href="https://dev.mysql.com/doc/refman/8.0/en/insert.html" target="_blank"><code>INSERT</code></a> statements are useful for this.</p>
 <p>Suppose that your pet records can be described as shown here. (Observe that MySQL expects dates in <code>&apos;YYYY-MM-DD&apos;</code> format; this may be different from what you are used to.)</p>
 <table>
@@ -791,21 +828,21 @@
 </table>
 <p>Because you are beginning with an empty table, an easy way to populate it is to create a text file containing a row for each of your animals, then load the contents of the file into the table with a single statement.</p>
 <p>You could create a text file <code>pet.txt</code> containing one record per line, with values separated by tabs, and given in the order in which the columns were listed in the <a href="https://dev.mysql.com/doc/refman/8.0/en/create-table.html" target="_blank"><code>CREATE TABLE</code></a> statement. For missing values (such as unknown sexes or death dates for animals that are still living), you can use <code>NULL</code> values. To represent these in your text file, use <code>\N</code> (backslash, capital-N). For example, the record for Whistler the bird would look like this (where the whitespace between values is a single tab character):</p>
-<pre><code class="lang-text">Whistler        Gwen    bird    \N      1997-12-09      \N
+<pre class="language-"><code class="lang-text">Whistler        Gwen    bird    \N      1997-12-09      \N
 </code></pre>
 <p>To load the text file <code>pet.txt</code> into the <code>pet</code> table, use this statement:</p>
-<pre><code class="lang-sql">mysql&gt; LOAD DATA LOCAL INFILE &apos;/path/pet.txt&apos; INTO TABLE pet;
+<pre class="language-"><code class="lang-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">LOAD</span> <span class="token keyword">DATA</span> <span class="token keyword">LOCAL</span> <span class="token keyword">INFILE</span> <span class="token string">&apos;/path/pet.txt&apos;</span> <span class="token keyword">INTO</span> <span class="token keyword">TABLE</span> pet<span class="token punctuation">;</span>
 </code></pre>
 <p>If you created the file on Windows with an editor that uses <code>\r\n</code> as a line terminator, you should use this statement instead:</p>
-<pre><code class="lang-sql">mysql&gt; LOAD DATA LOCAL INFILE &apos;/path/pet.txt&apos; INTO TABLE pet
-       LINES TERMINATED BY &apos;\r\n&apos;;
+<pre class="language-"><code class="lang-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">LOAD</span> <span class="token keyword">DATA</span> <span class="token keyword">LOCAL</span> <span class="token keyword">INFILE</span> <span class="token string">&apos;/path/pet.txt&apos;</span> <span class="token keyword">INTO</span> <span class="token keyword">TABLE</span> pet
+       <span class="token keyword">LINES</span> <span class="token keyword">TERMINATED</span> <span class="token keyword">BY</span> <span class="token string">&apos;\r\n&apos;</span><span class="token punctuation">;</span>
 </code></pre>
 <p>(On an Apple machine running OS X, you would likely want to use <code>LINES TERMINATED BY &apos;\r&apos;</code>.)</p>
 <p>You can specify the column value separator and end of line marker explicitly in the <a href="https://dev.mysql.com/doc/refman/8.0/en/load-data.html" target="_blank"><code>LOAD DATA</code></a> statement if you wish, but the defaults are tab and linefeed. These are sufficient for the statement to read the file <code>pet.txt</code> properly.</p>
 <p>If the statement fails, it is likely that your MySQL installation does not have local file capability enabled by default. See <a href="https://dev.mysql.com/doc/refman/8.0/en/load-data-local.html" target="_blank">Section 6.1.6, &#x201C;Security Issues with LOAD DATA LOCAL&#x201D;</a>, for information on how to change this.</p>
 <p>When you want to add new records one at a time, the <a href="https://dev.mysql.com/doc/refman/8.0/en/insert.html" target="_blank"><code>INSERT</code></a> statement is useful. In its simplest form, you supply values for each column, in the order in which the columns were listed in the <a href="https://dev.mysql.com/doc/refman/8.0/en/create-table.html" target="_blank"><code>CREATE TABLE</code></a> statement. Suppose that Diane gets a new hamster named &#x201C;Puffball&#x201D;. You could add a new record using an <a href="https://dev.mysql.com/doc/refman/8.0/en/insert.html" target="_blank"><code>INSERT</code></a> statement like this:</p>
-<pre><code class="lang-sql">mysql&gt; INSERT INTO pet
-       VALUES (&apos;Puffball&apos;,&apos;Diane&apos;,&apos;hamster&apos;,&apos;f&apos;,&apos;1999-03-30&apos;,NULL);
+<pre class="language-"><code class="lang-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> pet
+       <span class="token keyword">VALUES</span> <span class="token punctuation">(</span><span class="token string">&apos;Puffball&apos;</span><span class="token punctuation">,</span><span class="token string">&apos;Diane&apos;</span><span class="token punctuation">,</span><span class="token string">&apos;hamster&apos;</span><span class="token punctuation">,</span><span class="token string">&apos;f&apos;</span><span class="token punctuation">,</span><span class="token string">&apos;1999-03-30&apos;</span><span class="token punctuation">,</span><span class="token boolean">NULL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <p>String and date values are specified as quoted strings here. Also, with <a href="https://dev.mysql.com/doc/refman/8.0/en/insert.html" target="_blank"><code>INSERT</code></a>, you can insert <code>NULL</code> directly to represent a missing value. You do not use <code>\N</code> like you do with <a href="https://dev.mysql.com/doc/refman/8.0/en/load-data.html" target="_blank"><code>LOAD DATA</code></a>.</p>
 <p>From this example, you should be able to see that there would be a lot more typing involved to load your records initially using several <a href="https://dev.mysql.com/doc/refman/8.0/en/insert.html" target="_blank"><code>INSERT</code></a> statements rather than a single <a href="https://dev.mysql.com/doc/refman/8.0/en/load-data.html" target="_blank"><code>LOAD DATA</code></a> statement.</p>
@@ -852,7 +889,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Loading Data into a Table","level":"1.4.3.3","depth":3,"next":{"title":"Retrieving Information from a Table","level":"1.4.3.4","depth":3,"path":"retrieving-data.md","ref":"retrieving-data.md","articles":[{"title":"Selecting All Data","level":"1.4.3.4.1","depth":4,"path":"selecting-all.md","ref":"selecting-all.md","articles":[]},{"title":"Selecting Particular Rows","level":"1.4.3.4.2","depth":4,"path":"selecting-rows.md","ref":"selecting-rows.md","articles":[]},{"title":"Selecting Particular Columns","level":"1.4.3.4.3","depth":4,"path":"selecting-columns.md","ref":"selecting-columns.md","articles":[]},{"title":"Sorting Rows","level":"1.4.3.4.4","depth":4,"path":"sorting-rows.md","ref":"sorting-rows.md","articles":[]}]},"previous":{"title":"Creating a Table","level":"1.4.3.2","depth":3,"path":"creating-tables.md","ref":"creating-tables.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"en","gitbook":"*"},"file":{"path":"loading-tables.md","mtime":"2019-06-21T15:49:52.580Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-23T00:55:17.505Z"},"basePath":".","book":{"language":"en"}});
+            gitbook.page.hasChanged({"page":{"title":"Loading Data into a Table","level":"1.4.3.3","depth":3,"next":{"title":"Retrieving Information from a Table","level":"1.4.3.4","depth":3,"path":"retrieving-data.md","ref":"retrieving-data.md","articles":[{"title":"Selecting All Data","level":"1.4.3.4.1","depth":4,"path":"selecting-all.md","ref":"selecting-all.md","articles":[]},{"title":"Selecting Particular Rows","level":"1.4.3.4.2","depth":4,"path":"selecting-rows.md","ref":"selecting-rows.md","articles":[]},{"title":"Selecting Particular Columns","level":"1.4.3.4.3","depth":4,"path":"selecting-columns.md","ref":"selecting-columns.md","articles":[]},{"title":"Sorting Rows","level":"1.4.3.4.4","depth":4,"path":"sorting-rows.md","ref":"sorting-rows.md","articles":[]},{"title":"Date Calculationsa","level":"1.4.3.4.5","depth":4,"path":"date-calculations.md","ref":"date-calculations.md","articles":[]}]},"previous":{"title":"Creating a Table","level":"1.4.3.2","depth":3,"path":"creating-tables.md","ref":"creating-tables.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-highlight","-sharing","prism","github","github-buttons","expandable-chapters-small","donate","anchors","edit-link","copy-code-button"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"github":{"url":"https://github.com/mowangjuanzi/mysql-chinese-doc"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"donate":{"alipay":"/assets/alipay.png","alipayText":"支付宝打赏","button":"赏","title":"","wechat":"/assets/wechat.jpg","wechatText":"微信打赏"},"fontsettings":{"theme":"white","family":"sans","size":2},"github-buttons":{"buttons":[{"user":"Blankj","repo":"glory","type":"star","size":"small","count":true}]},"expandable-chapters-small":{},"copy-code-button":{},"edit-link":{"label":"Edit This Page","base":"https://github.com/mowangjuanzi/mysql-chinese-doc/edit/master"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"en","gitbook":"*"},"file":{"path":"loading-tables.md","mtime":"2019-06-24T12:57:20.334Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-24T14:53:30.845Z"},"basePath":".","book":{"language":"en"}});
         });
     </script>
 </div>
@@ -860,6 +897,30 @@
         
     <script src="../gitbook/gitbook.js"></script>
     <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-donate/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-edit-link/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-copy-code-button/toggle.js"></script>
+        
     
         
         <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
@@ -875,10 +936,6 @@
     
         
         <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
         
     
         

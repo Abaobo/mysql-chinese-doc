@@ -17,7 +17,19 @@
     
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-prism/prism.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-donate/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
                 
             
                 
@@ -49,6 +61,7 @@
         
     
     
+    
     <meta name="HandheldFriendly" content="true"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -62,6 +75,17 @@
     
     <link rel="prev" href="linux-installation-docker.html" />
     
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"buttons":[{"user":"Blankj","repo":"glory","type":"star","size":"small","count":true}]};
+    </script>
 
     </head>
     <body>
@@ -363,6 +387,19 @@
             
                     
                     Sorting Rows
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.4.5" data-path="date-calculations.html">
+            
+                <a href="date-calculations.html">
+            
+                    
+                    Date Calculationsa
             
                 </a>
             
@@ -708,12 +745,12 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h4 id="2561-basic-steps-for-mysql-server-deployment-with-docker">2.5.6.1 Basic Steps for MySQL Server Deployment with Docker</h4>
+                                <h4 id="2561-basic-steps-for-mysql-server-deployment-with-docker"><a name="2561-basic-steps-for-mysql-server-deployment-with-docker" class="plugin-anchor" href="#2561-basic-steps-for-mysql-server-deployment-with-docker"><i class="fa fa-link" aria-hidden="true"></i></a>2.5.6.1 Basic Steps for MySQL Server Deployment with Docker</h4>
 <blockquote>
 <p><strong>Warning</strong></p>
 <p>The MySQL Docker images maintained by the MySQL team are built specifically for Linux platforms. Other platforms are not supported, and users using these MySQL Docker images on them are doing so at their own risk. See the <a href="https://dev.mysql.com/doc/refman/8.0/en/deploy-mysql-nonlinux-docker.html" target="_blank">discussion here</a> for some known limitations for running these containers on non-Linux operating systems.</p>
 </blockquote>
-<h5 id="accepting-the-license-agreement-and-logging-in-with-the-docker-client-for-mysql-enterprise-edition">Accepting the License Agreement and Logging in with the Docker Client (for MySQL Enterprise Edition)</h5>
+<h5 id="accepting-the-license-agreement-and-logging-in-with-the-docker-client-for-mysql-enterprise-edition"><a name="accepting-the-license-agreement-and-logging-in-with-the-docker-client-for-mysql-enterprise-edition" class="plugin-anchor" href="#accepting-the-license-agreement-and-logging-in-with-the-docker-client-for-mysql-enterprise-edition"><i class="fa fa-link" aria-hidden="true"></i></a>Accepting the License Agreement and Logging in with the Docker Client (for MySQL Enterprise Edition)</h5>
 <p><em>A subscription is required to use the Docker images for MySQL Enterprise Edition.</em> Subscriptions work by a Bring Your Own License model; see <a href="https://www.mysql.com/buy-mysql/" target="_blank">How to Buy MySQL Products and Services</a> for details. You also need to accept the license agreement and log in to the container repository before downloading the MySQL Enterprise Edition image.</p>
 <p>For downloading from the Oracle Container Registry:</p>
 <ul>
@@ -728,7 +765,7 @@
 <li><p>Log in to the Oracle Container Registry with your Docker client (the <code>docker</code> command). Use the <code>docker login</code> command for the purpose:</p>
 </li>
 </ul>
-<pre><code class="lang-bash"><span class="hljs-comment"># docker login container-registry.oracle.com </span>
+<pre class="language-"><code class="lang-bash"><span class="token comment"># docker login container-registry.oracle.com </span>
 Username: Oracle-Account-ID
 Password: password
 Login successful.
@@ -746,90 +783,90 @@ Login successful.
 <li><p>Log in to the Docker Store with your Docker client (the <code>docker</code> command). Use the <code>docker login</code> command for the purpose:</p>
 </li>
 </ul>
-<pre><code class="lang-bash"><span class="hljs-comment"># docker login</span>
+<pre class="language-"><code class="lang-bash"><span class="token comment"># docker login</span>
 Username: Docker-ID
 Password: password
 Login successful.
 </code></pre>
-<h5 id="downloading-a-mysql-server-docker-image">Downloading a MySQL Server Docker Image</h5>
+<h5 id="downloading-a-mysql-server-docker-image"><a name="downloading-a-mysql-server-docker-image" class="plugin-anchor" href="#downloading-a-mysql-server-docker-image"><i class="fa fa-link" aria-hidden="true"></i></a>Downloading a MySQL Server Docker Image</h5>
 <p>Downloading the server image in a separate step is not strictly necessary; however, performing this step before you create your Docker container ensures your local image is up to date. To download the MySQL Community Edition image, run this command:</p>
-<pre><code class="lang-bash">docker pull mysql/mysql-server:tag
+<pre class="language-"><code class="lang-bash">docker pull mysql/mysql-server:tag
 </code></pre>
 <p>The <code>tag</code> is the label for the image version you want to pull (for example, <code>5.5</code>, <code>5.6</code>, <code>5.7</code>, <code>8.0</code>, or <code>latest</code>). If <code>:tag</code> is omitted, the <code>latest</code> label is used, and the image for the latest GA version of MySQL Community Server is downloaded. Refer to the list of tags for available versions on the <a href="https://hub.docker.com/r/mysql/mysql-server/tags/" target="_blank">mysql/mysql-server page in the Docker Hub</a>.</p>
 <p>You can list downloaded Docker images with this command:</p>
-<pre><code class="lang-bash">shell&gt; docker images
+<pre class="language-"><code class="lang-bash">shell<span class="token operator">&gt;</span> docker images
 REPOSITORY           TAG                 IMAGE ID            CREATED             SIZE
 mysql/mysql-server   latest              3157d7f55f8d        4 weeks ago         241MB
 </code></pre>
 <p>To download the MySQL Enterprise Edition image from the Docker Store, run this command:</p>
-<pre><code class="lang-bash">docker pull  store/oracle/mysql-enterprise-server:tag
+<pre class="language-"><code class="lang-bash">docker pull  store/oracle/mysql-enterprise-server:tag
 </code></pre>
 <p>To download the MySQL Enterprise Edition image from the Oracle Container Registry, run this command:</p>
-<pre><code class="lang-bash">docker pull  container-registry.oracle.com/mysql/enterprise-server:tag
+<pre class="language-"><code class="lang-bash">docker pull  container-registry.oracle.com/mysql/enterprise-server:tag
 </code></pre>
 <p>There are different choices for <code>tag</code>, corresponding to the two versions of MySQL Enterprise Edition Docker images provided by the MySQL team at Oracle:</p>
 <p><code>8.0</code>, <code>8.0.x</code> (<code>x</code> is the latest version number in the 8.0 series): MySQL Enterprise Edition 8.0, the latest GA</p>
 <p><code>5.7</code>, <code>5.7.y</code> (<code>y</code> is the latest version number in the 5.7 series): MySQL Enterprise Edition 5.7</p>
-<h5 id="starting-a-mysql-server-instance">Starting a MySQL Server Instance</h5>
+<h5 id="starting-a-mysql-server-instance"><a name="starting-a-mysql-server-instance" class="plugin-anchor" href="#starting-a-mysql-server-instance"><i class="fa fa-link" aria-hidden="true"></i></a>Starting a MySQL Server Instance</h5>
 <p>Start a new Docker container for the MySQL Community Server with this command:</p>
-<pre><code class="lang-bash">docker run --name=mysql1 <span class="hljs-_">-d</span> mysql/mysql-server:tag
+<pre class="language-"><code class="lang-bash">docker run --name<span class="token operator">=</span>mysql1 -d mysql/mysql-server:tag
 </code></pre>
 <p>Start a new Docker container for the MySQL Enterprise Server with this command, if the Docker image was downloaded from the Oracle Container Registry:</p>
-<pre><code class="lang-bash">docker run --name=mysql1 <span class="hljs-_">-d</span> container-registry.oracle.com/mysql/enterprise-server:tag
+<pre class="language-"><code class="lang-bash">docker run --name<span class="token operator">=</span>mysql1 -d container-registry.oracle.com/mysql/enterprise-server:tag
 </code></pre>
 <p>Start a new Docker container for the MySQL Enterprise Server with this command, if the Docker image was downloaded from the Docker Store:</p>
-<pre><code class="lang-bash">docker run --name=mysql1 <span class="hljs-_">-d</span> store/oracle/mysql-enterprise-server:tag
+<pre class="language-"><code class="lang-bash">docker run --name<span class="token operator">=</span>mysql1 -d store/oracle/mysql-enterprise-server:tag
 </code></pre>
 <p>The <code>--name</code> option, for supplying a custom name for your server container (<code>mysql1</code> in the example), is optional; if no container name is supplied, a random one is generated. If the Docker image of the specified name and tag has not been downloaded by an earlier <code>docker pull</code> or <code>docker run</code> command, the image is now downloaded. After download completes, initialization for the container begins, and the container appears in the list of running containers when you run the <code>docker ps</code> command; for example:</p>
-<pre><code class="lang-bash">shell&gt; docker ps
+<pre class="language-"><code class="lang-bash">shell<span class="token operator">&gt;</span> docker <span class="token function">ps</span>
 CONTAINER ID   IMAGE                COMMAND                  CREATED             STATUS                              PORTS                NAMES
-a24888f0d6f4   mysql/mysql-server   <span class="hljs-string">&quot;/entrypoint.sh my...&quot;</span>   14 seconds ago      Up 13 seconds (health: starting)    3306/tcp, 33060/tcp  mysql1
+a24888f0d6f4   mysql/mysql-server   <span class="token string">&quot;/entrypoint.sh my...&quot;</span>   14 seconds ago      Up 13 seconds <span class="token punctuation">(</span>health: starting<span class="token punctuation">)</span>    3306/tcp, 33060/tcp  mysql1
 </code></pre>
 <p>The container initialization might take some time. When the server is ready for use, the STATUS of the container in the output of the <code>docker ps</code> command changes from <code>(health: starting)</code> to <code>(healthy)</code>.</p>
 <p>The <code>-d</code> option used in the <code>docker run</code> command above makes the container run in the background. Use this command to monitor the output from the container:</p>
-<pre><code class="lang-bash">docker logs mysql1
+<pre class="language-"><code class="lang-bash">docker logs mysql1
 </code></pre>
 <p>Once initialization is finished, the command&apos;s output is going to contain the random password generated for the root user; check the password with, for example, this command:</p>
-<pre><code class="lang-bash">shell&gt; docker logs mysql1 2&gt;&amp;1 | grep GENERATED
-GENERATED ROOT PASSWORD: Axegh3kAJyDLaRuBemecis&amp;EShOs
+<pre class="language-"><code class="lang-bash">shell<span class="token operator">&gt;</span> docker logs mysql1 2<span class="token operator">&gt;</span><span class="token operator">&amp;</span>1 <span class="token operator">|</span> <span class="token function">grep</span> GENERATED
+GENERATED ROOT PASSWORD: Axegh3kAJyDLaRuBemecis<span class="token operator">&amp;</span>EShOs
 </code></pre>
-<h5 id="connecting-to-mysql-server-from-within-the-container">Connecting to MySQL Server from within the Container</h5>
+<h5 id="connecting-to-mysql-server-from-within-the-container"><a name="connecting-to-mysql-server-from-within-the-container" class="plugin-anchor" href="#connecting-to-mysql-server-from-within-the-container"><i class="fa fa-link" aria-hidden="true"></i></a>Connecting to MySQL Server from within the Container</h5>
 <p>Once the server is ready, you can run the <a href="https://dev.mysql.com/doc/refman/8.0/en/mysql.html" target="_blank">mysql</a> client within the MySQL Server container you just started, and connect it to the MySQL Server. Use the <code>docker exec -it</code> command to start a <a href="https://dev.mysql.com/doc/refman/8.0/en/mysql.html" target="_blank">mysql</a> client inside the Docker container you have started, like the following:</p>
-<pre><code class="lang-bash">docker <span class="hljs-built_in">exec</span> -it mysql1 mysql -uroot -p
+<pre class="language-"><code class="lang-bash">docker <span class="token function">exec</span> -it mysql1 mysql -uroot -p
 </code></pre>
 <p>When asked, enter the generated root password (see the last step in <a href="https://dev.mysql.com/doc/refman/8.0/en/docker-mysql-getting-started.html#docker-starting-mysql-server" target="_blank">Starting a MySQL Server Instance</a> above on how to find the password). Because the <a href="https://dev.mysql.com/doc/refman/8.0/en/docker-mysql-more-topics.html#docker_var_mysql_onetime_password" target="_blank"><code>MYSQL_ONETIME_PASSWORD</code></a> option is true by default, after you have connected a <a href="https://dev.mysql.com/doc/refman/8.0/en/mysql.html" target="_blank">mysql</a> client to the server, you must reset the server root password by issuing this statement:</p>
-<pre><code class="lang-bash">mysql&gt; ALTER USER <span class="hljs-string">&apos;root&apos;</span>@<span class="hljs-string">&apos;localhost&apos;</span> IDENTIFIED BY <span class="hljs-string">&apos;password&apos;</span>;
+<pre class="language-"><code class="lang-bash">mysql<span class="token operator">&gt;</span> ALTER USER <span class="token string">&apos;root&apos;</span>@<span class="token string">&apos;localhost&apos;</span> IDENTIFIED BY <span class="token string">&apos;password&apos;</span><span class="token punctuation">;</span>
 </code></pre>
 <p>Substitute <code>password</code> with the password of your choice. Once the password is reset, the server is ready for use.</p>
-<h5 id="container-shell-access">Container Shell Access</h5>
+<h5 id="container-shell-access"><a name="container-shell-access" class="plugin-anchor" href="#container-shell-access"><i class="fa fa-link" aria-hidden="true"></i></a>Container Shell Access</h5>
 <p>To have shell access to your MySQL Server container, use the <code>docker exec -it</code> command to start a bash shell inside the container:</p>
-<pre><code class="lang-bash">shell&gt; docker <span class="hljs-built_in">exec</span> -it mysql1 bash 
-bash-4.2<span class="hljs-comment">#</span>
+<pre class="language-"><code class="lang-bash">shell<span class="token operator">&gt;</span> docker <span class="token function">exec</span> -it mysql1 <span class="token function">bash</span> 
+bash-4.2<span class="token comment">#</span>
 </code></pre>
 <p>You can then run Linux commands inside the container. For example, to view contents in the server&apos;s data directory inside the container, use this command:</p>
-<pre><code class="lang-bash">bash-4.2<span class="hljs-comment"># ls /var/lib/mysql</span>
+<pre class="language-"><code class="lang-bash">bash-4.2<span class="token comment"># ls /var/lib/mysql</span>
 auto.cnf    ca.pem         client-key.pem  ib_logfile0  ibdata1  mysql       mysql.sock.lock       private_key.pem  server-cert.pem  sys
 ca-key.pem  client-cert.pem  ib_buffer_pool  ib_logfile1  ibtmp1   mysql.sock  performance_schema  public_key.pem   server-key.pem
 </code></pre>
-<h5 id="stopping-and-deleting-a-mysql-container">Stopping and Deleting a MySQL Container</h5>
+<h5 id="stopping-and-deleting-a-mysql-container"><a name="stopping-and-deleting-a-mysql-container" class="plugin-anchor" href="#stopping-and-deleting-a-mysql-container"><i class="fa fa-link" aria-hidden="true"></i></a>Stopping and Deleting a MySQL Container</h5>
 <p>To stop the MySQL Server container we have created, use this command:</p>
-<pre><code class="lang-bash">docker stop mysql1
+<pre class="language-"><code class="lang-bash">docker stop mysql1
 </code></pre>
 <p><code>docker stop</code> sends a SIGTERM signal to the <a href="https://dev.mysql.com/doc/refman/8.0/en/mysqld.html" target="_blank">mysqld</a> process, so that the server is shut down gracefully.</p>
 <p>Also notice that when the main process of a container (<a href="https://dev.mysql.com/doc/refman/8.0/en/mysqld.html" target="_blank">mysqld</a> in the case of a MySQL Server container) is stopped, the Docker container stops automatically.</p>
 <p>To start the MySQL Server container again:</p>
-<pre><code class="lang-bash">docker start mysql1
+<pre class="language-"><code class="lang-bash">docker start mysql1
 </code></pre>
 <p>To stop and start again the MySQL Server container with a single command:</p>
-<pre><code class="lang-bash">docker restart mysql1
+<pre class="language-"><code class="lang-bash">docker restart mysql1
 </code></pre>
 <p>To delete the MySQL container, stop it first, and then use the <code>docker rm</code> command:</p>
-<pre><code class="lang-bash">docker stop mysql1
+<pre class="language-"><code class="lang-bash">docker stop mysql1
 </code></pre>
-<pre><code class="lang-bash">docker rm mysql1
+<pre class="language-"><code class="lang-bash">docker <span class="token function">rm</span> mysql1
 </code></pre>
 <p>If you want the <a href="https://dev.mysql.com/doc/refman/8.0/en/docker-mysql-more-topics.html#docker-persisting-data-configuration" target="_blank">Docker volume for the server&apos;s data directory</a> to be deleted at the same time, add the <code>-v</code> option to the <code>docker rm</code> command.</p>
-<h5 id="upgrading-a-mysql-server-container">Upgrading a MySQL Server Container</h5>
+<h5 id="upgrading-a-mysql-server-container"><a name="upgrading-a-mysql-server-container" class="plugin-anchor" href="#upgrading-a-mysql-server-container"><i class="fa fa-link" aria-hidden="true"></i></a>Upgrading a MySQL Server Container</h5>
 <blockquote>
 <p><strong>Important</strong></p>
 <ul>
@@ -841,7 +878,7 @@ ca-key.pem  client-cert.pem  ib_buffer_pool  ib_logfile1  ibtmp1   mysql.sock  p
 <ul>
 <li>Stop the MySQL 5.7 server (container name is mysql57 in this example):</li>
 </ul>
-<pre><code class="lang-bash">docker stop mysql57
+<pre class="language-"><code class="lang-bash">docker stop mysql57
 </code></pre>
 <ul>
 <li><p>Download the MySQL 8.0 Server Docker image. See instructions in <a href="https://dev.mysql.com/doc/refman/8.0/en/docker-mysql-getting-started.html#docker-download-image" target="_blank">Downloading a MySQL Server Docker Image</a>; make sure you use the right tag for MySQL 8.0.</p>
@@ -849,10 +886,10 @@ ca-key.pem  client-cert.pem  ib_buffer_pool  ib_logfile1  ibtmp1   mysql.sock  p
 <li><p>Start a new MySQL 8.0 Docker container (named <code>mysql80</code> in this example) with the old server data and configuration (with proper modifications if needed&#x2014;see <a href="https://dev.mysql.com/doc/refman/8.0/en/upgrading.html" target="_blank">Section 2.11, &#x201C;Upgrading MySQL&#x201D;</a>) that have been persisted on the host (by <a href="https://docs.docker.com/engine/reference/commandline/service_create/#add-bind-mounts-or-volumes" target="_blank">bind-mounting</a> in this example). For the MySQL Community Server, run this command:</p>
 </li>
 </ul>
-<pre><code class="lang-bash">docker run --name=mysql80 \
-   --mount <span class="hljs-built_in">type</span>=<span class="hljs-built_in">bind</span>,src=/path-on-host-machine/my.cnf,dst=/etc/my.cnf \
-   --mount <span class="hljs-built_in">type</span>=<span class="hljs-built_in">bind</span>,src=/path-on-host-machine/datadir,dst=/var/lib/mysql \        
-   <span class="hljs-_">-d</span> mysql/mysql-server:8.0
+<pre class="language-"><code class="lang-bash">docker run --name<span class="token operator">=</span>mysql80 \
+   --mount type<span class="token operator">=</span>bind,src<span class="token operator">=</span>/path-on-host-machine/my.cnf,dst<span class="token operator">=</span>/etc/my.cnf \
+   --mount type<span class="token operator">=</span>bind,src<span class="token operator">=</span>/path-on-host-machine/datadir,dst<span class="token operator">=</span>/var/lib/mysql \        
+   -d mysql/mysql-server:8.0
 </code></pre>
 <p>If needed, adjust <code>mysql/mysql-server</code> to the correct repository name&#x2014;for example, replace it with <code>store/oracle/mysql-enterprise-server</code> for MySQL Enterprise Edition images from the Docker Store, or with <code>container-registry.oracle.com/mysql/enterprise-server</code> for the MySQL Enterprise Edition images from the Oracle Container Registry.</p>
 <ul>
@@ -861,15 +898,15 @@ ca-key.pem  client-cert.pem  ib_buffer_pool  ib_logfile1  ibtmp1   mysql.sock  p
 <li><p><em>For MySQL 8.0.15 and ealrier</em>: Run the <a href="https://dev.mysql.com/doc/refman/8.0/en/mysql-upgrade.html" target="_blank">mysql_upgrade</a> utility in the MySQL 8.0 Server container (not required for MySQL 8.0.16 and later):</p>
 </li>
 </ul>
-<pre><code class="lang-bash">docker <span class="hljs-built_in">exec</span> -it mysql80 mysql_upgrade -uroot -p
+<pre class="language-"><code class="lang-bash">docker <span class="token function">exec</span> -it mysql80 mysql_upgrade -uroot -p
 </code></pre>
 <p>When prompted, enter the root password for your old MySQL 5.7 Server.</p>
 <ul>
 <li>Finish the upgrade by restarting the MySQL 8.0 Server container:</li>
 </ul>
-<pre><code class="lang-bash">docker restart mysql80
+<pre class="language-"><code class="lang-bash">docker restart mysql80
 </code></pre>
-<h5 id="more-topics-on-deploying-mysql-server-with-docker">More Topics on Deploying MySQL Server with Docker</h5>
+<h5 id="more-topics-on-deploying-mysql-server-with-docker"><a name="more-topics-on-deploying-mysql-server-with-docker" class="plugin-anchor" href="#more-topics-on-deploying-mysql-server-with-docker"><i class="fa fa-link" aria-hidden="true"></i></a>More Topics on Deploying MySQL Server with Docker</h5>
 <p>For more topics on deploying MySQL Server with Docker like server configuration, persisting data and configuration, server error log, and container environment variables, see <a href="https://dev.mysql.com/doc/refman/8.0/en/docker-mysql-more-topics.html" target="_blank">Section 2.5.6.2, &#x201C;More Topics on Deploying MySQL Server with Docker&#x201D;</a>.</p>
 
                                 
@@ -914,7 +951,7 @@ ca-key.pem  client-cert.pem  ib_buffer_pool  ib_logfile1  ibtmp1   mysql.sock  p
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Basic Steps for MySQL Server Deployment with Docker","level":"1.3.1.2.1","depth":4,"next":{"title":"More Topics on Deploying MySQL Server with Docker","level":"1.3.1.2.2","depth":4,"path":"docker-mysql-more-topics.md","ref":"docker-mysql-more-topics.md","articles":[]},"previous":{"title":"Deploying MySQL on Linux with Docker","level":"1.3.1.2","depth":3,"path":"linux-installation-docker.md","ref":"linux-installation-docker.md","articles":[{"title":"Basic Steps for MySQL Server Deployment with Docker","level":"1.3.1.2.1","depth":4,"path":"docker-mysql-getting-started.md","ref":"docker-mysql-getting-started.md","articles":[]},{"title":"More Topics on Deploying MySQL Server with Docker","level":"1.3.1.2.2","depth":4,"path":"docker-mysql-more-topics.md","ref":"docker-mysql-more-topics.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"en","gitbook":"*"},"file":{"path":"docker-mysql-getting-started.md","mtime":"2019-06-02T02:45:35.053Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-23T00:55:17.505Z"},"basePath":".","book":{"language":"en"}});
+            gitbook.page.hasChanged({"page":{"title":"Basic Steps for MySQL Server Deployment with Docker","level":"1.3.1.2.1","depth":4,"next":{"title":"More Topics on Deploying MySQL Server with Docker","level":"1.3.1.2.2","depth":4,"path":"docker-mysql-more-topics.md","ref":"docker-mysql-more-topics.md","articles":[]},"previous":{"title":"Deploying MySQL on Linux with Docker","level":"1.3.1.2","depth":3,"path":"linux-installation-docker.md","ref":"linux-installation-docker.md","articles":[{"title":"Basic Steps for MySQL Server Deployment with Docker","level":"1.3.1.2.1","depth":4,"path":"docker-mysql-getting-started.md","ref":"docker-mysql-getting-started.md","articles":[]},{"title":"More Topics on Deploying MySQL Server with Docker","level":"1.3.1.2.2","depth":4,"path":"docker-mysql-more-topics.md","ref":"docker-mysql-more-topics.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-highlight","-sharing","prism","github","github-buttons","expandable-chapters-small","donate","anchors","edit-link","copy-code-button"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"github":{"url":"https://github.com/mowangjuanzi/mysql-chinese-doc"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"donate":{"alipay":"/assets/alipay.png","alipayText":"支付宝打赏","button":"赏","title":"","wechat":"/assets/wechat.jpg","wechatText":"微信打赏"},"fontsettings":{"theme":"white","family":"sans","size":2},"github-buttons":{"buttons":[{"user":"Blankj","repo":"glory","type":"star","size":"small","count":true}]},"expandable-chapters-small":{},"copy-code-button":{},"edit-link":{"label":"Edit This Page","base":"https://github.com/mowangjuanzi/mysql-chinese-doc/edit/master"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"en","gitbook":"*"},"file":{"path":"docker-mysql-getting-started.md","mtime":"2019-06-24T12:57:20.330Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-24T14:53:30.845Z"},"basePath":".","book":{"language":"en"}});
         });
     </script>
 </div>
@@ -922,6 +959,30 @@ ca-key.pem  client-cert.pem  ib_buffer_pool  ib_logfile1  ibtmp1   mysql.sock  p
         
     <script src="../gitbook/gitbook.js"></script>
     <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-donate/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-edit-link/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-copy-code-button/toggle.js"></script>
+        
     
         
         <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
@@ -937,10 +998,6 @@ ca-key.pem  client-cert.pem  ib_buffer_pool  ib_logfile1  ibtmp1   mysql.sock  p
     
         
         <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
         
     
         
