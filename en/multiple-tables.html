@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Optimization and Indexes · GitBook</title>
+        <title>Using More Than one Table · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -70,10 +70,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="optimizing-database-structure.html" />
+    <link rel="next" href="examples.html" />
     
     
-    <link rel="prev" href="statement-optimization.html" />
+    <link rel="prev" href="counting-rows.html" />
     
 
     <style>
@@ -446,7 +446,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.3.4.9" data-path="multiple-tables.html">
+        <li class="chapter active" data-level="1.4.3.4.9" data-path="multiple-tables.html">
             
                 <a href="multiple-tables.html">
             
@@ -591,7 +591,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.6.3" data-path="optimization-indexes.html">
+        <li class="chapter " data-level="1.6.3" data-path="optimization-indexes.html">
             
                 <a href="optimization-indexes.html">
             
@@ -782,7 +782,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >Optimization and Indexes</a>
+        <a href="." >Using More Than one Table</a>
     </h1>
 </div>
 
@@ -797,9 +797,139 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h2 id="83-optimization-and-indexes"><a name="83-optimization-and-indexes" class="plugin-anchor" href="#83-optimization-and-indexes"><i class="fa fa-link" aria-hidden="true"></i></a>8.3 Optimization and Indexes</h2>
-<p>The best way to improve the performance of <a href="https://dev.mysql.com/doc/refman/8.0/en/select.html" target="_blank"><code>SELECT</code></a> operations is to create indexes on one or more of the columns that are tested in the query. The index entries act like pointers to the table rows, allowing the query to quickly determine which rows match a condition in the <code>WHERE</code> clause, and retrieve the other column values for those rows. All MySQL data types can be indexed.</p>
-<p>Although it can be tempting to create an indexes for every possible column used in a query, unnecessary indexes waste space and waste time for MySQL to determine which indexes to use. Indexes also add to the cost of inserts, updates, and deletes because each index must be updated. You must find the right balance to achieve fast queries using the optimal set of indexes. </p>
+                                <h4 id="3349-&#x4F7F;&#x7528;&#x591A;&#x4E2A;&#x8868;"><a name="3349-&#x4F7F;&#x7528;&#x591A;&#x4E2A;&#x8868;" class="plugin-anchor" href="#3349-&#x4F7F;&#x7528;&#x591A;&#x4E2A;&#x8868;"><i class="fa fa-link" aria-hidden="true"></i></a>3.3.4.9 &#x4F7F;&#x7528;&#x591A;&#x4E2A;&#x8868;</h4>
+<p>The <code>pet</code> table keeps track of which pets you have. If you want to record other information about them, such as events in their lives like visits to the vet or when litters are born, you need another table. What should this table look like? It needs to contain the following information:</p>
+<ul>
+<li><p>The pet name so that you know which animal each event pertains to.</p>
+</li>
+<li><p>A date so that you know when the event occurred.</p>
+</li>
+<li><p>A field to describe the event.</p>
+</li>
+<li><p>An event type field, if you want to be able to categorize events.</p>
+</li>
+</ul>
+<p>Given these considerations, the <a href="https://dev.mysql.com/doc/refman/8.0/en/create-table.html" target="_blank"><code>CREATE TABLE</code></a> statement for the <code>event</code> table might look like this:</p>
+<pre class="language-"><code class="lang-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> event <span class="token punctuation">(</span>name <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword">date</span> <span class="token keyword">DATE</span><span class="token punctuation">,</span>
+       <span class="token keyword">type</span> <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">15</span><span class="token punctuation">)</span><span class="token punctuation">,</span> remark <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>As with the <code>pet</code> table, it is easiest to load the initial records by creating a tab-delimited text file containing the following information.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">name</th>
+<th style="text-align:center">date</th>
+<th style="text-align:center">type</th>
+<th style="text-align:center">remark</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Fluffy</td>
+<td style="text-align:center">1995-05-15</td>
+<td style="text-align:center">litter</td>
+<td style="text-align:center">4 kittens, 3 female, 1 male</td>
+</tr>
+<tr>
+<td style="text-align:center">Buffy</td>
+<td style="text-align:center">1993-06-23</td>
+<td style="text-align:center">litter</td>
+<td style="text-align:center">5 puppies, 2 female, 3 male</td>
+</tr>
+<tr>
+<td style="text-align:center">Buffy</td>
+<td style="text-align:center">1994-06-19</td>
+<td style="text-align:center">litter</td>
+<td style="text-align:center">3 puppies, 3 female</td>
+</tr>
+<tr>
+<td style="text-align:center">Chirpy</td>
+<td style="text-align:center">1999-03-21</td>
+<td style="text-align:center">vet</td>
+<td style="text-align:center">needed beak straightened</td>
+</tr>
+<tr>
+<td style="text-align:center">Slim</td>
+<td style="text-align:center">1997-08-03</td>
+<td style="text-align:center">vet</td>
+<td style="text-align:center">broken rib</td>
+</tr>
+<tr>
+<td style="text-align:center">Bowser</td>
+<td style="text-align:center">1991-10-12</td>
+<td style="text-align:center">kennel</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">Fang</td>
+<td style="text-align:center">1991-10-12</td>
+<td style="text-align:center">kennel</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">Fang</td>
+<td style="text-align:center">1998-08-28</td>
+<td style="text-align:center">birthday</td>
+<td style="text-align:center">Gave him a new chew toy</td>
+</tr>
+<tr>
+<td style="text-align:center">Claws</td>
+<td style="text-align:center">1998-03-17</td>
+<td style="text-align:center">birthday</td>
+<td style="text-align:center">Gave him a new flea collar</td>
+</tr>
+<tr>
+<td style="text-align:center">Whistler</td>
+<td style="text-align:center">1998-12-09</td>
+<td style="text-align:center">birthday</td>
+<td style="text-align:center">First birthday</td>
+</tr>
+</tbody>
+</table>
+<p>Load the records like this:</p>
+<pre class="language-"><code class="lang-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">LOAD</span> <span class="token keyword">DATA</span> <span class="token keyword">LOCAL</span> <span class="token keyword">INFILE</span> <span class="token string">&apos;event.txt&apos;</span> <span class="token keyword">INTO</span> <span class="token keyword">TABLE</span> event<span class="token punctuation">;</span>
+</code></pre>
+<p>Based on what you have learned from the queries that you have run on the <code>pet</code> table, you should be able to perform retrievals on the records in the <code>event</code> table; the principles are the same. But when is the <code>event</code> table by itself insufficient to answer questions you might ask?</p>
+<p>Suppose that you want to find out the ages at which each pet had its litters. We saw earlier how to calculate ages from two dates. The litter date of the mother is in the <code>event</code> table, but to calculate her age on that date you need her birth date, which is stored in the <code>pet</code> table. This means the query requires both tables:</p>
+<pre class="language-"><code class="lang-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> pet<span class="token punctuation">.</span>name<span class="token punctuation">,</span>
+       TIMESTAMPDIFF<span class="token punctuation">(</span><span class="token keyword">YEAR</span><span class="token punctuation">,</span>birth<span class="token punctuation">,</span><span class="token keyword">date</span><span class="token punctuation">)</span> <span class="token keyword">AS</span> age<span class="token punctuation">,</span>
+       remark
+       <span class="token keyword">FROM</span> pet <span class="token keyword">INNER</span> <span class="token keyword">JOIN</span> event
+         <span class="token keyword">ON</span> pet<span class="token punctuation">.</span>name <span class="token operator">=</span> event<span class="token punctuation">.</span>name
+       <span class="token keyword">WHERE</span> event<span class="token punctuation">.</span><span class="token keyword">type</span> <span class="token operator">=</span> <span class="token string">&apos;litter&apos;</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">--------+------+-----------------------------+</span>
+<span class="token operator">|</span> name   <span class="token operator">|</span> age  <span class="token operator">|</span> remark                      <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">--------+------+-----------------------------+</span>
+<span class="token operator">|</span> Fluffy <span class="token operator">|</span>    <span class="token number">2</span> <span class="token operator">|</span> <span class="token number">4</span> kittens<span class="token punctuation">,</span> <span class="token number">3</span> female<span class="token punctuation">,</span> <span class="token number">1</span> male <span class="token operator">|</span>
+<span class="token operator">|</span> Buffy  <span class="token operator">|</span>    <span class="token number">4</span> <span class="token operator">|</span> <span class="token number">5</span> puppies<span class="token punctuation">,</span> <span class="token number">2</span> female<span class="token punctuation">,</span> <span class="token number">3</span> male <span class="token operator">|</span>
+<span class="token operator">|</span> Buffy  <span class="token operator">|</span>    <span class="token number">5</span> <span class="token operator">|</span> <span class="token number">3</span> puppies<span class="token punctuation">,</span> <span class="token number">3</span> female         <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">--------+------+-----------------------------+</span>
+</code></pre>
+<p>There are several things to note about this query:</p>
+<ul>
+<li><p>The <code>FROM</code> clause joins two tables because the query needs to pull information from both of them.</p>
+</li>
+<li><p>When combining (<code>joining</code>) information from multiple tables, you need to specify how records in one table can be matched to records in the other. This is easy because they both have a <code>name</code> column. The query uses an <code>ON</code> clause to match up records in the two tables based on the <code>name</code> values.</p>
+</li>
+</ul>
+<p>The query uses an <code>INNER JOIN</code> to combine the tables. An <code>INNER JOIN</code> permits rows from either table to appear in the result if and only if both tables meet the conditions specified in the <code>ON</code> clause. In this example, the <code>ON</code> clause specifies that the <code>name</code> column in the <code>pet</code> table must match the <code>name</code> column in the <code>event</code> table. If a name appears in one table but not the other, the row will not appear in the result because the condition in the <code>ON</code> clause fails.</p>
+<ul>
+<li>Because the <code>name</code> column occurs in both tables, you must be specific about which table you mean when referring to the column. This is done by prepending the table name to the column name.</li>
+</ul>
+<p>You need not have two different tables to perform a join. Sometimes it is useful to join a table to itself, if you want to compare records in a table to other records in that same table. For example, to find breeding pairs among your pets, you can join the <code>pet</code> table with itself to produce candidate pairs of live males and females of like species:</p>
+<pre class="language-"><code class="lang-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> p1<span class="token punctuation">.</span>name<span class="token punctuation">,</span> p1<span class="token punctuation">.</span>sex<span class="token punctuation">,</span> p2<span class="token punctuation">.</span>name<span class="token punctuation">,</span> p2<span class="token punctuation">.</span>sex<span class="token punctuation">,</span> p1<span class="token punctuation">.</span>species
+       <span class="token keyword">FROM</span> pet <span class="token keyword">AS</span> p1 <span class="token keyword">INNER</span> <span class="token keyword">JOIN</span> pet <span class="token keyword">AS</span> p2
+         <span class="token keyword">ON</span> p1<span class="token punctuation">.</span>species <span class="token operator">=</span> p2<span class="token punctuation">.</span>species
+         <span class="token operator">AND</span> p1<span class="token punctuation">.</span>sex <span class="token operator">=</span> <span class="token string">&apos;f&apos;</span> <span class="token operator">AND</span> p1<span class="token punctuation">.</span>death <span class="token operator">IS</span> <span class="token boolean">NULL</span>
+         <span class="token operator">AND</span> p2<span class="token punctuation">.</span>sex <span class="token operator">=</span> <span class="token string">&apos;m&apos;</span> <span class="token operator">AND</span> p2<span class="token punctuation">.</span>death <span class="token operator">IS</span> <span class="token boolean">NULL</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">--------+------+-------+------+---------+</span>
+<span class="token operator">|</span> name   <span class="token operator">|</span> sex  <span class="token operator">|</span> name  <span class="token operator">|</span> sex  <span class="token operator">|</span> species <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">--------+------+-------+------+---------+</span>
+<span class="token operator">|</span> Fluffy <span class="token operator">|</span> f    <span class="token operator">|</span> Claws <span class="token operator">|</span> m    <span class="token operator">|</span> cat     <span class="token operator">|</span>
+<span class="token operator">|</span> Buffy  <span class="token operator">|</span> f    <span class="token operator">|</span> Fang  <span class="token operator">|</span> m    <span class="token operator">|</span> dog     <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">--------+------+-------+------+---------+</span>
+</code></pre>
+<p>In this query, we specify aliases for the table name to refer to the columns and keep straight which instance of the table each column reference is associated with.</p>
 
                                 
                                 </section>
@@ -827,12 +957,12 @@
 
             
                 
-                <a href="statement-optimization.html" class="navigation navigation-prev " aria-label="Previous page: Optimizing SQL Statements">
+                <a href="counting-rows.html" class="navigation navigation-prev " aria-label="Previous page: Counting Rows">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="optimizing-database-structure.html" class="navigation navigation-next " aria-label="Next page: Optimizing Database Structure">
+                <a href="examples.html" class="navigation navigation-next " aria-label="Next page: Examples of Common Queries">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -843,7 +973,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Optimization and Indexes","level":"1.6.3","depth":2,"next":{"title":"Optimizing Database Structure","level":"1.6.4","depth":2,"path":"optimizing-database-structure.md","ref":"optimizing-database-structure.md","articles":[]},"previous":{"title":"Optimizing SQL Statements","level":"1.6.2","depth":2,"path":"statement-optimization.md","ref":"statement-optimization.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-highlight","-sharing","prism","github","github-buttons","expandable-chapters-small","donate","anchors","edit-link","copy-code-button"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"github":{"url":"https://github.com/mowangjuanzi/mysql-chinese-doc"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"donate":{"alipay":"/assets/alipay.png","alipayText":"支付宝打赏","button":"赏","title":"","wechat":"/assets/wechat.jpg","wechatText":"微信打赏"},"fontsettings":{"theme":"white","family":"sans","size":2},"github-buttons":{"buttons":[{"user":"mowangjuanzi","repo":"mysql-chinese-doc","type":"star","size":"small","count":true}]},"expandable-chapters-small":{},"copy-code-button":{},"edit-link":{"label":"Edit This Page","base":"https://github.com/mowangjuanzi/mysql-chinese-doc/edit/master"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"en","gitbook":"*"},"file":{"path":"optimization-indexes.md","mtime":"2019-06-24T12:57:20.334Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-29T06:51:17.623Z"},"basePath":".","book":{"language":"en"}});
+            gitbook.page.hasChanged({"page":{"title":"Using More Than one Table","level":"1.4.3.4.9","depth":4,"next":{"title":"Examples of Common Queries","level":"1.4.4","depth":2,"path":"examples.md","ref":"examples.md","articles":[]},"previous":{"title":"Counting Rows","level":"1.4.3.4.8","depth":4,"path":"counting-rows.md","ref":"counting-rows.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-highlight","-sharing","prism","github","github-buttons","expandable-chapters-small","donate","anchors","edit-link","copy-code-button"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"github":{"url":"https://github.com/mowangjuanzi/mysql-chinese-doc"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"donate":{"alipay":"/assets/alipay.png","alipayText":"支付宝打赏","button":"赏","title":"","wechat":"/assets/wechat.jpg","wechatText":"微信打赏"},"fontsettings":{"theme":"white","family":"sans","size":2},"github-buttons":{"buttons":[{"user":"mowangjuanzi","repo":"mysql-chinese-doc","type":"star","size":"small","count":true}]},"expandable-chapters-small":{},"copy-code-button":{},"edit-link":{"label":"Edit This Page","base":"https://github.com/mowangjuanzi/mysql-chinese-doc/edit/master"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"en","gitbook":"*"},"file":{"path":"multiple-tables.md","mtime":"2019-06-27T03:37:37.875Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-29T06:51:17.623Z"},"basePath":".","book":{"language":"en"}});
         });
     </script>
 </div>

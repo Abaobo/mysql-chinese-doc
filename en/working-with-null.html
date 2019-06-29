@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Optimization and Indexes · GitBook</title>
+        <title>Working with NULL Values · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -70,10 +70,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="optimizing-database-structure.html" />
+    <link rel="next" href="pattern-matching.html" />
     
     
-    <link rel="prev" href="statement-optimization.html" />
+    <link rel="prev" href="date-calculations.html" />
     
 
     <style>
@@ -407,7 +407,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.3.4.6" data-path="working-with-null.html">
+        <li class="chapter active" data-level="1.4.3.4.6" data-path="working-with-null.html">
             
                 <a href="working-with-null.html">
             
@@ -591,7 +591,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.6.3" data-path="optimization-indexes.html">
+        <li class="chapter " data-level="1.6.3" data-path="optimization-indexes.html">
             
                 <a href="optimization-indexes.html">
             
@@ -782,7 +782,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >Optimization and Indexes</a>
+        <a href="." >Working with NULL Values</a>
     </h1>
 </div>
 
@@ -797,9 +797,38 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h2 id="83-optimization-and-indexes"><a name="83-optimization-and-indexes" class="plugin-anchor" href="#83-optimization-and-indexes"><i class="fa fa-link" aria-hidden="true"></i></a>8.3 Optimization and Indexes</h2>
-<p>The best way to improve the performance of <a href="https://dev.mysql.com/doc/refman/8.0/en/select.html" target="_blank"><code>SELECT</code></a> operations is to create indexes on one or more of the columns that are tested in the query. The index entries act like pointers to the table rows, allowing the query to quickly determine which rows match a condition in the <code>WHERE</code> clause, and retrieve the other column values for those rows. All MySQL data types can be indexed.</p>
-<p>Although it can be tempting to create an indexes for every possible column used in a query, unnecessary indexes waste space and waste time for MySQL to determine which indexes to use. Indexes also add to the cost of inserts, updates, and deletes because each index must be updated. You must find the right balance to achieve fast queries using the optimal set of indexes. </p>
+                                <h4 id="3346-working-with-null-values"><a name="3346-working-with-null-values" class="plugin-anchor" href="#3346-working-with-null-values"><i class="fa fa-link" aria-hidden="true"></i></a>3.3.4.6 Working with NULL Values</h4>
+<p>The <code>NULL</code> value can be surprising until you get used to it. Conceptually, <code>NULL</code> means &#x201C;a missing unknown value&#x201D; and it is treated somewhat differently from other values.</p>
+<p>To test for <code>NULL</code>, use the <a href="https://dev.mysql.com/doc/refman/8.0/en/comparison-operators.html#operator_is-null" target="_blank"><code>IS NULL</code></a> and <a href="https://dev.mysql.com/doc/refman/8.0/en/comparison-operators.html#operator_is-not-null" target="_blank"><code>IS NOT NULL</code></a> operators, as shown here:</p>
+<pre class="language-"><code class="lang-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> <span class="token number">1</span> <span class="token operator">IS</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span> <span class="token number">1</span> <span class="token operator">IS</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">-----------+---------------+</span>
+<span class="token operator">|</span> <span class="token number">1</span> <span class="token operator">IS</span> <span class="token boolean">NULL</span> <span class="token operator">|</span> <span class="token number">1</span> <span class="token operator">IS</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-----------+---------------+</span>
+<span class="token operator">|</span>         <span class="token number">0</span> <span class="token operator">|</span>             <span class="token number">1</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-----------+---------------+</span>
+</code></pre>
+<p>You cannot use arithmetic comparison operators such as <a href="https://dev.mysql.com/doc/refman/8.0/en/comparison-operators.html#operator_equal" target="_blank"><code>=</code></a>, <a href="https://dev.mysql.com/doc/refman/8.0/en/comparison-operators.html#operator_less-than" target="_blank"><code>&lt;</code></a>, or <a href="https://dev.mysql.com/doc/refman/8.0/en/comparison-operators.html#operator_not-equal" target="_blank"><code>&lt;&gt;</code></a> to test for <code>NULL</code>. To demonstrate this for yourself, try the following query:</p>
+<pre class="language-"><code class="lang-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> <span class="token number">1</span> <span class="token operator">=</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span> <span class="token number">1</span> <span class="token operator">&lt;&gt;</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span> <span class="token number">1</span> <span class="token operator">&lt;</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span> <span class="token number">1</span> <span class="token operator">&gt;</span> <span class="token boolean">NULL</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">----------+-----------+----------+----------+</span>
+<span class="token operator">|</span> <span class="token number">1</span> <span class="token operator">=</span> <span class="token boolean">NULL</span> <span class="token operator">|</span> <span class="token number">1</span> <span class="token operator">&lt;&gt;</span> <span class="token boolean">NULL</span> <span class="token operator">|</span> <span class="token number">1</span> <span class="token operator">&lt;</span> <span class="token boolean">NULL</span> <span class="token operator">|</span> <span class="token number">1</span> <span class="token operator">&gt;</span> <span class="token boolean">NULL</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----------+-----------+----------+----------+</span>
+<span class="token operator">|</span>     <span class="token boolean">NULL</span> <span class="token operator">|</span>      <span class="token boolean">NULL</span> <span class="token operator">|</span>     <span class="token boolean">NULL</span> <span class="token operator">|</span>     <span class="token boolean">NULL</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----------+-----------+----------+----------+</span>
+</code></pre>
+<p>Because the result of any arithmetic comparison with <code>NULL</code> is also <code>NULL</code>, you cannot obtain any meaningful results from such comparisons.</p>
+<p>In MySQL, <code>0</code> or <code>NULL</code> means false and anything else means true. The default truth value from a boolean operation is <code>1</code>.</p>
+<p>This special treatment of <code>NULL</code> is why, in the previous section, it was necessary to determine which animals are no longer alive using <code>death IS NOT NULL</code> instead of <code>death &lt;&gt; NULL</code>.</p>
+<p>Two <code>NULL</code> values are regarded as equal in a <code>GROUP BY</code>.</p>
+<p>When doing an <code>ORDER BY</code>, <code>NULL</code> values are presented first if you do <code>ORDER BY ... ASC</code> and last if you do <code>ORDER BY ... DESC</code>.</p>
+<p>A common error when working with <code>NULL</code> is to assume that it is not possible to insert a zero or an empty string into a column defined as <code>NOT NULL</code>, but this is not the case. These are in fact values, whereas <code>NULL</code> means &#x201C;not having a value.&#x201D; You can test this easily enough by using <code>IS NOT NULL</code> as shown:</p>
+<pre class="language-"><code class="lang-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> <span class="token number">0</span> <span class="token operator">IS</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span> <span class="token number">0</span> <span class="token operator">IS</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span> <span class="token string">&apos;&apos;</span> <span class="token operator">IS</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span> <span class="token string">&apos;&apos;</span> <span class="token operator">IS</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">-----------+---------------+------------+----------------+</span>
+<span class="token operator">|</span> <span class="token number">0</span> <span class="token operator">IS</span> <span class="token boolean">NULL</span> <span class="token operator">|</span> <span class="token number">0</span> <span class="token operator">IS</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token operator">|</span> <span class="token string">&apos;&apos;</span> <span class="token operator">IS</span> <span class="token boolean">NULL</span> <span class="token operator">|</span> <span class="token string">&apos;&apos;</span> <span class="token operator">IS</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-----------+---------------+------------+----------------+</span>
+<span class="token operator">|</span>         <span class="token number">0</span> <span class="token operator">|</span>             <span class="token number">1</span> <span class="token operator">|</span>          <span class="token number">0</span> <span class="token operator">|</span>              <span class="token number">1</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-----------+---------------+------------+----------------+</span>
+</code></pre>
+<p>Thus it is entirely possible to insert a zero or empty string into a <code>NOT NULL</code> column, as these are in fact <code>NOT NULL</code>. See <a href="https://dev.mysql.com/doc/refman/8.0/en/problems-with-null.html" target="_blank"><code>Section B.4.4.3, &#x201C;Problems with NULL Values&#x201D;</code></a>.</p>
 
                                 
                                 </section>
@@ -827,12 +856,12 @@
 
             
                 
-                <a href="statement-optimization.html" class="navigation navigation-prev " aria-label="Previous page: Optimizing SQL Statements">
+                <a href="date-calculations.html" class="navigation navigation-prev " aria-label="Previous page: Date Calculationsa">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="optimizing-database-structure.html" class="navigation navigation-next " aria-label="Next page: Optimizing Database Structure">
+                <a href="pattern-matching.html" class="navigation navigation-next " aria-label="Next page: Pattern Matching">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -843,7 +872,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Optimization and Indexes","level":"1.6.3","depth":2,"next":{"title":"Optimizing Database Structure","level":"1.6.4","depth":2,"path":"optimizing-database-structure.md","ref":"optimizing-database-structure.md","articles":[]},"previous":{"title":"Optimizing SQL Statements","level":"1.6.2","depth":2,"path":"statement-optimization.md","ref":"statement-optimization.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-highlight","-sharing","prism","github","github-buttons","expandable-chapters-small","donate","anchors","edit-link","copy-code-button"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"github":{"url":"https://github.com/mowangjuanzi/mysql-chinese-doc"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"donate":{"alipay":"/assets/alipay.png","alipayText":"支付宝打赏","button":"赏","title":"","wechat":"/assets/wechat.jpg","wechatText":"微信打赏"},"fontsettings":{"theme":"white","family":"sans","size":2},"github-buttons":{"buttons":[{"user":"mowangjuanzi","repo":"mysql-chinese-doc","type":"star","size":"small","count":true}]},"expandable-chapters-small":{},"copy-code-button":{},"edit-link":{"label":"Edit This Page","base":"https://github.com/mowangjuanzi/mysql-chinese-doc/edit/master"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"en","gitbook":"*"},"file":{"path":"optimization-indexes.md","mtime":"2019-06-24T12:57:20.334Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-29T06:51:17.623Z"},"basePath":".","book":{"language":"en"}});
+            gitbook.page.hasChanged({"page":{"title":"Working with NULL Values","level":"1.4.3.4.6","depth":4,"next":{"title":"Pattern Matching","level":"1.4.3.4.7","depth":4,"path":"pattern-matching.md","ref":"pattern-matching.md","articles":[]},"previous":{"title":"Date Calculationsa","level":"1.4.3.4.5","depth":4,"path":"date-calculations.md","ref":"date-calculations.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-highlight","-sharing","prism","github","github-buttons","expandable-chapters-small","donate","anchors","edit-link","copy-code-button"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"github":{"url":"https://github.com/mowangjuanzi/mysql-chinese-doc"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"donate":{"alipay":"/assets/alipay.png","alipayText":"支付宝打赏","button":"赏","title":"","wechat":"/assets/wechat.jpg","wechatText":"微信打赏"},"fontsettings":{"theme":"white","family":"sans","size":2},"github-buttons":{"buttons":[{"user":"mowangjuanzi","repo":"mysql-chinese-doc","type":"star","size":"small","count":true}]},"expandable-chapters-small":{},"copy-code-button":{},"edit-link":{"label":"Edit This Page","base":"https://github.com/mowangjuanzi/mysql-chinese-doc/edit/master"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"en","gitbook":"*"},"file":{"path":"working-with-null.md","mtime":"2019-06-26T11:42:42.580Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-29T06:51:17.623Z"},"basePath":".","book":{"language":"en"}});
         });
     </script>
 </div>

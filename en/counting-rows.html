@@ -1,0 +1,1011 @@
+
+<!DOCTYPE HTML>
+<html lang="en" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Counting Rows · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-prism/prism.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-donate/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="multiple-tables.html" />
+    
+    
+    <link rel="prev" href="pattern-matching.html" />
+    
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"buttons":[{"user":"mowangjuanzi","repo":"mysql-chinese-doc","type":"star","size":"small","count":true}]};
+    </script>
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="preface.html">
+            
+                <a href="preface.html">
+            
+                    
+                    Preface and Legal Notices
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="installing.html">
+            
+                <a href="installing.html">
+            
+                    
+                    Installing and Upgrading MySQL
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="linux-installation.html">
+            
+                <a href="linux-installation.html">
+            
+                    
+                    Installing MySQL on Linux
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1.1" data-path="linux-installation-apt-repo.html">
+            
+                <a href="linux-installation-apt-repo.html">
+            
+                    
+                    Installing MySQL on Linux Using the MySQL APT Repository
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.2" data-path="linux-installation-docker.html">
+            
+                <a href="linux-installation-docker.html">
+            
+                    
+                    Deploying MySQL on Linux with Docker
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1.2.1" data-path="docker-mysql-getting-started.html">
+            
+                <a href="docker-mysql-getting-started.html">
+            
+                    
+                    Basic Steps for MySQL Server Deployment with Docker
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.2.2" data-path="docker-mysql-more-topics.html">
+            
+                <a href="docker-mysql-more-topics.html">
+            
+                    
+                    More Topics on Deploying MySQL Server with Docker
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="tutorial.html">
+            
+                <a href="tutorial.html">
+            
+                    
+                    Tutorial
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="connecting-disconnecting.html">
+            
+                <a href="connecting-disconnecting.html">
+            
+                    
+                    Connecting to and Disconnecting from the Server
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="entering-queries.html">
+            
+                <a href="entering-queries.html">
+            
+                    
+                    Entering Queries
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="database-use.html">
+            
+                <a href="database-use.html">
+            
+                    
+                    Creating and Using a Database
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.3.1" data-path="creating-database.html">
+            
+                <a href="creating-database.html">
+            
+                    
+                    Creating and Selecting a Database
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.2" data-path="creating-tables.html">
+            
+                <a href="creating-tables.html">
+            
+                    
+                    Creating a Table
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.3" data-path="loading-tables.html">
+            
+                <a href="loading-tables.html">
+            
+                    
+                    Loading Data into a Table
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.4" data-path="retrieving-data.html">
+            
+                <a href="retrieving-data.html">
+            
+                    
+                    Retrieving Information from a Table
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.3.4.1" data-path="selecting-all.html">
+            
+                <a href="selecting-all.html">
+            
+                    
+                    Selecting All Data
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.4.2" data-path="selecting-rows.html">
+            
+                <a href="selecting-rows.html">
+            
+                    
+                    Selecting Particular Rows
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.4.3" data-path="selecting-columns.html">
+            
+                <a href="selecting-columns.html">
+            
+                    
+                    Selecting Particular Columns
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.4.4" data-path="sorting-rows.html">
+            
+                <a href="sorting-rows.html">
+            
+                    
+                    Sorting Rows
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.4.5" data-path="date-calculations.html">
+            
+                <a href="date-calculations.html">
+            
+                    
+                    Date Calculationsa
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.4.6" data-path="working-with-null.html">
+            
+                <a href="working-with-null.html">
+            
+                    
+                    Working with NULL Values
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.4.7" data-path="pattern-matching.html">
+            
+                <a href="pattern-matching.html">
+            
+                    
+                    Pattern Matching
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.4.3.4.8" data-path="counting-rows.html">
+            
+                <a href="counting-rows.html">
+            
+                    
+                    Counting Rows
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.4.9" data-path="multiple-tables.html">
+            
+                <a href="multiple-tables.html">
+            
+                    
+                    Using More Than one Table
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="examples.html">
+            
+                <a href="examples.html">
+            
+                    
+                    Examples of Common Queries
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="apache.html">
+            
+                <a href="apache.html">
+            
+                    
+                    Using MySQL with Apache
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="programs.html">
+            
+                <a href="programs.html">
+            
+                    
+                    MySQL Programs
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="programs-client.html">
+            
+                <a href="programs-client.html">
+            
+                    
+                    MySQL Client Programs
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1.1" data-path="mysql.html">
+            
+                <a href="mysql.html">
+            
+                    
+                    mysql — The MySQL Command-Line Client
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="optimization.html">
+            
+                <a href="optimization.html">
+            
+                    
+                    Optimization
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="optimize-overview.html">
+            
+                <a href="optimize-overview.html">
+            
+                    
+                    Optimization Overview
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="statement-optimization.html">
+            
+                <a href="statement-optimization.html">
+            
+                    
+                    Optimizing SQL Statements
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="optimization-indexes.html">
+            
+                <a href="optimization-indexes.html">
+            
+                    
+                    Optimization and Indexes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4" data-path="optimizing-database-structure.html">
+            
+                <a href="optimizing-database-structure.html">
+            
+                    
+                    Optimizing Database Structure
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.5" data-path="optimizing-innodb.html">
+            
+                <a href="optimizing-innodb.html">
+            
+                    
+                    Optimizing for InnoDB Tables
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.6" data-path="optimizing-myisam.html">
+            
+                <a href="optimizing-myisam.html">
+            
+                    
+                    Optimizing for MyISAM Tables
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.7" data-path="optimizing-memory-tables.html">
+            
+                <a href="optimizing-memory-tables.html">
+            
+                    
+                    Optimizing for MEMORY Tables
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.8" data-path="execution-plan-information.html">
+            
+                <a href="execution-plan-information.html">
+            
+                    
+                    Understanding the Query Execution Plan
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.9" data-path="controlling-optimizer.html">
+            
+                <a href="controlling-optimizer.html">
+            
+                    
+                    Controlling the Query Optimizer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.10" data-path="buffering-caching.html">
+            
+                <a href="buffering-caching.html">
+            
+                    
+                    Buffering and Caching
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.11" data-path="locking-issues.html">
+            
+                <a href="locking-issues.html">
+            
+                    
+                    Optimizing Locking Operations
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.12" data-path="optimizing-server.html">
+            
+                <a href="optimizing-server.html">
+            
+                    
+                    Optimizing the MySQL Server
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.13" data-path="optimize-benchmarking.html">
+            
+                <a href="optimize-benchmarking.html">
+            
+                    
+                    Measuring Performance (Benchmarking)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.14" data-path="thread-information.html">
+            
+                <a href="thread-information.html">
+            
+                    
+                    Examining Thread Information
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >Counting Rows</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h4 id="3348-counting-rows"><a name="3348-counting-rows" class="plugin-anchor" href="#3348-counting-rows"><i class="fa fa-link" aria-hidden="true"></i></a>3.3.4.8 Counting Rows</h4>
+<p>Databases are often used to answer the question, &#x201C;How often does a certain type of data occur in a table?&#x201D; For example, you might want to know how many pets you have, or how many pets each owner has, or you might want to perform various kinds of census operations on your animals.</p>
+<p>Counting the total number of animals you have is the same question as &#x201C;How many rows are in the pet table?&#x201D; because there is one record per pet. <a href="https://dev.mysql.com/doc/refman/8.0/en/group-by-functions.html#function_count" target="_blank">COUNT(*)</a> counts the number of rows, so the query to count your animals looks like this:</p>
+<pre class="language-"><code class="lang-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword">FROM</span> pet<span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">----------+</span>
+<span class="token operator">|</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----------+</span>
+<span class="token operator">|</span>        <span class="token number">9</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----------+</span>
+</code></pre>
+<p>Earlier, you retrieved the names of the people who owned pets. You can use <a href="https://dev.mysql.com/doc/refman/8.0/en/group-by-functions.html#function_count" target="_blank"><code>COUNT()</code></a> if you want to find out how many pets each owner has:</p>
+<pre class="language-"><code class="lang-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> owner<span class="token punctuation">,</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword">FROM</span> pet <span class="token keyword">GROUP</span> <span class="token keyword">BY</span> owner<span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">--------+----------+</span>
+<span class="token operator">|</span> owner  <span class="token operator">|</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">--------+----------+</span>
+<span class="token operator">|</span> Benny  <span class="token operator">|</span>        <span class="token number">2</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Diane  <span class="token operator">|</span>        <span class="token number">2</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Gwen   <span class="token operator">|</span>        <span class="token number">3</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Harold <span class="token operator">|</span>        <span class="token number">2</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">--------+----------+</span>
+</code></pre>
+<p>The preceding query uses <code>GROUP BY</code> to group all records for each <code>owner</code>. The use of <a href="https://dev.mysql.com/doc/refman/8.0/en/group-by-functions.html#function_count" target="_blank"><code>COUNT()</code></a> in conjunction with <code>GROUP BY</code> is useful for characterizing your data under various groupings. The following examples show different ways to perform animal census operations.</p>
+<p>Number of animals per species:</p>
+<pre class="language-"><code class="lang-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> species<span class="token punctuation">,</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword">FROM</span> pet <span class="token keyword">GROUP</span> <span class="token keyword">BY</span> species<span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">---------+----------+</span>
+<span class="token operator">|</span> species <span class="token operator">|</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">---------+----------+</span>
+<span class="token operator">|</span> bird    <span class="token operator">|</span>        <span class="token number">2</span> <span class="token operator">|</span>
+<span class="token operator">|</span> cat     <span class="token operator">|</span>        <span class="token number">2</span> <span class="token operator">|</span>
+<span class="token operator">|</span> dog     <span class="token operator">|</span>        <span class="token number">3</span> <span class="token operator">|</span>
+<span class="token operator">|</span> hamster <span class="token operator">|</span>        <span class="token number">1</span> <span class="token operator">|</span>
+<span class="token operator">|</span> snake   <span class="token operator">|</span>        <span class="token number">1</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">---------+----------+</span>
+</code></pre>
+<p>Number of animals per sex:</p>
+<pre class="language-"><code class="lang-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> sex<span class="token punctuation">,</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword">FROM</span> pet <span class="token keyword">GROUP</span> <span class="token keyword">BY</span> sex<span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">------+----------+</span>
+<span class="token operator">|</span> sex  <span class="token operator">|</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">------+----------+</span>
+<span class="token operator">|</span> <span class="token boolean">NULL</span> <span class="token operator">|</span>        <span class="token number">1</span> <span class="token operator">|</span>
+<span class="token operator">|</span> f    <span class="token operator">|</span>        <span class="token number">4</span> <span class="token operator">|</span>
+<span class="token operator">|</span> m    <span class="token operator">|</span>        <span class="token number">4</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">------+----------+</span>
+</code></pre>
+<p>(In this output, <code>NULL</code> indicates that the sex is unknown.)</p>
+<p>Number of animals per combination of species and sex:</p>
+<pre class="language-"><code class="lang-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> species<span class="token punctuation">,</span> sex<span class="token punctuation">,</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword">FROM</span> pet <span class="token keyword">GROUP</span> <span class="token keyword">BY</span> species<span class="token punctuation">,</span> sex<span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">---------+------+----------+</span>
+<span class="token operator">|</span> species <span class="token operator">|</span> sex  <span class="token operator">|</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">---------+------+----------+</span>
+<span class="token operator">|</span> bird    <span class="token operator">|</span> <span class="token boolean">NULL</span> <span class="token operator">|</span>        <span class="token number">1</span> <span class="token operator">|</span>
+<span class="token operator">|</span> bird    <span class="token operator">|</span> f    <span class="token operator">|</span>        <span class="token number">1</span> <span class="token operator">|</span>
+<span class="token operator">|</span> cat     <span class="token operator">|</span> f    <span class="token operator">|</span>        <span class="token number">1</span> <span class="token operator">|</span>
+<span class="token operator">|</span> cat     <span class="token operator">|</span> m    <span class="token operator">|</span>        <span class="token number">1</span> <span class="token operator">|</span>
+<span class="token operator">|</span> dog     <span class="token operator">|</span> f    <span class="token operator">|</span>        <span class="token number">1</span> <span class="token operator">|</span>
+<span class="token operator">|</span> dog     <span class="token operator">|</span> m    <span class="token operator">|</span>        <span class="token number">2</span> <span class="token operator">|</span>
+<span class="token operator">|</span> hamster <span class="token operator">|</span> f    <span class="token operator">|</span>        <span class="token number">1</span> <span class="token operator">|</span>
+<span class="token operator">|</span> snake   <span class="token operator">|</span> m    <span class="token operator">|</span>        <span class="token number">1</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">---------+------+----------+</span>
+</code></pre>
+<p>You need not retrieve an entire table when you use <a href="https://dev.mysql.com/doc/refman/8.0/en/group-by-functions.html#function_count" target="_blank"><code>COUNT()</code></a>. For example, the previous query, when performed just on dogs and cats, looks like this:</p>
+<pre class="language-"><code class="lang-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> species<span class="token punctuation">,</span> sex<span class="token punctuation">,</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword">FROM</span> pet
+       <span class="token keyword">WHERE</span> species <span class="token operator">=</span> <span class="token string">&apos;dog&apos;</span> <span class="token operator">OR</span> species <span class="token operator">=</span> <span class="token string">&apos;cat&apos;</span>
+       <span class="token keyword">GROUP</span> <span class="token keyword">BY</span> species<span class="token punctuation">,</span> sex<span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">---------+------+----------+</span>
+<span class="token operator">|</span> species <span class="token operator">|</span> sex  <span class="token operator">|</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">---------+------+----------+</span>
+<span class="token operator">|</span> cat     <span class="token operator">|</span> f    <span class="token operator">|</span>        <span class="token number">1</span> <span class="token operator">|</span>
+<span class="token operator">|</span> cat     <span class="token operator">|</span> m    <span class="token operator">|</span>        <span class="token number">1</span> <span class="token operator">|</span>
+<span class="token operator">|</span> dog     <span class="token operator">|</span> f    <span class="token operator">|</span>        <span class="token number">1</span> <span class="token operator">|</span>
+<span class="token operator">|</span> dog     <span class="token operator">|</span> m    <span class="token operator">|</span>        <span class="token number">2</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">---------+------+----------+</span>
+</code></pre>
+<p>Or, if you wanted the number of animals per sex only for animals whose sex is known:</p>
+<pre class="language-"><code class="lang-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> species<span class="token punctuation">,</span> sex<span class="token punctuation">,</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword">FROM</span> pet
+       <span class="token keyword">WHERE</span> sex <span class="token operator">IS</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span>
+       <span class="token keyword">GROUP</span> <span class="token keyword">BY</span> species<span class="token punctuation">,</span> sex<span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">---------+------+----------+</span>
+<span class="token operator">|</span> species <span class="token operator">|</span> sex  <span class="token operator">|</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">---------+------+----------+</span>
+<span class="token operator">|</span> bird    <span class="token operator">|</span> f    <span class="token operator">|</span>        <span class="token number">1</span> <span class="token operator">|</span>
+<span class="token operator">|</span> cat     <span class="token operator">|</span> f    <span class="token operator">|</span>        <span class="token number">1</span> <span class="token operator">|</span>
+<span class="token operator">|</span> cat     <span class="token operator">|</span> m    <span class="token operator">|</span>        <span class="token number">1</span> <span class="token operator">|</span>
+<span class="token operator">|</span> dog     <span class="token operator">|</span> f    <span class="token operator">|</span>        <span class="token number">1</span> <span class="token operator">|</span>
+<span class="token operator">|</span> dog     <span class="token operator">|</span> m    <span class="token operator">|</span>        <span class="token number">2</span> <span class="token operator">|</span>
+<span class="token operator">|</span> hamster <span class="token operator">|</span> f    <span class="token operator">|</span>        <span class="token number">1</span> <span class="token operator">|</span>
+<span class="token operator">|</span> snake   <span class="token operator">|</span> m    <span class="token operator">|</span>        <span class="token number">1</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">---------+------+----------+</span>
+</code></pre>
+<p>If you name columns to select in addition to the <a href="https://dev.mysql.com/doc/refman/8.0/en/group-by-functions.html#function_count" target="_blank"><code>COUNT()</code></a> value, a <code>GROUP BY</code> clause should be present that names those same columns. Otherwise, the following occurs:</p>
+<p>If the <a href="https://dev.mysql.com/doc/refman/8.0/en/sql-mode.html#sqlmode_only_full_group_by" target="_blank"><code>ONLY_FULL_GROUP_BY</code></a> SQL mode is enabled, an error occurs:</p>
+<pre class="language-"><code class="lang-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SET</span> sql_mode <span class="token operator">=</span> <span class="token string">&apos;ONLY_FULL_GROUP_BY&apos;</span><span class="token punctuation">;</span>
+Query OK<span class="token punctuation">,</span> <span class="token number">0</span> <span class="token keyword">rows</span> affected <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+
+mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> owner<span class="token punctuation">,</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword">FROM</span> pet<span class="token punctuation">;</span>
+ERROR <span class="token number">1140</span> <span class="token punctuation">(</span><span class="token number">42000</span><span class="token punctuation">)</span>: <span class="token operator">In</span> aggregated query without <span class="token keyword">GROUP</span> <span class="token keyword">BY</span><span class="token punctuation">,</span> expression
+<span class="token comment">#1 of SELECT list contains nonaggregated column &apos;menagerie.pet.owner&apos;;</span>
+this <span class="token operator">is</span> incompatible <span class="token keyword">with</span> sql_mode<span class="token operator">=</span>only_full_group_by
+</code></pre>
+<p>If <a href="https://dev.mysql.com/doc/refman/8.0/en/sql-mode.html#sqlmode_only_full_group_by" target="_blank"><code>ONLY_FULL_GROUP_BY</code></a> is not enabled, the query is processed by treating all rows as a single group, but the value selected for each named column is nondeterministic. The server is free to select the value from any row:</p>
+<pre class="language-"><code class="lang-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SET</span> sql_mode <span class="token operator">=</span> <span class="token string">&apos;&apos;</span><span class="token punctuation">;</span>
+Query OK<span class="token punctuation">,</span> <span class="token number">0</span> <span class="token keyword">rows</span> affected <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+
+mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> owner<span class="token punctuation">,</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword">FROM</span> pet<span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">--------+----------+</span>
+<span class="token operator">|</span> owner  <span class="token operator">|</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">--------+----------+</span>
+<span class="token operator">|</span> Harold <span class="token operator">|</span>        <span class="token number">8</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">--------+----------+</span>
+<span class="token number">1</span> <span class="token keyword">row</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+</code></pre>
+<p>See also <a href="https://dev.mysql.com/doc/refman/8.0/en/group-by-handling.html" target="_blank">Section 12.20.3, &#x201C;MySQL Handling of GROUP BY&#x201D;</a>. See <a href="https://dev.mysql.com/doc/refman/8.0/en/group-by-functions.html" target="_blank">Section 12.20.1, &#x201C;Aggregate (GROUP BY) Function Descriptions&#x201D;</a> for information about <a href="https://dev.mysql.com/doc/refman/8.0/en/group-by-functions.html#function_count" target="_blank"><code>COUNT(expr)</code></a> behavior and related optimizations.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="pattern-matching.html" class="navigation navigation-prev " aria-label="Previous page: Pattern Matching">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="multiple-tables.html" class="navigation navigation-next " aria-label="Next page: Using More Than one Table">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Counting Rows","level":"1.4.3.4.8","depth":4,"next":{"title":"Using More Than one Table","level":"1.4.3.4.9","depth":4,"path":"multiple-tables.md","ref":"multiple-tables.md","articles":[]},"previous":{"title":"Pattern Matching","level":"1.4.3.4.7","depth":4,"path":"pattern-matching.md","ref":"pattern-matching.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-highlight","-sharing","prism","github","github-buttons","expandable-chapters-small","donate","anchors","edit-link","copy-code-button"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"github":{"url":"https://github.com/mowangjuanzi/mysql-chinese-doc"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"donate":{"alipay":"/assets/alipay.png","alipayText":"支付宝打赏","button":"赏","title":"","wechat":"/assets/wechat.jpg","wechatText":"微信打赏"},"fontsettings":{"theme":"white","family":"sans","size":2},"github-buttons":{"buttons":[{"user":"mowangjuanzi","repo":"mysql-chinese-doc","type":"star","size":"small","count":true}]},"expandable-chapters-small":{},"copy-code-button":{},"edit-link":{"label":"Edit This Page","base":"https://github.com/mowangjuanzi/mysql-chinese-doc/edit/master"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"en","gitbook":"*"},"file":{"path":"counting-rows.md","mtime":"2019-06-27T01:47:58.228Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-29T06:51:17.623Z"},"basePath":".","book":{"language":"en"}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-donate/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-edit-link/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-copy-code-button/toggle.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
