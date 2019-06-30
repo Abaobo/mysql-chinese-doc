@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Optimizing for MEMORY Tables · GitBook</title>
+        <title>Getting Information About Databases and Tables · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -70,10 +70,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="execution-plan-information.html" />
+    <link rel="next" href="examples.html" />
     
     
-    <link rel="prev" href="optimizing-myisam.html" />
+    <link rel="prev" href="multiple-tables.html" />
     
 
     <style>
@@ -469,7 +469,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.4" data-path="getting-information.html">
+        <li class="chapter active" data-level="1.4.4" data-path="getting-information.html">
             
                 <a href="getting-information.html">
             
@@ -656,7 +656,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.6.7" data-path="optimizing-memory-tables.html">
+        <li class="chapter " data-level="1.6.7" data-path="optimizing-memory-tables.html">
             
                 <a href="optimizing-memory-tables.html">
             
@@ -795,7 +795,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >Optimizing for MEMORY Tables</a>
+        <a href="." >Getting Information About Databases and Tables</a>
     </h1>
 </div>
 
@@ -810,9 +810,44 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h2 id="87-optimizing-for-memory-tables"><a name="87-optimizing-for-memory-tables" class="plugin-anchor" href="#87-optimizing-for-memory-tables"><i class="fa fa-link" aria-hidden="true"></i></a>8.7 Optimizing for MEMORY Tables</h2>
-<p>Consider using <code>MEMORY</code> tables for noncritical data that is accessed often, and is read-only or rarely updated. Benchmark your application against equivalent <code>InnoDB</code> or <code>MyISAM</code> tables under a realistic workload, to confirm that any additional performance is worth the risk of losing data, or the overhead of copying data from a disk-based table at application start. 
-For best performance with <code>MEMORY</code> tables, examine the kinds of queries against each table, and specify the type to use for each associated index, either a B-tree index or a hash index. On the <a href="https://dev.mysql.com/doc/refman/8.0/en/create-index.html" target="_blank">CREATE INDEX</a> statement, use the clause <code>USING BTREE</code> or <code>USING HASH</code>. B-tree indexes are fast for queries that do greater-than or less-than comparisons through operators such as <code>&gt;</code> or <code>BETWEEN</code>. Hash indexes are only fast for queries that look up single values through the <code>=</code> operator, or a restricted set of values through the <code>IN</code> operator. For why <code>USING BTREE</code> is often a better choice than the default <code>USING HASH</code>, see <a href="https://dev.mysql.com/doc/refman/8.0/en/table-scan-avoidance.html" target="_blank">Section 8.2.1.21, &#x201C;Avoiding Full Table Scans&#x201D;</a>. For implementation details of the different types of <code>MEMORY</code> indexes, see <a href="https://dev.mysql.com/doc/refman/8.0/en/index-btree-hash.html" target="_blank">Section 8.3.9, &#x201C;Comparison of B-Tree and Hash Indexes&#x201D;</a>. </p>
+                                <h2 id="34-getting-information-about-databases-and-tables"><a name="34-getting-information-about-databases-and-tables" class="plugin-anchor" href="#34-getting-information-about-databases-and-tables"><i class="fa fa-link" aria-hidden="true"></i></a>3.4 Getting Information About Databases and Tables</h2>
+<p>What if you forget the name of a database or table, or what the structure of a given table is (for example, what its columns are called)? MySQL addresses this problem through several statements that provide information about the databases and tables it supports.</p>
+<p>You have previously seen <a href="https://dev.mysql.com/doc/refman/8.0/en/show-databases.html" target="_blank"><code>SHOW DATABASES</code></a>, which lists the databases managed by the server. To find out which database is currently selected, use the <a href="https://dev.mysql.com/doc/refman/8.0/en/information-functions.html#function_database" target="_blank"><code>DATABASE()</code></a> function:</p>
+<pre class="language-"><code class="lang-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> <span class="token keyword">DATABASE</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">------------+</span>
+<span class="token operator">|</span> <span class="token keyword">DATABASE</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">------------+</span>
+<span class="token operator">|</span> menagerie  <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">------------+</span>
+</code></pre>
+<p>If you have not yet selected any database, the result is <code>NULL</code>.</p>
+<p>To find out what tables the default database contains (for example, when you are not sure about the name of a table), use this statement:</p>
+<pre class="language-"><code class="lang-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SHOW</span> <span class="token keyword">TABLES</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">---------------------+</span>
+<span class="token operator">|</span> Tables_in_menagerie <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">---------------------+</span>
+<span class="token operator">|</span> event               <span class="token operator">|</span>
+<span class="token operator">|</span> pet                 <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">---------------------+</span>
+</code></pre>
+<p>The name of the column in the output produced by this statement is always <code>Tables_in_db_name</code>, where <em><code>db_name</code></em> is the name of the database. See <a href="https://dev.mysql.com/doc/refman/8.0/en/show-tables.html" target="_blank">Section 13.7.6.37, &#x201C;SHOW TABLES Syntax&#x201D;</a>, for more information.</p>
+<p>If you want to find out about the structure of a table, the <a href="https://dev.mysql.com/doc/refman/8.0/en/describe.html" target="_blank"><code>DESCRIBE</code></a> statement is useful; it displays information about each of a table&apos;s columns:</p>
+<pre class="language-"><code class="lang-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">DESCRIBE</span> pet<span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">---------+-------------+------+-----+---------+-------+</span>
+<span class="token operator">|</span> Field   <span class="token operator">|</span> <span class="token keyword">Type</span>        <span class="token operator">|</span> <span class="token boolean">Null</span> <span class="token operator">|</span> <span class="token keyword">Key</span> <span class="token operator">|</span> <span class="token keyword">Default</span> <span class="token operator">|</span> Extra <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">---------+-------------+------+-----+---------+-------+</span>
+<span class="token operator">|</span> name    <span class="token operator">|</span> <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span> <span class="token operator">|</span> YES  <span class="token operator">|</span>     <span class="token operator">|</span> <span class="token boolean">NULL</span>    <span class="token operator">|</span>       <span class="token operator">|</span>
+<span class="token operator">|</span> owner   <span class="token operator">|</span> <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span> <span class="token operator">|</span> YES  <span class="token operator">|</span>     <span class="token operator">|</span> <span class="token boolean">NULL</span>    <span class="token operator">|</span>       <span class="token operator">|</span>
+<span class="token operator">|</span> species <span class="token operator">|</span> <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span> <span class="token operator">|</span> YES  <span class="token operator">|</span>     <span class="token operator">|</span> <span class="token boolean">NULL</span>    <span class="token operator">|</span>       <span class="token operator">|</span>
+<span class="token operator">|</span> sex     <span class="token operator">|</span> <span class="token keyword">char</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>     <span class="token operator">|</span> YES  <span class="token operator">|</span>     <span class="token operator">|</span> <span class="token boolean">NULL</span>    <span class="token operator">|</span>       <span class="token operator">|</span>
+<span class="token operator">|</span> birth   <span class="token operator">|</span> <span class="token keyword">date</span>        <span class="token operator">|</span> YES  <span class="token operator">|</span>     <span class="token operator">|</span> <span class="token boolean">NULL</span>    <span class="token operator">|</span>       <span class="token operator">|</span>
+<span class="token operator">|</span> death   <span class="token operator">|</span> <span class="token keyword">date</span>        <span class="token operator">|</span> YES  <span class="token operator">|</span>     <span class="token operator">|</span> <span class="token boolean">NULL</span>    <span class="token operator">|</span>       <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">---------+-------------+------+-----+---------+-------+</span>
+</code></pre>
+<p><code>Field</code> indicates the column name, <code>Type</code> is the data type for the column, <code>NULL</code> indicates whether the column can contain <code>NULL</code> values, <code>Key</code> indicates whether the column is indexed, and <code>Default</code> specifies the column&apos;s default value. <code>Extra</code> displays special information about columns: If a column was created with the <code>AUTO_INCREMENT</code> option, the value will be <code>auto_increment</code> rather than empty.</p>
+<p><code>DESC</code> is a short form of <a href="https://dev.mysql.com/doc/refman/8.0/en/describe.html" target="_blank"><code>DESCRIBE</code></a>. See <a href="https://dev.mysql.com/doc/refman/8.0/en/describe.html" target="_blank">Section 13.8.1, &#x201C;DESCRIBE Syntax&#x201D;</a>, for more information.</p>
+<p>You can obtain the <a href="https://dev.mysql.com/doc/refman/8.0/en/create-table.html" target="_blank"><code>CREATE TABLE</code></a> statement necessary to create an existing table using the <a href="https://dev.mysql.com/doc/refman/8.0/en/show-create-table.html" target="_blank"><code>SHOW CREATE TABLE</code></a> statement. See <a href="https://dev.mysql.com/doc/refman/8.0/en/show-create-table.html" target="_blank">Section 13.7.6.10, &#x201C;SHOW CREATE TABLE Syntax&#x201D;</a>.</p>
+<p>If you have indexes on a table, <code>SHOW INDEX FROM tbl_name</code> produces information about them. See <a href="https://dev.mysql.com/doc/refman/8.0/en/show-index.html" target="_blank">Section 13.7.6.22, &#x201C;SHOW INDEX Syntax&#x201D;</a>, for more about this statement.</p>
 
                                 
                                 </section>
@@ -840,12 +875,12 @@ For best performance with <code>MEMORY</code> tables, examine the kinds of queri
 
             
                 
-                <a href="optimizing-myisam.html" class="navigation navigation-prev " aria-label="Previous page: Optimizing for MyISAM Tables">
+                <a href="multiple-tables.html" class="navigation navigation-prev " aria-label="Previous page: Using More Than one Table">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="execution-plan-information.html" class="navigation navigation-next " aria-label="Next page: Understanding the Query Execution Plan">
+                <a href="examples.html" class="navigation navigation-next " aria-label="Next page: Examples of Common Queries">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -856,7 +891,7 @@ For best performance with <code>MEMORY</code> tables, examine the kinds of queri
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Optimizing for MEMORY Tables","level":"1.6.7","depth":2,"next":{"title":"Understanding the Query Execution Plan","level":"1.6.8","depth":2,"path":"execution-plan-information.md","ref":"execution-plan-information.md","articles":[]},"previous":{"title":"Optimizing for MyISAM Tables","level":"1.6.6","depth":2,"path":"optimizing-myisam.md","ref":"optimizing-myisam.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-highlight","-sharing","prism","github","github-buttons","expandable-chapters-small","donate","anchors","edit-link","copy-code-button"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"github":{"url":"https://github.com/mowangjuanzi/mysql-chinese-doc"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"donate":{"alipay":"/assets/alipay.png","alipayText":"支付宝打赏","button":"赏","title":"","wechat":"/assets/wechat.jpg","wechatText":"微信打赏"},"fontsettings":{"theme":"white","family":"sans","size":2},"github-buttons":{"buttons":[{"user":"mowangjuanzi","repo":"mysql-chinese-doc","type":"star","size":"small","count":true}]},"expandable-chapters-small":{},"copy-code-button":{},"edit-link":{"label":"Edit This Page","base":"https://github.com/mowangjuanzi/mysql-chinese-doc/edit/master"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"en","gitbook":"*"},"file":{"path":"optimizing-memory-tables.md","mtime":"2019-06-24T12:57:20.334Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-30T12:58:59.619Z"},"basePath":".","book":{"language":"en"}});
+            gitbook.page.hasChanged({"page":{"title":"Getting Information About Databases and Tables","level":"1.4.4","depth":2,"next":{"title":"Examples of Common Queries","level":"1.4.5","depth":2,"path":"examples.md","ref":"examples.md","articles":[]},"previous":{"title":"Using More Than one Table","level":"1.4.3.4.9","depth":4,"path":"multiple-tables.md","ref":"multiple-tables.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-highlight","-sharing","prism","github","github-buttons","expandable-chapters-small","donate","anchors","edit-link","copy-code-button"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"github":{"url":"https://github.com/mowangjuanzi/mysql-chinese-doc"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"donate":{"alipay":"/assets/alipay.png","alipayText":"支付宝打赏","button":"赏","title":"","wechat":"/assets/wechat.jpg","wechatText":"微信打赏"},"fontsettings":{"theme":"white","family":"sans","size":2},"github-buttons":{"buttons":[{"user":"mowangjuanzi","repo":"mysql-chinese-doc","type":"star","size":"small","count":true}]},"expandable-chapters-small":{},"copy-code-button":{},"edit-link":{"label":"Edit This Page","base":"https://github.com/mowangjuanzi/mysql-chinese-doc/edit/master"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"en","gitbook":"*"},"file":{"path":"getting-information.md","mtime":"2019-06-30T12:49:11.217Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-30T12:58:59.619Z"},"basePath":".","book":{"language":"en"}});
         });
     </script>
 </div>
