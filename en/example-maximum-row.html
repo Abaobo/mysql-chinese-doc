@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Optimizing Locking Operations · GitBook</title>
+        <title>The Row Holding the Maximum of a Certain Column · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -74,10 +74,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="optimizing-server.html" />
+    <link rel="next" href="apache.html" />
     
     
-    <link rel="prev" href="buffering-caching.html" />
+    <link rel="prev" href="example-maximum-column.html" />
     
 
     <style>
@@ -526,7 +526,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.6.2" data-path="example-maximum-row.html">
+        <li class="chapter active" data-level="1.4.6.2" data-path="example-maximum-row.html">
             
                 <a href="example-maximum-row.html">
             
@@ -757,7 +757,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.6.11" data-path="locking-issues.html">
+        <li class="chapter " data-level="1.6.11" data-path="locking-issues.html">
             
                 <a href="locking-issues.html">
             
@@ -844,7 +844,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >Optimizing Locking Operations</a>
+        <a href="." >The Row Holding the Maximum of a Certain Column</a>
     </h1>
 </div>
 
@@ -859,12 +859,34 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h2 id="811-optimizing-locking-operations"><a name="811-optimizing-locking-operations" class="plugin-anchor" href="#811-optimizing-locking-operations"><i class="fa fa-link" aria-hidden="true"></i></a>8.11 Optimizing Locking Operations</h2>
-<p>MySQL manages contention for table contents using <a href="https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_locking" target="_blank">locking</a>: </p>
-<ul>
-<li>Internal locking is performed within the MySQL server itself to manage contention for table contents by multiple threads. This type of locking is internal because it is performed entirely by the server and involves no other programs. See <a href="https://dev.mysql.com/doc/refman/8.0/en/internal-locking.html" target="_blank">Section 8.11.1, &#x201C;Internal Locking Methods&#x201D;</a>. </li>
-<li>External locking occurs when the server and other programs lock <a href="https://dev.mysql.com/doc/refman/8.0/en/myisam-storage-engine.html" target="_blank"><code>MyISAM</code></a> table files to coordinate among themselves which program can access the tables at which time. See <a href="https://dev.mysql.com/doc/refman/8.0/en/external-locking.html" target="_blank">Section 8.11.5, &#x201C;External Locking&#x201D;</a>. </li>
-</ul>
+                                <h3 id="362-the-row-holding-the-maximum-of-a-certain-column"><a name="362-the-row-holding-the-maximum-of-a-certain-column" class="plugin-anchor" href="#362-the-row-holding-the-maximum-of-a-certain-column"><i class="fa fa-link" aria-hidden="true"></i></a>3.6.2 The Row Holding the Maximum of a Certain Column</h3>
+<p><em>Task: Find the number, dealer, and price of the most expensive article.</em></p>
+<p>This is easily done with a subquery:</p>
+<pre class="language-"><code class="lang-sql"><span class="token keyword">SELECT</span> article<span class="token punctuation">,</span> dealer<span class="token punctuation">,</span> price
+<span class="token keyword">FROM</span>   shop
+<span class="token keyword">WHERE</span>  price<span class="token operator">=</span><span class="token punctuation">(</span><span class="token keyword">SELECT</span> <span class="token function">MAX</span><span class="token punctuation">(</span>price<span class="token punctuation">)</span> <span class="token keyword">FROM</span> shop<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token operator">+</span><span class="token comment">---------+--------+-------+</span>
+<span class="token operator">|</span> article <span class="token operator">|</span> dealer <span class="token operator">|</span> price <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">---------+--------+-------+</span>
+<span class="token operator">|</span>    <span class="token number">0004</span> <span class="token operator">|</span> D      <span class="token operator">|</span> <span class="token number">19.95</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">---------+--------+-------+</span>
+</code></pre>
+<p>Other solutions are to use a <code>LEFT JOIN</code> or to sort all rows descending by price and get only the first row using the MySQL-specific <code>LIMIT</code> clause:</p>
+<pre class="language-"><code class="lang-sql"><span class="token keyword">SELECT</span> s1<span class="token punctuation">.</span>article<span class="token punctuation">,</span> s1<span class="token punctuation">.</span>dealer<span class="token punctuation">,</span> s1<span class="token punctuation">.</span>price
+<span class="token keyword">FROM</span> shop s1
+<span class="token keyword">LEFT</span> <span class="token keyword">JOIN</span> shop s2 <span class="token keyword">ON</span> s1<span class="token punctuation">.</span>price <span class="token operator">&lt;</span> s2<span class="token punctuation">.</span>price
+<span class="token keyword">WHERE</span> s2<span class="token punctuation">.</span>article <span class="token operator">IS</span> <span class="token boolean">NULL</span><span class="token punctuation">;</span>
+
+<span class="token keyword">SELECT</span> article<span class="token punctuation">,</span> dealer<span class="token punctuation">,</span> price
+<span class="token keyword">FROM</span> shop
+<span class="token keyword">ORDER</span> <span class="token keyword">BY</span> price <span class="token keyword">DESC</span>
+<span class="token keyword">LIMIT</span> <span class="token number">1</span><span class="token punctuation">;</span>
+</code></pre>
+<blockquote>
+<p><strong>[warning] Note</strong></p>
+<p>If there were several most expensive articles, each with a price of 19.95, the <code>LIMIT</code> solution would show only one of them.</p>
+</blockquote>
 
                                 
                                 </section>
@@ -892,12 +914,12 @@
 
             
                 
-                <a href="buffering-caching.html" class="navigation navigation-prev " aria-label="Previous page: Buffering and Caching">
+                <a href="example-maximum-column.html" class="navigation navigation-prev " aria-label="Previous page: The Maximum Value for a Column">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="optimizing-server.html" class="navigation navigation-next " aria-label="Next page: Optimizing the MySQL Server">
+                <a href="apache.html" class="navigation navigation-next " aria-label="Next page: Using MySQL with Apache">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -908,7 +930,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Optimizing Locking Operations","level":"1.6.11","depth":2,"next":{"title":"Optimizing the MySQL Server","level":"1.6.12","depth":2,"path":"optimizing-server.md","ref":"optimizing-server.md","articles":[]},"previous":{"title":"Buffering and Caching","level":"1.6.10","depth":2,"path":"buffering-caching.md","ref":"buffering-caching.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-highlight","-sharing","prism","github","github-buttons","expandable-chapters-small","donate","anchors","edit-link","copy-code-button","alerts"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"github":{"url":"https://github.com/mowangjuanzi/mysql-chinese-doc"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"donate":{"alipay":"/assets/alipay.png","alipayText":"支付宝打赏","button":"赏","title":"","wechat":"/assets/wechat.jpg","wechatText":"微信打赏"},"fontsettings":{"theme":"white","family":"sans","size":2},"alerts":{},"github-buttons":{"buttons":[{"user":"mowangjuanzi","repo":"mysql-chinese-doc","type":"star","size":"small","count":true}]},"expandable-chapters-small":{},"copy-code-button":{},"edit-link":{"label":"Edit This Page","base":"https://github.com/mowangjuanzi/mysql-chinese-doc/edit/master"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"en","gitbook":"*"},"file":{"path":"locking-issues.md","mtime":"2019-06-24T12:57:20.334Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-07-02T13:52:15.541Z"},"basePath":".","book":{"language":"en"}});
+            gitbook.page.hasChanged({"page":{"title":"The Row Holding the Maximum of a Certain Column","level":"1.4.6.2","depth":3,"next":{"title":"Using MySQL with Apache","level":"1.4.7","depth":2,"path":"apache.md","ref":"apache.md","articles":[]},"previous":{"title":"The Maximum Value for a Column","level":"1.4.6.1","depth":3,"path":"example-maximum-column.md","ref":"example-maximum-column.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-highlight","-sharing","prism","github","github-buttons","expandable-chapters-small","donate","anchors","edit-link","copy-code-button","alerts"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"github":{"url":"https://github.com/mowangjuanzi/mysql-chinese-doc"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"donate":{"alipay":"/assets/alipay.png","alipayText":"支付宝打赏","button":"赏","title":"","wechat":"/assets/wechat.jpg","wechatText":"微信打赏"},"fontsettings":{"theme":"white","family":"sans","size":2},"alerts":{},"github-buttons":{"buttons":[{"user":"mowangjuanzi","repo":"mysql-chinese-doc","type":"star","size":"small","count":true}]},"expandable-chapters-small":{},"copy-code-button":{},"edit-link":{"label":"Edit This Page","base":"https://github.com/mowangjuanzi/mysql-chinese-doc/edit/master"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"en","gitbook":"*"},"file":{"path":"example-maximum-row.md","mtime":"2019-07-02T13:08:32.209Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-07-02T13:52:15.541Z"},"basePath":".","book":{"language":"en"}});
         });
     </script>
 </div>

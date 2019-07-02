@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Optimizing Locking Operations · GitBook</title>
+        <title>Using mysql in Batch Mode · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -74,10 +74,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="optimizing-server.html" />
+    <link rel="next" href="examples.html" />
     
     
-    <link rel="prev" href="buffering-caching.html" />
+    <link rel="prev" href="getting-information.html" />
     
 
     <style>
@@ -486,7 +486,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.5" data-path="batch-mode.html">
+        <li class="chapter active" data-level="1.4.5" data-path="batch-mode.html">
             
                 <a href="batch-mode.html">
             
@@ -757,7 +757,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.6.11" data-path="locking-issues.html">
+        <li class="chapter " data-level="1.6.11" data-path="locking-issues.html">
             
                 <a href="locking-issues.html">
             
@@ -844,7 +844,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >Optimizing Locking Operations</a>
+        <a href="." >Using mysql in Batch Mode</a>
     </h1>
 </div>
 
@@ -859,12 +859,65 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h2 id="811-optimizing-locking-operations"><a name="811-optimizing-locking-operations" class="plugin-anchor" href="#811-optimizing-locking-operations"><i class="fa fa-link" aria-hidden="true"></i></a>8.11 Optimizing Locking Operations</h2>
-<p>MySQL manages contention for table contents using <a href="https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_locking" target="_blank">locking</a>: </p>
+                                <h2 id="35-using-mysql-in-batch-mode"><a name="35-using-mysql-in-batch-mode" class="plugin-anchor" href="#35-using-mysql-in-batch-mode"><i class="fa fa-link" aria-hidden="true"></i></a>3.5 Using mysql in Batch Mode</h2>
+<p>In the previous sections, you used <a href="mysql.html"><code>mysql</code></a> interactively to enter statements and view the results. You can also run <a href="mysql.html"><code>mysql</code></a> in batch mode. To do this, put the statements you want to run in a file, then tell <a href="mysql.html"><code>mysql</code></a> to read its input from the file:</p>
+<pre class="language-"><code class="lang-bash">shell<span class="token operator">&gt;</span> mysql <span class="token operator">&lt;</span> batch-file
+</code></pre>
+<p>If you are running <a href="mysql.html"><code>mysql</code></a> under Windows and have some special characters in the file that cause problems, you can do this:</p>
+<pre class="language-"><code class="lang-bash">C:\<span class="token operator">&gt;</span> mysql -e <span class="token string">&quot;source batch-file&quot;</span>
+</code></pre>
+<p>If you need to specify connection parameters on the command line, the command might look like this:</p>
+<pre class="language-"><code class="lang-bash">shell<span class="token operator">&gt;</span> mysql -h <span class="token function">host</span> -u user -p <span class="token operator">&lt;</span> batch-file
+Enter password: ********
+</code></pre>
+<p>When you use <a href="mysql.html"><code>mysql</code></a> this way, you are creating a script file, then executing the script.</p>
+<p>If you want the script to continue even if some of the statements in it produce errors, you should use the <a href="https://dev.mysql.com/doc/refman/8.0/en/mysql-command-options.html#option_mysql_force" target="_blank"><code>--force</code></a> command-line option.</p>
+<p>Why use a script? Here are a few reasons:</p>
 <ul>
-<li>Internal locking is performed within the MySQL server itself to manage contention for table contents by multiple threads. This type of locking is internal because it is performed entirely by the server and involves no other programs. See <a href="https://dev.mysql.com/doc/refman/8.0/en/internal-locking.html" target="_blank">Section 8.11.1, &#x201C;Internal Locking Methods&#x201D;</a>. </li>
-<li>External locking occurs when the server and other programs lock <a href="https://dev.mysql.com/doc/refman/8.0/en/myisam-storage-engine.html" target="_blank"><code>MyISAM</code></a> table files to coordinate among themselves which program can access the tables at which time. See <a href="https://dev.mysql.com/doc/refman/8.0/en/external-locking.html" target="_blank">Section 8.11.5, &#x201C;External Locking&#x201D;</a>. </li>
+<li><p>If you run a query repeatedly (say, every day or every week), making it a script enables you to avoid retyping it each time you execute it.</p>
+</li>
+<li><p>You can generate new queries from existing ones that are similar by copying and editing script files.</p>
+</li>
+<li><p>Batch mode can also be useful while you&apos;re developing a query, particularly for multiple-line statements or multiple-statement sequences. If you make a mistake, you don&apos;t have to retype everything. Just edit your script to correct the error, then tell <a href="mysql.html"><code>mysql</code></a> to execute it again.</p>
+</li>
+<li><p>If you have a query that produces a lot of output, you can run the output through a pager rather than watching it scroll off the top of your screen:</p>
+<pre class="language-"><code class="lang-bash">  shell<span class="token operator">&gt;</span> mysql <span class="token operator">&lt;</span> batch-file <span class="token operator">|</span> <span class="token function">more</span>
+</code></pre>
+</li>
+<li><p>You can catch the output in a file for further processing:</p>
+<pre class="language-"><code class="lang-bash">  shell<span class="token operator">&gt;</span> mysql <span class="token operator">&lt;</span> batch-file <span class="token operator">&gt;</span> mysql.out
+</code></pre>
+</li>
+<li><p>You can distribute your script to other people so that they can also run the statements.</p>
+</li>
+<li><p>Some situations do not allow for interactive use, for example, when you run a query from a <code>cron</code> job. In this case, you must use batch mode.</p>
+</li>
 </ul>
+<p>The default output format is different (more concise) when you run <a href="mysql.html"><code>mysql</code></a> in batch mode than when you use it interactively. For example, the output of <code>SELECT DISTINCT species FROM pet</code> looks like this when <a href="mysql.html"><code>mysql</code></a> is run interactively:</p>
+<pre class="language-"><code class="lang-sql"><span class="token operator">+</span><span class="token comment">---------+</span>
+<span class="token operator">|</span> species <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">---------+</span>
+<span class="token operator">|</span> bird    <span class="token operator">|</span>
+<span class="token operator">|</span> cat     <span class="token operator">|</span>
+<span class="token operator">|</span> dog     <span class="token operator">|</span>
+<span class="token operator">|</span> hamster <span class="token operator">|</span>
+<span class="token operator">|</span> snake   <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">---------+</span>
+</code></pre>
+<p>In batch mode, the output looks like this instead:</p>
+<pre class="language-"><code class="lang-sql">species
+bird
+cat
+dog
+hamster
+snake
+</code></pre>
+<p>If you want to get the interactive output format in batch mode, use <a href="mysql.html"><code>mysql -t</code></a>. To echo to the output the statements that are executed, use <a href="mysql.html"><code>mysql -v</code></a>.</p>
+<p>You can also use scripts from the <a href="mysql.html"><code>mysql</code></a> prompt by using the <code>source</code> command or <code>\.</code> command:</p>
+<pre class="language-"><code class="lang-sql">mysql<span class="token operator">&gt;</span> source filename<span class="token punctuation">;</span>
+mysql<span class="token operator">&gt;</span> \<span class="token punctuation">.</span> filename
+</code></pre>
+<p>See <a href="https://dev.mysql.com/doc/refman/8.0/en/mysql-batch-commands.html" target="_blank">Section 4.5.1.5, &#x201C;Executing SQL Statements from a Text File&#x201D;</a>, for more information.</p>
 
                                 
                                 </section>
@@ -892,12 +945,12 @@
 
             
                 
-                <a href="buffering-caching.html" class="navigation navigation-prev " aria-label="Previous page: Buffering and Caching">
+                <a href="getting-information.html" class="navigation navigation-prev " aria-label="Previous page: Getting Information About Databases and Tables">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="optimizing-server.html" class="navigation navigation-next " aria-label="Next page: Optimizing the MySQL Server">
+                <a href="examples.html" class="navigation navigation-next " aria-label="Next page: Examples of Common Queries">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -908,7 +961,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Optimizing Locking Operations","level":"1.6.11","depth":2,"next":{"title":"Optimizing the MySQL Server","level":"1.6.12","depth":2,"path":"optimizing-server.md","ref":"optimizing-server.md","articles":[]},"previous":{"title":"Buffering and Caching","level":"1.6.10","depth":2,"path":"buffering-caching.md","ref":"buffering-caching.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-highlight","-sharing","prism","github","github-buttons","expandable-chapters-small","donate","anchors","edit-link","copy-code-button","alerts"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"github":{"url":"https://github.com/mowangjuanzi/mysql-chinese-doc"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"donate":{"alipay":"/assets/alipay.png","alipayText":"支付宝打赏","button":"赏","title":"","wechat":"/assets/wechat.jpg","wechatText":"微信打赏"},"fontsettings":{"theme":"white","family":"sans","size":2},"alerts":{},"github-buttons":{"buttons":[{"user":"mowangjuanzi","repo":"mysql-chinese-doc","type":"star","size":"small","count":true}]},"expandable-chapters-small":{},"copy-code-button":{},"edit-link":{"label":"Edit This Page","base":"https://github.com/mowangjuanzi/mysql-chinese-doc/edit/master"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"en","gitbook":"*"},"file":{"path":"locking-issues.md","mtime":"2019-06-24T12:57:20.334Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-07-02T13:52:15.541Z"},"basePath":".","book":{"language":"en"}});
+            gitbook.page.hasChanged({"page":{"title":"Using mysql in Batch Mode","level":"1.4.5","depth":2,"next":{"title":"Examples of Common Queries","level":"1.4.6","depth":2,"path":"examples.md","ref":"examples.md","articles":[{"title":"The Maximum Value for a Column","level":"1.4.6.1","depth":3,"path":"example-maximum-column.md","ref":"example-maximum-column.md","articles":[]},{"title":"The Row Holding the Maximum of a Certain Column","level":"1.4.6.2","depth":3,"path":"example-maximum-row.md","ref":"example-maximum-row.md","articles":[]}]},"previous":{"title":"Getting Information About Databases and Tables","level":"1.4.4","depth":2,"path":"getting-information.md","ref":"getting-information.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-highlight","-sharing","prism","github","github-buttons","expandable-chapters-small","donate","anchors","edit-link","copy-code-button","alerts"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"github":{"url":"https://github.com/mowangjuanzi/mysql-chinese-doc"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"donate":{"alipay":"/assets/alipay.png","alipayText":"支付宝打赏","button":"赏","title":"","wechat":"/assets/wechat.jpg","wechatText":"微信打赏"},"fontsettings":{"theme":"white","family":"sans","size":2},"alerts":{},"github-buttons":{"buttons":[{"user":"mowangjuanzi","repo":"mysql-chinese-doc","type":"star","size":"small","count":true}]},"expandable-chapters-small":{},"copy-code-button":{},"edit-link":{"label":"Edit This Page","base":"https://github.com/mowangjuanzi/mysql-chinese-doc/edit/master"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"en","gitbook":"*"},"file":{"path":"batch-mode.md","mtime":"2019-07-01T13:38:26.157Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-07-02T13:52:15.541Z"},"basePath":".","book":{"language":"en"}});
         });
     </script>
 </div>

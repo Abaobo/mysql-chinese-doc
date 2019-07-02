@@ -33,6 +33,10 @@
                 
             
                 
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-alerts/style.css">
+                
+            
+                
                 <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
                 
             
@@ -482,7 +486,20 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.5" data-path="examples.html">
+        <li class="chapter " data-level="1.4.5" data-path="batch-mode.html">
+            
+                <a href="batch-mode.html">
+            
+                    
+                    Using mysql in Batch Mode
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" data-path="examples.html">
             
                 <a href="examples.html">
             
@@ -493,9 +510,41 @@
             
 
             
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.6.1" data-path="example-maximum-column.html">
+            
+                <a href="example-maximum-column.html">
+            
+                    
+                    The Maximum Value for a Column
+            
+                </a>
+            
+
+            
         </li>
     
-        <li class="chapter " data-level="1.4.6" data-path="apache.html">
+        <li class="chapter " data-level="1.4.6.2" data-path="example-maximum-row.html">
+            
+                <a href="example-maximum-row.html">
+            
+                    
+                    The Row Holding the Maximum of a Certain Column
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7" data-path="apache.html">
             
                 <a href="apache.html">
             
@@ -856,7 +905,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Controlling the Query Optimizer","level":"1.6.9","depth":2,"next":{"title":"Buffering and Caching","level":"1.6.10","depth":2,"path":"buffering-caching.md","ref":"buffering-caching.md","articles":[]},"previous":{"title":"Understanding the Query Execution Plan","level":"1.6.8","depth":2,"path":"execution-plan-information.md","ref":"execution-plan-information.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-highlight","-sharing","prism","github","github-buttons","expandable-chapters-small","donate","anchors","edit-link","copy-code-button"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"github":{"url":"https://github.com/mowangjuanzi/mysql-chinese-doc"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"donate":{"alipay":"/assets/alipay.png","alipayText":"支付宝打赏","button":"赏","title":"","wechat":"/assets/wechat.jpg","wechatText":"微信打赏"},"fontsettings":{"theme":"white","family":"sans","size":2},"github-buttons":{"buttons":[{"user":"mowangjuanzi","repo":"mysql-chinese-doc","type":"star","size":"small","count":true}]},"expandable-chapters-small":{},"copy-code-button":{},"edit-link":{"label":"Edit This Page","base":"https://github.com/mowangjuanzi/mysql-chinese-doc/edit/master"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"en","gitbook":"*"},"file":{"path":"controlling-optimizer.md","mtime":"2019-06-24T12:57:20.330Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-30T12:58:59.619Z"},"basePath":".","book":{"language":"en"}});
+            gitbook.page.hasChanged({"page":{"title":"Controlling the Query Optimizer","level":"1.6.9","depth":2,"next":{"title":"Buffering and Caching","level":"1.6.10","depth":2,"path":"buffering-caching.md","ref":"buffering-caching.md","articles":[]},"previous":{"title":"Understanding the Query Execution Plan","level":"1.6.8","depth":2,"path":"execution-plan-information.md","ref":"execution-plan-information.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-highlight","-sharing","prism","github","github-buttons","expandable-chapters-small","donate","anchors","edit-link","copy-code-button","alerts"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"github":{"url":"https://github.com/mowangjuanzi/mysql-chinese-doc"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"donate":{"alipay":"/assets/alipay.png","alipayText":"支付宝打赏","button":"赏","title":"","wechat":"/assets/wechat.jpg","wechatText":"微信打赏"},"fontsettings":{"theme":"white","family":"sans","size":2},"alerts":{},"github-buttons":{"buttons":[{"user":"mowangjuanzi","repo":"mysql-chinese-doc","type":"star","size":"small","count":true}]},"expandable-chapters-small":{},"copy-code-button":{},"edit-link":{"label":"Edit This Page","base":"https://github.com/mowangjuanzi/mysql-chinese-doc/edit/master"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"en","gitbook":"*"},"file":{"path":"controlling-optimizer.md","mtime":"2019-06-24T12:57:20.330Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-07-02T13:52:15.541Z"},"basePath":".","book":{"language":"en"}});
         });
     </script>
 </div>
@@ -887,6 +936,10 @@
     
         
         <script src="../gitbook/gitbook-plugin-copy-code-button/toggle.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-alerts/plugin.js"></script>
         
     
         
