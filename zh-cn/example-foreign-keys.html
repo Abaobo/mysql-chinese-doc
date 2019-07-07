@@ -1,0 +1,1149 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>使用外键 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-prism/prism.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-donate/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-alerts/style.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="searching-on-two-keys.html" />
+    
+    
+    <link rel="prev" href="example-user-variables.html" />
+    
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"buttons":[{"user":"mowangjuanzi","repo":"mysql-chinese-doc","type":"star","size":"small","count":true}]};
+    </script>
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="preface.html">
+            
+                <a href="preface.html">
+            
+                    
+                    前言和法律条款
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="installing.html">
+            
+                <a href="installing.html">
+            
+                    
+                    安装和更新 MySQL
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="linux-installation.html">
+            
+                <a href="linux-installation.html">
+            
+                    
+                    在 Linux 上安装 MySQL
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1.1" data-path="linux-installation-apt-repo.html">
+            
+                <a href="linux-installation-apt-repo.html">
+            
+                    
+                    在 Linux 上使用 APT 库安装 MySQL
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.2" data-path="linux-installation-docker.html">
+            
+                <a href="linux-installation-docker.html">
+            
+                    
+                    在 Linux 上使用 Docker 部署 MySQL
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1.2.1" data-path="docker-mysql-getting-started.html">
+            
+                <a href="docker-mysql-getting-started.html">
+            
+                    
+                    使用 Docker 部署 MySQL 服务器的基本步骤
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.2.2" data-path="docker-mysql-more-topics.html">
+            
+                <a href="docker-mysql-more-topics.html">
+            
+                    
+                    使用 Docker 部署 MySQL 服务器的更多主题
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="tutorial.html">
+            
+                <a href="tutorial.html">
+            
+                    
+                    教程
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="connecting-disconnecting.html">
+            
+                <a href="connecting-disconnecting.html">
+            
+                    
+                    连接到服务器和从服务器断开
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="entering-queries.html">
+            
+                <a href="entering-queries.html">
+            
+                    
+                    输入查询
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="database-use.html">
+            
+                <a href="database-use.html">
+            
+                    
+                    创建和使用数据库
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.3.1" data-path="creating-database.html">
+            
+                <a href="creating-database.html">
+            
+                    
+                    创建和选择数据库
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.2" data-path="creating-tables.html">
+            
+                <a href="creating-tables.html">
+            
+                    
+                    创建表
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.3" data-path="loading-tables.html">
+            
+                <a href="loading-tables.html">
+            
+                    
+                    将数据加载到表中
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.4" data-path="retrieving-data.html">
+            
+                <a href="retrieving-data.html">
+            
+                    
+                    从表中检索数据
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.3.4.1" data-path="selecting-all.html">
+            
+                <a href="selecting-all.html">
+            
+                    
+                    选择所有数据
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.4.2" data-path="selecting-rows.html">
+            
+                <a href="selecting-rows.html">
+            
+                    
+                    选择特定行
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.4.3" data-path="selecting-columns.html">
+            
+                <a href="selecting-columns.html">
+            
+                    
+                    选择指定列
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.4.4" data-path="sorting-rows.html">
+            
+                <a href="sorting-rows.html">
+            
+                    
+                    行排序
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.4.5" data-path="date-calculations.html">
+            
+                <a href="date-calculations.html">
+            
+                    
+                    日期计算
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.4.6" data-path="working-with-null.html">
+            
+                <a href="working-with-null.html">
+            
+                    
+                    处理 NULL 值
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.4.7" data-path="pattern-matching.html">
+            
+                <a href="pattern-matching.html">
+            
+                    
+                    模式匹配
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.4.8" data-path="counting-rows.html">
+            
+                <a href="counting-rows.html">
+            
+                    
+                    计算行数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.4.9" data-path="multiple-tables.html">
+            
+                <a href="multiple-tables.html">
+            
+                    
+                    使用多个表
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="getting-information.html">
+            
+                <a href="getting-information.html">
+            
+                    
+                    获取数据库和表的信息
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="batch-mode.html">
+            
+                <a href="batch-mode.html">
+            
+                    
+                    在批处理模式使用 mysql
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" data-path="examples.html">
+            
+                <a href="examples.html">
+            
+                    
+                    常见查询示例
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.6.1" data-path="example-maximum-column.html">
+            
+                <a href="example-maximum-column.html">
+            
+                    
+                    列的最大值
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6.2" data-path="example-maximum-row.html">
+            
+                <a href="example-maximum-row.html">
+            
+                    
+                    包含某一行最大值的记录
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6.3" data-path="example-maximum-column-group.html">
+            
+                <a href="example-maximum-column-group.html">
+            
+                    
+                    每组中列的最大值
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6.4" data-path="example-maximum-column-group-row.html">
+            
+                <a href="example-maximum-column-group-row.html">
+            
+                    
+                    拥有某个字段的组间最大值的行
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6.5" data-path="example-user-variables.html">
+            
+                <a href="example-user-variables.html">
+            
+                    
+                    使用用户自定义变量
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.4.6.6" data-path="example-foreign-keys.html">
+            
+                <a href="example-foreign-keys.html">
+            
+                    
+                    使用外键
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6.7" data-path="searching-on-two-keys.html">
+            
+                <a href="searching-on-two-keys.html">
+            
+                    
+                    两个键上搜索
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6.8" data-path="calculating-days.html">
+            
+                <a href="calculating-days.html">
+            
+                    
+                    计算每日访问量
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6.9" data-path="example-auto-increment.html">
+            
+                <a href="example-auto-increment.html">
+            
+                    
+                    使用 AUTO_INCREMENT
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7" data-path="apache.html">
+            
+                <a href="apache.html">
+            
+                    
+                    在 Apache 中使用 MySQL
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="programs.html">
+            
+                <a href="programs.html">
+            
+                    
+                    MySQL 程序
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="programs-client.html">
+            
+                <a href="programs-client.html">
+            
+                    
+                    MySQL 客户端程序
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1.1" data-path="mysql.html">
+            
+                <a href="mysql.html">
+            
+                    
+                    mysql — MySQL 命令行客户端
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="optimization.html">
+            
+                <a href="optimization.html">
+            
+                    
+                    优化
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="optimize-overview.html">
+            
+                <a href="optimize-overview.html">
+            
+                    
+                    优化概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="statement-optimization.html">
+            
+                <a href="statement-optimization.html">
+            
+                    
+                    优化 SQL 语句
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="optimization-indexes.html">
+            
+                <a href="optimization-indexes.html">
+            
+                    
+                    优化和索引
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4" data-path="optimizing-database-structure.html">
+            
+                <a href="optimizing-database-structure.html">
+            
+                    
+                    优化数据库结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.5" data-path="optimizing-innodb.html">
+            
+                <a href="optimizing-innodb.html">
+            
+                    
+                    优化 InnoDB 表
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.6" data-path="optimizing-myisam.html">
+            
+                <a href="optimizing-myisam.html">
+            
+                    
+                    优化 MyISAM 表
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.7" data-path="optimizing-memory-tables.html">
+            
+                <a href="optimizing-memory-tables.html">
+            
+                    
+                    优化 MEMORY 表
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.8" data-path="execution-plan-information.html">
+            
+                <a href="execution-plan-information.html">
+            
+                    
+                    理解查询执行计划
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.9" data-path="controlling-optimizer.html">
+            
+                <a href="controlling-optimizer.html">
+            
+                    
+                    控制查询优化器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.10" data-path="buffering-caching.html">
+            
+                <a href="buffering-caching.html">
+            
+                    
+                    缓冲和缓存
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.11" data-path="locking-issues.html">
+            
+                <a href="locking-issues.html">
+            
+                    
+                    优化锁操作
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.12" data-path="optimizing-server.html">
+            
+                <a href="optimizing-server.html">
+            
+                    
+                    优化 MySQL 服务器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.13" data-path="optimize-benchmarking.html">
+            
+                <a href="optimize-benchmarking.html">
+            
+                    
+                    测量性能 (Benchmarking)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.14" data-path="thread-information.html">
+            
+                <a href="thread-information.html">
+            
+                    
+                    检查线程信息
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >使用外键</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h3 id="366-&#x4F7F;&#x7528;&#x5916;&#x952E;"><a name="366-&#x4F7F;&#x7528;&#x5916;&#x952E;" class="plugin-anchor" href="#366-&#x4F7F;&#x7528;&#x5916;&#x952E;"><i class="fa fa-link" aria-hidden="true"></i></a>3.6.6 &#x4F7F;&#x7528;&#x5916;&#x952E;</h3>
+<p>&#x5728; MySQL &#x4E2D;, <code>InnoDB</code> &#x8868;&#x652F;&#x6301;&#x68C0;&#x67E5;&#x5916;&#x952E;&#x7EA6;&#x675F;. &#x53C2;&#x9605; <a href="https://dev.mysql.com/doc/refman/8.0/en/innodb-storage-engine.html" target="_blank">Chapter 15, InnoDB &#x5B58;&#x50A8;&#x5F15;&#x64CE;</a>, &#x548C; <a href="https://dev.mysql.com/doc/refman/8.0/en/ansi-diff-foreign-keys.html" target="_blank">Section 1.8.2.3, &#x201C;&#x5916;&#x952E;&#x5DEE;&#x5F02;&#x201D;</a>.</p>
+<p>&#x5916;&#x952E;&#x7EA6;&#x675F;&#x4E0D;&#x4EC5;&#x4EC5;&#x7528;&#x4E8E;&#x8FDE;&#x63A5;&#x4E24;&#x4E2A;&#x8868;. &#x9664;&#x4E86; <code>InnoDB</code> &#x5B58;&#x50A8;&#x5F15;&#x64CE;, &#x5728;&#x5B9A;&#x4E49;&#x5217;&#x65F6;&#x4F7F;&#x7528; <code>REFERENCES tbl_name(col_name)</code> &#x5B50;&#x53E5;, &#x8BE5;&#x53E5;&#x6CA1;&#x6709;&#x5B9E;&#x9645;&#x7684;&#x6548;&#x679C;, <em>&#x53EA;&#x662F;&#x4F5C;&#x4E3A;&#x4E00;&#x4E2A;&#x5907;&#x5FD8;&#x5F55;&#x6216;&#x8005;&#x6CE8;&#x91CA;&#x544A;&#x8BC9;&#x4F60;&#x5F53;&#x524D;&#x5B9A;&#x4E49;&#x7684;&#x5217;&#x662F;&#x6307;&#x7684;&#x53E6;&#x5916;&#x4E00;&#x5F20;&#x8868;&#x7684;&#x5217;</em>. &#x4F7F;&#x7528;&#x8FD9;&#x79CD;&#x8BED;&#x6CD5;&#x65F6;, &#x8BA4;&#x8BC6;&#x5230;&#x8FD9;&#x4E00;&#x70B9;&#x975E;&#x5E38;&#x91CD;&#x8981;:</p>
+<ul>
+<li><p>MySQL &#x4E0D;&#x6267;&#x884C;&#x4EFB;&#x4F55;&#x68C0;&#x67E5;&#x6765;&#x786E;&#x4FDD; <em>col_name</em> &#x786E;&#x5B9E;&#x5B58;&#x5728;&#x4E8E; <em>tbl_name</em> (&#x751A;&#x81F3; <em>tbl_name</em> &#x672C;&#x8EAB;&#x662F;&#x5426;&#x5B58;&#x5728;).</p>
+</li>
+<li><p>MySQL &#x4E0D;&#x4F1A;&#x5BF9; <em>tbl_name</em> &#x6267;&#x884C;&#x4EFB;&#x4F55;&#x7C7B;&#x578B;&#x7684;&#x64CD;&#x4F5C;, &#x4F8B;&#x5982;&#x5220;&#x9664;&#x884C;&#x4EE5;&#x54CD;&#x5E94;&#x5BF9;&#x4F60;&#x5B9A;&#x4E49;&#x7684;&#x8868;&#x4E2D;&#x7684;&#x884C;&#x7684;&#x54CD;&#x5E94;; &#x6362;&#x53E5;&#x8BDD;&#x8BB2;, &#x8FD9;&#x4E2A;&#x8BED;&#x6CD5;&#x4E0D;&#x4F1A;&#x5BF9; <code>ON DELETE or ON UPDATE</code> &#x884C;&#x4E3A;&#x4EA7;&#x751F;&#x4EFB;&#x4F55;&#x5F71;&#x54CD;. (&#x867D;&#x7136;&#x4F60;&#x53EF;&#x4EE5;&#x5C06; <code>ON DELETE</code> &#x6216;&#x8005; <code>ON UPDATE</code> &#x5B50;&#x53E5;&#x4F5C;&#x4E3A; <code>REFERENCES</code> &#x5B50;&#x53E5;&#x7684;&#x4E00;&#x90E8;&#x5206;, &#x4F46;&#x5B83;&#x88AB;&#x5FFD;&#x7565;.)</p>
+</li>
+<li><p>&#x8BE5;&#x8BED;&#x6CD5;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;<em>&#x5217;</em>; &#x5B83;<strong><em>&#x4E0D;</em></strong>&#x4F1A;&#x521B;&#x5EFA;&#x4EFB;&#x4F55;&#x7D22;&#x5F15;&#x6216;&#x8005;&#x952E;.</p>
+</li>
+</ul>
+<p>&#x4F60;&#x53EF;&#x4EE5;&#x521B;&#x5EFA;&#x5217;&#x4F5C;&#x4E3A;&#x8FDE;&#x63A5;&#x5217;, &#x5982;&#x4E0B;&#x6240;&#x793A;:</p>
+<pre class="language-"><code class="lang-sql"><span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> person <span class="token punctuation">(</span>
+    id <span class="token keyword">SMALLINT</span> <span class="token keyword">UNSIGNED</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">AUTO_INCREMENT</span><span class="token punctuation">,</span>
+    name <span class="token keyword">CHAR</span><span class="token punctuation">(</span><span class="token number">60</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>id<span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> shirt <span class="token punctuation">(</span>
+    id <span class="token keyword">SMALLINT</span> <span class="token keyword">UNSIGNED</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">AUTO_INCREMENT</span><span class="token punctuation">,</span>
+    style <span class="token keyword">ENUM</span><span class="token punctuation">(</span><span class="token string">&apos;t-shirt&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;polo&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;dress&apos;</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    color <span class="token keyword">ENUM</span><span class="token punctuation">(</span><span class="token string">&apos;red&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;blue&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;orange&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;white&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;black&apos;</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    owner <span class="token keyword">SMALLINT</span> <span class="token keyword">UNSIGNED</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">REFERENCES</span> person<span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>id<span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> person <span class="token keyword">VALUES</span> <span class="token punctuation">(</span><span class="token boolean">NULL</span><span class="token punctuation">,</span> <span class="token string">&apos;Antonio Paz&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">SELECT</span> <span class="token variable">@last</span> :<span class="token operator">=</span> LAST_INSERT_ID<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> shirt <span class="token keyword">VALUES</span>
+<span class="token punctuation">(</span><span class="token boolean">NULL</span><span class="token punctuation">,</span> <span class="token string">&apos;polo&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;blue&apos;</span><span class="token punctuation">,</span> <span class="token variable">@last</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">(</span><span class="token boolean">NULL</span><span class="token punctuation">,</span> <span class="token string">&apos;dress&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;white&apos;</span><span class="token punctuation">,</span> <span class="token variable">@last</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">(</span><span class="token boolean">NULL</span><span class="token punctuation">,</span> <span class="token string">&apos;t-shirt&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;blue&apos;</span><span class="token punctuation">,</span> <span class="token variable">@last</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> person <span class="token keyword">VALUES</span> <span class="token punctuation">(</span><span class="token boolean">NULL</span><span class="token punctuation">,</span> <span class="token string">&apos;Lilliana Angelovska&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">SELECT</span> <span class="token variable">@last</span> :<span class="token operator">=</span> LAST_INSERT_ID<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> shirt <span class="token keyword">VALUES</span>
+<span class="token punctuation">(</span><span class="token boolean">NULL</span><span class="token punctuation">,</span> <span class="token string">&apos;dress&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;orange&apos;</span><span class="token punctuation">,</span> <span class="token variable">@last</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">(</span><span class="token boolean">NULL</span><span class="token punctuation">,</span> <span class="token string">&apos;polo&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;red&apos;</span><span class="token punctuation">,</span> <span class="token variable">@last</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">(</span><span class="token boolean">NULL</span><span class="token punctuation">,</span> <span class="token string">&apos;dress&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;blue&apos;</span><span class="token punctuation">,</span> <span class="token variable">@last</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">(</span><span class="token boolean">NULL</span><span class="token punctuation">,</span> <span class="token string">&apos;t-shirt&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;white&apos;</span><span class="token punctuation">,</span> <span class="token variable">@last</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> person<span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">----+---------------------+</span>
+<span class="token operator">|</span> id <span class="token operator">|</span> name                <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----+---------------------+</span>
+<span class="token operator">|</span>  <span class="token number">1</span> <span class="token operator">|</span> Antonio Paz         <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token number">2</span> <span class="token operator">|</span> Lilliana Angelovska <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----+---------------------+</span>
+
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> shirt<span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">----+---------+--------+-------+</span>
+<span class="token operator">|</span> id <span class="token operator">|</span> style   <span class="token operator">|</span> color  <span class="token operator">|</span> owner <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----+---------+--------+-------+</span>
+<span class="token operator">|</span>  <span class="token number">1</span> <span class="token operator">|</span> polo    <span class="token operator">|</span> blue   <span class="token operator">|</span>     <span class="token number">1</span> <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token number">2</span> <span class="token operator">|</span> dress   <span class="token operator">|</span> white  <span class="token operator">|</span>     <span class="token number">1</span> <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token number">3</span> <span class="token operator">|</span> t<span class="token operator">-</span>shirt <span class="token operator">|</span> blue   <span class="token operator">|</span>     <span class="token number">1</span> <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token number">4</span> <span class="token operator">|</span> dress   <span class="token operator">|</span> orange <span class="token operator">|</span>     <span class="token number">2</span> <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token number">5</span> <span class="token operator">|</span> polo    <span class="token operator">|</span> red    <span class="token operator">|</span>     <span class="token number">2</span> <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token number">6</span> <span class="token operator">|</span> dress   <span class="token operator">|</span> blue   <span class="token operator">|</span>     <span class="token number">2</span> <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token number">7</span> <span class="token operator">|</span> t<span class="token operator">-</span>shirt <span class="token operator">|</span> white  <span class="token operator">|</span>     <span class="token number">2</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----+---------+--------+-------+</span>
+
+
+<span class="token keyword">SELECT</span> s<span class="token punctuation">.</span><span class="token operator">*</span> <span class="token keyword">FROM</span> person p <span class="token keyword">INNER</span> <span class="token keyword">JOIN</span> shirt s
+   <span class="token keyword">ON</span> s<span class="token punctuation">.</span>owner <span class="token operator">=</span> p<span class="token punctuation">.</span>id
+ <span class="token keyword">WHERE</span> p<span class="token punctuation">.</span>name <span class="token operator">LIKE</span> <span class="token string">&apos;Lilliana%&apos;</span>
+   <span class="token operator">AND</span> s<span class="token punctuation">.</span>color <span class="token operator">&lt;&gt;</span> <span class="token string">&apos;white&apos;</span><span class="token punctuation">;</span>
+
+<span class="token operator">+</span><span class="token comment">----+-------+--------+-------+</span>
+<span class="token operator">|</span> id <span class="token operator">|</span> style <span class="token operator">|</span> color  <span class="token operator">|</span> owner <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----+-------+--------+-------+</span>
+<span class="token operator">|</span>  <span class="token number">4</span> <span class="token operator">|</span> dress <span class="token operator">|</span> orange <span class="token operator">|</span>     <span class="token number">2</span> <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token number">5</span> <span class="token operator">|</span> polo  <span class="token operator">|</span> red    <span class="token operator">|</span>     <span class="token number">2</span> <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token number">6</span> <span class="token operator">|</span> dress <span class="token operator">|</span> blue   <span class="token operator">|</span>     <span class="token number">2</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----+-------+--------+-------+</span>
+</code></pre>
+<p>&#x5F53;&#x4EE5;&#x8FD9;&#x79CD;&#x65B9;&#x5F0F;&#x4F7F;&#x7528;&#x65F6;, <code>REFERENCES</code> &#x5B50;&#x53E5;&#x4E0D;&#x4F1A;&#x663E;&#x793A;&#x5728; <a href="https://dev.mysql.com/doc/refman/8.0/en/show-create-table.html" target="_blank">SHOW CREATE TABLE</a> or <a href="https://dev.mysql.com/doc/refman/8.0/en/describe.html" target="_blank">DESCRIBE</a> &#x7684;&#x8F93;&#x51FA;&#x4E2D;:</p>
+<pre class="language-"><code class="lang-sql"><span class="token keyword">SHOW</span> <span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> shirt\G
+<span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span> <span class="token number">1.</span> <span class="token keyword">row</span> <span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span>
+<span class="token keyword">Table</span>: shirt
+<span class="token keyword">Create</span> <span class="token keyword">Table</span>: <span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token punctuation">`</span>shirt<span class="token punctuation">`</span> <span class="token punctuation">(</span>
+<span class="token punctuation">`</span>id<span class="token punctuation">`</span> <span class="token keyword">smallint</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span> <span class="token keyword">unsigned</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">auto_increment</span><span class="token punctuation">,</span>
+<span class="token punctuation">`</span>style<span class="token punctuation">`</span> <span class="token keyword">enum</span><span class="token punctuation">(</span><span class="token string">&apos;t-shirt&apos;</span><span class="token punctuation">,</span><span class="token string">&apos;polo&apos;</span><span class="token punctuation">,</span><span class="token string">&apos;dress&apos;</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+<span class="token punctuation">`</span>color<span class="token punctuation">`</span> <span class="token keyword">enum</span><span class="token punctuation">(</span><span class="token string">&apos;red&apos;</span><span class="token punctuation">,</span><span class="token string">&apos;blue&apos;</span><span class="token punctuation">,</span><span class="token string">&apos;orange&apos;</span><span class="token punctuation">,</span><span class="token string">&apos;white&apos;</span><span class="token punctuation">,</span><span class="token string">&apos;black&apos;</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+<span class="token punctuation">`</span>owner<span class="token punctuation">`</span> <span class="token keyword">smallint</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span> <span class="token keyword">unsigned</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+<span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span>  <span class="token punctuation">(</span><span class="token punctuation">`</span>id<span class="token punctuation">`</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span> <span class="token keyword">ENGINE</span><span class="token operator">=</span>MyISAM <span class="token keyword">DEFAULT</span> <span class="token keyword">CHARSET</span><span class="token operator">=</span>utf8mb4
+</code></pre>
+<p>&#x6309;&#x8FD9;&#x79CD;&#x65B9;&#x5F0F;&#x4F7F;&#x7528; <code>REFERENCES</code> &#x4F5C;&#x4E3A;&#x6CE8;&#x91CA;&#x6216;&#x8005; &#x201C;&#x63D0;&#x793A;&#x201D; &#x521B;&#x5EFA;&#x5217;&#x9002;&#x7528;&#x4E8E; <code>MyISAM</code> &#x8868;.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="example-user-variables.html" class="navigation navigation-prev " aria-label="Previous page: 使用用户自定义变量">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="searching-on-two-keys.html" class="navigation navigation-next " aria-label="Next page: 两个键上搜索">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"使用外键","level":"1.4.6.6","depth":3,"next":{"title":"两个键上搜索","level":"1.4.6.7","depth":3,"path":"searching-on-two-keys.md","ref":"searching-on-two-keys.md","articles":[]},"previous":{"title":"使用用户自定义变量","level":"1.4.6.5","depth":3,"path":"example-user-variables.md","ref":"example-user-variables.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-highlight","-sharing","prism","github","github-buttons","expandable-chapters-small","donate","anchors","edit-link","copy-code-button","alerts"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"github":{"url":"https://github.com/mowangjuanzi/mysql-chinese-doc"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"donate":{"alipay":"/assets/alipay.png","alipayText":"支付宝打赏","button":"赏","title":"","wechat":"/assets/wechat.jpg","wechatText":"微信打赏"},"fontsettings":{"theme":"white","family":"sans","size":2},"alerts":{},"github-buttons":{"buttons":[{"user":"mowangjuanzi","repo":"mysql-chinese-doc","type":"star","size":"small","count":true}]},"expandable-chapters-small":{},"copy-code-button":{},"edit-link":{"label":"Edit This Page","base":"https://github.com/mowangjuanzi/mysql-chinese-doc/edit/master"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"zh-hans","gitbook":"*"},"file":{"path":"example-foreign-keys.md","mtime":"2019-07-07T01:47:54.886Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-07-07T04:22:38.250Z"},"basePath":".","book":{"language":"zh-cn"}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-donate/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-edit-link/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-copy-code-button/toggle.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-alerts/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

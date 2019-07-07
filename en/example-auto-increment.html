@@ -1,0 +1,1171 @@
+
+<!DOCTYPE HTML>
+<html lang="en" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Using AUTO_INCREMENT · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-prism/prism.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-donate/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-alerts/style.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="apache.html" />
+    
+    
+    <link rel="prev" href="calculating-days.html" />
+    
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"buttons":[{"user":"mowangjuanzi","repo":"mysql-chinese-doc","type":"star","size":"small","count":true}]};
+    </script>
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="preface.html">
+            
+                <a href="preface.html">
+            
+                    
+                    Preface and Legal Notices
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="installing.html">
+            
+                <a href="installing.html">
+            
+                    
+                    Installing and Upgrading MySQL
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="linux-installation.html">
+            
+                <a href="linux-installation.html">
+            
+                    
+                    Installing MySQL on Linux
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1.1" data-path="linux-installation-apt-repo.html">
+            
+                <a href="linux-installation-apt-repo.html">
+            
+                    
+                    Installing MySQL on Linux Using the MySQL APT Repository
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.2" data-path="linux-installation-docker.html">
+            
+                <a href="linux-installation-docker.html">
+            
+                    
+                    Deploying MySQL on Linux with Docker
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1.2.1" data-path="docker-mysql-getting-started.html">
+            
+                <a href="docker-mysql-getting-started.html">
+            
+                    
+                    Basic Steps for MySQL Server Deployment with Docker
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.2.2" data-path="docker-mysql-more-topics.html">
+            
+                <a href="docker-mysql-more-topics.html">
+            
+                    
+                    More Topics on Deploying MySQL Server with Docker
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="tutorial.html">
+            
+                <a href="tutorial.html">
+            
+                    
+                    Tutorial
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="connecting-disconnecting.html">
+            
+                <a href="connecting-disconnecting.html">
+            
+                    
+                    Connecting to and Disconnecting from the Server
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="entering-queries.html">
+            
+                <a href="entering-queries.html">
+            
+                    
+                    Entering Queries
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="database-use.html">
+            
+                <a href="database-use.html">
+            
+                    
+                    Creating and Using a Database
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.3.1" data-path="creating-database.html">
+            
+                <a href="creating-database.html">
+            
+                    
+                    Creating and Selecting a Database
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.2" data-path="creating-tables.html">
+            
+                <a href="creating-tables.html">
+            
+                    
+                    Creating a Table
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.3" data-path="loading-tables.html">
+            
+                <a href="loading-tables.html">
+            
+                    
+                    Loading Data into a Table
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.4" data-path="retrieving-data.html">
+            
+                <a href="retrieving-data.html">
+            
+                    
+                    Retrieving Information from a Table
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.3.4.1" data-path="selecting-all.html">
+            
+                <a href="selecting-all.html">
+            
+                    
+                    Selecting All Data
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.4.2" data-path="selecting-rows.html">
+            
+                <a href="selecting-rows.html">
+            
+                    
+                    Selecting Particular Rows
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.4.3" data-path="selecting-columns.html">
+            
+                <a href="selecting-columns.html">
+            
+                    
+                    Selecting Particular Columns
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.4.4" data-path="sorting-rows.html">
+            
+                <a href="sorting-rows.html">
+            
+                    
+                    Sorting Rows
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.4.5" data-path="date-calculations.html">
+            
+                <a href="date-calculations.html">
+            
+                    
+                    Date Calculationsa
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.4.6" data-path="working-with-null.html">
+            
+                <a href="working-with-null.html">
+            
+                    
+                    Working with NULL Values
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.4.7" data-path="pattern-matching.html">
+            
+                <a href="pattern-matching.html">
+            
+                    
+                    Pattern Matching
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.4.8" data-path="counting-rows.html">
+            
+                <a href="counting-rows.html">
+            
+                    
+                    Counting Rows
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.4.9" data-path="multiple-tables.html">
+            
+                <a href="multiple-tables.html">
+            
+                    
+                    Using More Than one Table
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="getting-information.html">
+            
+                <a href="getting-information.html">
+            
+                    
+                    Getting Information About Databases and Tables
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="batch-mode.html">
+            
+                <a href="batch-mode.html">
+            
+                    
+                    Using mysql in Batch Mode
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" data-path="examples.html">
+            
+                <a href="examples.html">
+            
+                    
+                    Examples of Common Queries
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.6.1" data-path="example-maximum-column.html">
+            
+                <a href="example-maximum-column.html">
+            
+                    
+                    The Maximum Value for a Column
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6.2" data-path="example-maximum-row.html">
+            
+                <a href="example-maximum-row.html">
+            
+                    
+                    The Row Holding the Maximum of a Certain Column
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6.3" data-path="example-maximum-column-group.html">
+            
+                <a href="example-maximum-column-group.html">
+            
+                    
+                    Maximum of Column per Group
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6.4" data-path="example-maximum-column-group-row.html">
+            
+                <a href="example-maximum-column-group-row.html">
+            
+                    
+                    The Rows Holding the Group-wise Maximum of a Certain Column
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6.5" data-path="example-user-variables.html">
+            
+                <a href="example-user-variables.html">
+            
+                    
+                    Using User-Defined Variables
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6.6" data-path="example-foreign-keys.html">
+            
+                <a href="example-foreign-keys.html">
+            
+                    
+                    Using Foreign Keys
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6.7" data-path="searching-on-two-keys.html">
+            
+                <a href="searching-on-two-keys.html">
+            
+                    
+                    Searching on Two Keys
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6.8" data-path="calculating-days.html">
+            
+                <a href="calculating-days.html">
+            
+                    
+                    Calculating Visits Per Day
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.4.6.9" data-path="example-auto-increment.html">
+            
+                <a href="example-auto-increment.html">
+            
+                    
+                    Using AUTO_INCREMENT
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7" data-path="apache.html">
+            
+                <a href="apache.html">
+            
+                    
+                    Using MySQL with Apache
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="programs.html">
+            
+                <a href="programs.html">
+            
+                    
+                    MySQL Programs
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="programs-client.html">
+            
+                <a href="programs-client.html">
+            
+                    
+                    MySQL Client Programs
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1.1" data-path="mysql.html">
+            
+                <a href="mysql.html">
+            
+                    
+                    mysql — The MySQL Command-Line Client
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="optimization.html">
+            
+                <a href="optimization.html">
+            
+                    
+                    Optimization
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="optimize-overview.html">
+            
+                <a href="optimize-overview.html">
+            
+                    
+                    Optimization Overview
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="statement-optimization.html">
+            
+                <a href="statement-optimization.html">
+            
+                    
+                    Optimizing SQL Statements
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="optimization-indexes.html">
+            
+                <a href="optimization-indexes.html">
+            
+                    
+                    Optimization and Indexes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4" data-path="optimizing-database-structure.html">
+            
+                <a href="optimizing-database-structure.html">
+            
+                    
+                    Optimizing Database Structure
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.5" data-path="optimizing-innodb.html">
+            
+                <a href="optimizing-innodb.html">
+            
+                    
+                    Optimizing for InnoDB Tables
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.6" data-path="optimizing-myisam.html">
+            
+                <a href="optimizing-myisam.html">
+            
+                    
+                    Optimizing for MyISAM Tables
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.7" data-path="optimizing-memory-tables.html">
+            
+                <a href="optimizing-memory-tables.html">
+            
+                    
+                    Optimizing for MEMORY Tables
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.8" data-path="execution-plan-information.html">
+            
+                <a href="execution-plan-information.html">
+            
+                    
+                    Understanding the Query Execution Plan
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.9" data-path="controlling-optimizer.html">
+            
+                <a href="controlling-optimizer.html">
+            
+                    
+                    Controlling the Query Optimizer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.10" data-path="buffering-caching.html">
+            
+                <a href="buffering-caching.html">
+            
+                    
+                    Buffering and Caching
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.11" data-path="locking-issues.html">
+            
+                <a href="locking-issues.html">
+            
+                    
+                    Optimizing Locking Operations
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.12" data-path="optimizing-server.html">
+            
+                <a href="optimizing-server.html">
+            
+                    
+                    Optimizing the MySQL Server
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.13" data-path="optimize-benchmarking.html">
+            
+                <a href="optimize-benchmarking.html">
+            
+                    
+                    Measuring Performance (Benchmarking)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.14" data-path="thread-information.html">
+            
+                <a href="thread-information.html">
+            
+                    
+                    Examining Thread Information
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >Using AUTO_INCREMENT</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h3 id="369-using-autoincrement"><a name="369-using-autoincrement" class="plugin-anchor" href="#369-using-autoincrement"><i class="fa fa-link" aria-hidden="true"></i></a>3.6.9 Using AUTO_INCREMENT</h3>
+<p>The <code>AUTO_INCREMENT</code> attribute can be used to generate a unique identity for new rows:</p>
+<pre class="language-"><code class="lang-sql"><span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> animals <span class="token punctuation">(</span>
+     id <span class="token keyword">MEDIUMINT</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">AUTO_INCREMENT</span><span class="token punctuation">,</span>
+     name <span class="token keyword">CHAR</span><span class="token punctuation">(</span><span class="token number">30</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+     <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>id<span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> animals <span class="token punctuation">(</span>name<span class="token punctuation">)</span> <span class="token keyword">VALUES</span>
+    <span class="token punctuation">(</span><span class="token string">&apos;dog&apos;</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token string">&apos;cat&apos;</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token string">&apos;penguin&apos;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">(</span><span class="token string">&apos;lax&apos;</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token string">&apos;whale&apos;</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token string">&apos;ostrich&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> animals<span class="token punctuation">;</span>
+</code></pre>
+<p>Which returns:</p>
+<pre class="language-"><code class="lang-sql"><span class="token operator">+</span><span class="token comment">----+---------+</span>
+<span class="token operator">|</span> id <span class="token operator">|</span> name    <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----+---------+</span>
+<span class="token operator">|</span>  <span class="token number">1</span> <span class="token operator">|</span> dog     <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token number">2</span> <span class="token operator">|</span> cat     <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token number">3</span> <span class="token operator">|</span> penguin <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token number">4</span> <span class="token operator">|</span> lax     <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token number">5</span> <span class="token operator">|</span> whale   <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token number">6</span> <span class="token operator">|</span> ostrich <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----+---------+</span>
+</code></pre>
+<p>No value was specified for the <code>AUTO_INCREMENT</code> column, so MySQL assigned sequence numbers automatically. You can also explicitly assign 0 to the column to generate sequence numbers, unless the <a href="https://dev.mysql.com/doc/refman/8.0/en/sql-mode.html#sqlmode_no_auto_value_on_zero" target="_blank"><code>NO_AUTO_VALUE_ON_ZERO</code></a> SQL mode is enabled. For example:</p>
+<pre class="language-"><code class="lang-sql"><span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> animals <span class="token punctuation">(</span>id<span class="token punctuation">,</span>name<span class="token punctuation">)</span> <span class="token keyword">VALUES</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token string">&apos;groundhog&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>If the column is declared <code>NOT NULL</code>, it is also possible to assign <code>NULL</code> to the column to generate sequence numbers. For example:</p>
+<pre class="language-"><code class="lang-sql"><span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> animals <span class="token punctuation">(</span>id<span class="token punctuation">,</span>name<span class="token punctuation">)</span> <span class="token keyword">VALUES</span><span class="token punctuation">(</span><span class="token boolean">NULL</span><span class="token punctuation">,</span><span class="token string">&apos;squirrel&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>When you insert any other value into an <code>AUTO_INCREMENT</code> column, the column is set to that value and the sequence is reset so that the next automatically generated value follows sequentially from the largest column value. For example:</p>
+<pre class="language-"><code class="lang-sql"><span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> animals <span class="token punctuation">(</span>id<span class="token punctuation">,</span>name<span class="token punctuation">)</span> <span class="token keyword">VALUES</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">,</span><span class="token string">&apos;rabbit&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> animals <span class="token punctuation">(</span>id<span class="token punctuation">,</span>name<span class="token punctuation">)</span> <span class="token keyword">VALUES</span><span class="token punctuation">(</span><span class="token boolean">NULL</span><span class="token punctuation">,</span><span class="token string">&apos;mouse&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> animals<span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">-----+-----------+</span>
+<span class="token operator">|</span> id  <span class="token operator">|</span> name      <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-----+-----------+</span>
+<span class="token operator">|</span>   <span class="token number">1</span> <span class="token operator">|</span> dog       <span class="token operator">|</span>
+<span class="token operator">|</span>   <span class="token number">2</span> <span class="token operator">|</span> cat       <span class="token operator">|</span>
+<span class="token operator">|</span>   <span class="token number">3</span> <span class="token operator">|</span> penguin   <span class="token operator">|</span>
+<span class="token operator">|</span>   <span class="token number">4</span> <span class="token operator">|</span> lax       <span class="token operator">|</span>
+<span class="token operator">|</span>   <span class="token number">5</span> <span class="token operator">|</span> whale     <span class="token operator">|</span>
+<span class="token operator">|</span>   <span class="token number">6</span> <span class="token operator">|</span> ostrich   <span class="token operator">|</span>
+<span class="token operator">|</span>   <span class="token number">7</span> <span class="token operator">|</span> groundhog <span class="token operator">|</span>
+<span class="token operator">|</span>   <span class="token number">8</span> <span class="token operator">|</span> squirrel  <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token number">100</span> <span class="token operator">|</span> rabbit    <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token number">101</span> <span class="token operator">|</span> mouse     <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-----+-----------+</span>
+</code></pre>
+<p>Updating an existing <code>AUTO_INCREMENT</code> column value also resets the <code>AUTO_INCREMENT</code> sequence.</p>
+<p>You can retrieve the most recent automatically generated <code>AUTO_INCREMENT</code> value with the <a href="https://dev.mysql.com/doc/refman/8.0/en/information-functions.html#function_last-insert-id" target="_blank"><code>LAST_INSERT_ID()</code></a> SQL function or the <a href="https://dev.mysql.com/doc/refman/8.0/en/mysql-insert-id.html" target="_blank"><code>mysql_insert_id()</code></a> C API function. These functions are connection-specific, so their return values are not affected by another connection which is also performing inserts.</p>
+<p>Use the smallest integer data type for the <code>AUTO_INCREMENT</code> column that is large enough to hold the maximum sequence value you will need. When the column reaches the upper limit of the data type, the next attempt to generate a sequence number fails. Use the <code>UNSIGNED</code> attribute if possible to allow a greater range. For example, if you use <a href="https://dev.mysql.com/doc/refman/8.0/en/integer-types.html" target="_blank"><code>TINYINT</code></a>, the maximum permissible sequence number is 127. For <a href="https://dev.mysql.com/doc/refman/8.0/en/integer-types.html" target="_blank"><code>TINYINT UNSIGNED</code></a>, the maximum is 255. See <a href="https://dev.mysql.com/doc/refman/8.0/en/integer-types.html" target="_blank">Section 11.2.1, &#x201C;Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT&#x201D;</a> for the ranges of all the integer types.</p>
+<blockquote>
+<p><strong>[warning] Note</strong></p>
+<p>For a multiple-row insert, <a href="https://dev.mysql.com/doc/refman/8.0/en/information-functions.html#function_last-insert-id" target="_blank"><code>LAST_INSERT_ID()</code></a> and <a href="https://dev.mysql.com/doc/refman/8.0/en/mysql-insert-id.html" target="_blank"><code>mysql_insert_id()</code></a> actually return the <code>AUTO_INCREMENT</code> key from the <em>first</em> of the inserted rows. This enables multiple-row inserts to be reproduced correctly on other servers in a replication setup.</p>
+</blockquote>
+<p>To start with an <code>AUTO_INCREMENT</code> value other than 1, set that value with <a href="https://dev.mysql.com/doc/refman/8.0/en/create-table.html" target="_blank"><code>CREATE TABLE</code></a> or <a href="https://dev.mysql.com/doc/refman/8.0/en/alter-table.html" target="_blank"><code>ALTER TABLE</code></a>, like this:</p>
+<pre class="language-"><code class="lang-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> tbl <span class="token keyword">AUTO_INCREMENT</span> <span class="token operator">=</span> <span class="token number">100</span><span class="token punctuation">;</span>
+</code></pre>
+<h4 id="innodb-notes"><a name="innodb-notes" class="plugin-anchor" href="#innodb-notes"><i class="fa fa-link" aria-hidden="true"></i></a>InnoDB Notes</h4>
+<p>For information about <code>AUTO_INCREMENT</code> usage specific to InnoDB, see <a href="https://dev.mysql.com/doc/refman/8.0/en/innodb-auto-increment-handling.html" target="_blank">Section 15.6.1.4, &#x201C;AUTO_INCREMENT Handling in InnoDB&#x201D;</a>.</p>
+<h4 id="myisam-notes"><a name="myisam-notes" class="plugin-anchor" href="#myisam-notes"><i class="fa fa-link" aria-hidden="true"></i></a>MyISAM Notes</h4>
+<ul>
+<li><p>For <code>MyISAM</code> tables, you can specify <code>AUTO_INCREMENT</code> on a secondary column in a multiple-column index. In this case, the generated value for the <code>AUTO_INCREMENT</code> column is calculated as <a href="https://dev.mysql.com/doc/refman/8.0/en/group-by-functions.html#function_max" target="_blank"><code>MAX(auto_increment_column) + 1 WHERE prefix=given-prefix</code></a>. This is useful when you want to put data into ordered groups.</p>
+<pre class="language-"><code class="lang-sql">  <span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> animals <span class="token punctuation">(</span>
+      grp <span class="token keyword">ENUM</span><span class="token punctuation">(</span><span class="token string">&apos;fish&apos;</span><span class="token punctuation">,</span><span class="token string">&apos;mammal&apos;</span><span class="token punctuation">,</span><span class="token string">&apos;bird&apos;</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+      id <span class="token keyword">MEDIUMINT</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">AUTO_INCREMENT</span><span class="token punctuation">,</span>
+      name <span class="token keyword">CHAR</span><span class="token punctuation">(</span><span class="token number">30</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+      <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>grp<span class="token punctuation">,</span>id<span class="token punctuation">)</span>
+  <span class="token punctuation">)</span> <span class="token keyword">ENGINE</span><span class="token operator">=</span>MyISAM<span class="token punctuation">;</span>
+
+  <span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> animals <span class="token punctuation">(</span>grp<span class="token punctuation">,</span>name<span class="token punctuation">)</span> <span class="token keyword">VALUES</span>
+      <span class="token punctuation">(</span><span class="token string">&apos;mammal&apos;</span><span class="token punctuation">,</span><span class="token string">&apos;dog&apos;</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token string">&apos;mammal&apos;</span><span class="token punctuation">,</span><span class="token string">&apos;cat&apos;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token punctuation">(</span><span class="token string">&apos;bird&apos;</span><span class="token punctuation">,</span><span class="token string">&apos;penguin&apos;</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token string">&apos;fish&apos;</span><span class="token punctuation">,</span><span class="token string">&apos;lax&apos;</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token string">&apos;mammal&apos;</span><span class="token punctuation">,</span><span class="token string">&apos;whale&apos;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token punctuation">(</span><span class="token string">&apos;bird&apos;</span><span class="token punctuation">,</span><span class="token string">&apos;ostrich&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> animals <span class="token keyword">ORDER</span> <span class="token keyword">BY</span> grp<span class="token punctuation">,</span>id<span class="token punctuation">;</span>
+</code></pre>
+<p>  Which returns:</p>
+<pre class="language-"><code class="lang-sql">  <span class="token operator">+</span><span class="token comment">--------+----+---------+</span>
+  <span class="token operator">|</span> grp    <span class="token operator">|</span> id <span class="token operator">|</span> name    <span class="token operator">|</span>
+  <span class="token operator">+</span><span class="token comment">--------+----+---------+</span>
+  <span class="token operator">|</span> fish   <span class="token operator">|</span>  <span class="token number">1</span> <span class="token operator">|</span> lax     <span class="token operator">|</span>
+  <span class="token operator">|</span> mammal <span class="token operator">|</span>  <span class="token number">1</span> <span class="token operator">|</span> dog     <span class="token operator">|</span>
+  <span class="token operator">|</span> mammal <span class="token operator">|</span>  <span class="token number">2</span> <span class="token operator">|</span> cat     <span class="token operator">|</span>
+  <span class="token operator">|</span> mammal <span class="token operator">|</span>  <span class="token number">3</span> <span class="token operator">|</span> whale   <span class="token operator">|</span>
+  <span class="token operator">|</span> bird   <span class="token operator">|</span>  <span class="token number">1</span> <span class="token operator">|</span> penguin <span class="token operator">|</span>
+  <span class="token operator">|</span> bird   <span class="token operator">|</span>  <span class="token number">2</span> <span class="token operator">|</span> ostrich <span class="token operator">|</span>
+  <span class="token operator">+</span><span class="token comment">--------+----+---------+</span>
+</code></pre>
+<p>  In this case (when the <code>AUTO_INCREMENT</code> column is part of a multiple-column index), <code>AUTO_INCREMENT</code> values are reused if you delete the row with the biggest <code>AUTO_INCREMENT</code> value in any group. This happens even for <code>MyISAM</code> tables, for which <code>AUTO_INCREMENT</code> values normally are not reused.</p>
+</li>
+<li><p>If the <code>AUTO_INCREMENT</code> column is part of multiple indexes, MySQL generates sequence values using the index that begins with the <code>AUTO_INCREMENT</code> column, if there is one. For example, if the <code>animals</code> table contained indexes <code>PRIMARY KEY (grp, id)</code> and <code>INDEX (id)</code>, MySQL would ignore the <code>PRIMARY KEY</code> for generating sequence values. As a result, the table would contain a single sequence, not a sequence per <code>grp</code> value.</p>
+</li>
+</ul>
+<h4 id="further-reading"><a name="further-reading" class="plugin-anchor" href="#further-reading"><i class="fa fa-link" aria-hidden="true"></i></a>Further Reading</h4>
+<p>More information about <code>AUTO_INCREMENT</code> is available here:</p>
+<ul>
+<li><p>How to assign the <code>AUTO_INCREMENT</code> attribute to a column: <a href="https://dev.mysql.com/doc/refman/8.0/en/create-table.html" target="_blank">Section 13.1.20, &#x201C;CREATE TABLE Syntax&#x201D;</a>, and <a href="https://dev.mysql.com/doc/refman/8.0/en/alter-table.html" target="_blank">Section 13.1.9, &#x201C;ALTER TABLE Syntax&#x201D;</a>.</p>
+</li>
+<li><p>How <code>AUTO_INCREMENT</code> behaves depending on the <code>NO_AUTO_VALUE_ON_ZERO</code> SQL mode: <a href="https://dev.mysql.com/doc/refman/8.0/en/sql-mode.html" target="_blank">Section 5.1.11, &#x201C;Server SQL Modes&#x201D;</a>.</p>
+</li>
+<li><p>How to use the <a href="https://dev.mysql.com/doc/refman/8.0/en/information-functions.html#function_last-insert-id" target="_blank"><code>LAST_INSERT_ID()</code></a> function to find the row that contains the most recent <code>AUTO_INCREMENT</code> value: <a href="https://dev.mysql.com/doc/refman/8.0/en/information-functions.html" target="_blank">Section 12.15, &#x201C;Information Functions&#x201D;</a>.</p>
+</li>
+<li><p>Setting the <code>AUTO_INCREMENT</code> value to be used: <a href="https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html" target="_blank">Section 5.1.8, &#x201C;Server System Variables&#x201D;</a>.</p>
+</li>
+<li><p><a href="https://dev.mysql.com/doc/refman/8.0/en/innodb-auto-increment-handling.html" target="_blank">Section 15.6.1.4, &#x201C;AUTO_INCREMENT Handling in InnoDB&#x201D;</a></p>
+</li>
+<li><p><code>AUTO_INCREMENT</code> and replication: <a href="https://dev.mysql.com/doc/refman/8.0/en/replication-features-auto-increment.html" target="_blank">Section 17.4.1.1, &#x201C;Replication and AUTO_INCREMENT&#x201D;</a>.</p>
+</li>
+<li><p>Server-system variables related to <code>AUTO_INCREMENT</code> (<a href="https://dev.mysql.com/doc/refman/8.0/en/replication-options-master.html#sysvar_auto_increment_increment" target="_blank"><code>auto_increment_increment</code></a> and <a href="https://dev.mysql.com/doc/refman/8.0/en/replication-options-master.html#sysvar_auto_increment_offset" target="_blank"><code>auto_increment_offset</code></a>) that can be used for replication: <a href="https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html" target="_blank"><code>Section 5.1.8, &#x201C;Server System Variables&#x201D;</code></a>.</p>
+</li>
+</ul>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="calculating-days.html" class="navigation navigation-prev " aria-label="Previous page: Calculating Visits Per Day">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="apache.html" class="navigation navigation-next " aria-label="Next page: Using MySQL with Apache">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Using AUTO_INCREMENT","level":"1.4.6.9","depth":3,"next":{"title":"Using MySQL with Apache","level":"1.4.7","depth":2,"path":"apache.md","ref":"apache.md","articles":[]},"previous":{"title":"Calculating Visits Per Day","level":"1.4.6.8","depth":3,"path":"calculating-days.md","ref":"calculating-days.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-highlight","-sharing","prism","github","github-buttons","expandable-chapters-small","donate","anchors","edit-link","copy-code-button","alerts"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"github":{"url":"https://github.com/mowangjuanzi/mysql-chinese-doc"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"donate":{"alipay":"/assets/alipay.png","alipayText":"支付宝打赏","button":"赏","title":"","wechat":"/assets/wechat.jpg","wechatText":"微信打赏"},"fontsettings":{"theme":"white","family":"sans","size":2},"alerts":{},"github-buttons":{"buttons":[{"user":"mowangjuanzi","repo":"mysql-chinese-doc","type":"star","size":"small","count":true}]},"expandable-chapters-small":{},"copy-code-button":{},"edit-link":{"label":"Edit This Page","base":"https://github.com/mowangjuanzi/mysql-chinese-doc/edit/master"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"en","gitbook":"*"},"file":{"path":"example-auto-increment.md","mtime":"2019-07-07T03:28:41.353Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-07-07T04:22:38.250Z"},"basePath":".","book":{"language":"en"}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-donate/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-edit-link/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-copy-code-button/toggle.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-alerts/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
